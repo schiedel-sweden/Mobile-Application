@@ -21,17 +21,18 @@ export default class Nav extends React.Component {
 
 const styles = StyleSheet.create({
     nav: {
-        borderTopWidth: 1,
-        // backgroundColor is black to make it esey to style
-        // backgroundColor: '#EEEEEE',
-        backgroundColor: '#000',
-        borderColor: '#B9B9B9',
-        alignSelf: 'stretch',
-        height: 75,
         alignItems: 'center',
-        justifyContent: 'space-around',
+        alignSelf: 'stretch',
+        backgroundColor: '#EEEEEE',
+        borderColor: '#B9B9B9',
+        borderTopWidth: 1,
+        bottom:0,
         flexDirection: 'row',
-        bottom: 0,
+        height: 75,
+        justifyContent: 'space-around',
+        left: 0,
+        position: 'absolute',
+        right: 0,
     },
     navButton: {
         color: '#B9B9B9',
