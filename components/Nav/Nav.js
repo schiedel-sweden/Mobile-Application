@@ -3,17 +3,43 @@ import {
     StyleSheet,
     View,
     Text,
+    Button,
 } from 'react-native';
 
 export default class Nav extends React.Component {
+
+    handleClick(){
+        alert('Button clicked!');
+    }
     render() {
         return (
             <View style={styles.nav}>
-                <Text style={styles.navButton}>Prisförslag</Text>
-                <Text style={styles.navButton}>Produkter</Text>
-                <Text style={styles.navButton}>Återförsäljare</Text>
-                <Text style={styles.navButton}>Om oss</Text>
-                <Text style={styles.navButton}>Kontakta oss</Text>
+
+                <Button title="Prisförslag"
+                    style={styles.navButton}
+                    onPress={this.handleClick}
+                />
+
+                <Button title="Produkter"
+                    style={styles.navButton}
+                    onPress={this.handleClick}
+                />
+
+                <Button title="Återförsäljare"
+                    style={styles.navButton}
+                    onPress={this.handleClick}
+                />
+
+                <Button title="Om oss"
+                    style={styles.navButton}
+                    onPress={this.handleClick}
+                />
+
+                <Button title="Kontakta oss"
+                    style={styles.navButton}
+                    onPress={this.handleClick}
+                />
+
             </View>
         )
     }

@@ -18,5 +18,3 @@ const styles = StyleSheet.create({
         flex: 1,
     }
 });
-
-// https://facebook.github.io/react/blog/2017/04/07/react-v15.5.0.html#migrating-from-react.proptypes
