@@ -2,7 +2,6 @@ import React from 'react';
 import {
     StyleSheet,
     View,
-    Text,
     Button,
 } from 'react-native';
 
@@ -12,31 +11,34 @@ export default class Nav extends React.Component {
         alert('Button clicked!');
     }
     render() {
+
+        const buttonTextColor = '#B9B9B9';
+
         return (
             <View style={styles.nav}>
 
                 <Button title="Prisförslag"
-                    style={styles.navButton}
+                    color={buttonTextColor}
                     onPress={this.handleClick}
                 />
 
                 <Button title="Produkter"
-                    style={styles.navButton}
+                    color={buttonTextColor}
                     onPress={this.handleClick}
                 />
 
                 <Button title="Återförsäljare"
-                    style={styles.navButton}
+                    color={buttonTextColor}
                     onPress={this.handleClick}
                 />
 
                 <Button title="Om oss"
-                    style={styles.navButton}
+                    color={buttonTextColor}
                     onPress={this.handleClick}
                 />
 
                 <Button title="Kontakta oss"
-                    style={styles.navButton}
+                    color={buttonTextColor}
                     onPress={this.handleClick}
                 />
 
@@ -60,7 +62,4 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 0,
     },
-    navButton: {
-        color: '#B9B9B9',
-    }
 });

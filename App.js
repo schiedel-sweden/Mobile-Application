@@ -1,5 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+    StyleSheet,
+    Text,
+    View
+} from 'react-native';
 
 import Nav from './components/Nav/Nav';
 export default class App extends React.Component {
