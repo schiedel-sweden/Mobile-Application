@@ -5,7 +5,7 @@ import {
     View
 } from 'react-native';
 
-import Nav from './components/Nav/Nav';
+import Nav from './src/components/Nav/Nav';
 export default class App extends React.Component {
     render() {
         return (
