@@ -8,3 +8,5 @@ const App = StackNavigator({
 });
 
 export default App;
+
+// TODO: Remove View and add ScrollView set position fixed to Nav.js

@@ -1,9 +1,12 @@
 import React from 'react';
 import Nav from '../../components/Nav/Nav'
+import Hero from './Hero';
 import {
-    View,
+    StatusBar,
+    ScrollView,
     Text,
     StyleSheet,
+    View,
 } from 'react-native';
 
 export default class RetailerHomeScreen extends React.Component {
@@ -13,10 +16,10 @@ export default class RetailerHomeScreen extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
-        <View style={styles.container}>
-            <Text>Reatiler Home Screen</Text>
-            <Nav />
-        </View>
+            <View style={styles.container}>
+                <Hero />
+                <Nav />
+            </View>
         );
     }
 }
