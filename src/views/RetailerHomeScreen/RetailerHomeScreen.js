@@ -6,7 +6,7 @@ import {
     StyleSheet,
 } from 'react-native';
 
-class RetailerHomeScreen extends React.Component {
+export default class RetailerHomeScreen extends React.Component {
     static navigationOptions = {
         title: 'Välkommen',
     };
@@ -26,5 +26,3 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 });
-
-export default RetailerHomeScreen;
