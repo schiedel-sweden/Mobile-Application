@@ -1,4 +1,5 @@
 import React from 'react';
+import App from '../../../App.js';
 import {
     StyleSheet,
     View,
@@ -7,67 +8,58 @@ import {
     Image,
     TouchableOpacity,
 
+
 } from 'react-native';
+import {StackNavigator, NavigationAction} from 'react-navigation';
 
 export default class Nav extends React.Component {
 
-    openPriceView() {
-        alert('Prisförslag');
+    constructor(props) {
+        super(props);
     }
-    openProductView() {
-        alert('Produkter');
-    }
-    openRetailerView() {
-        alert('Återförsäljare');
-    }
-    openAboutView() {
-        alert('Om oss!');
-    }
-    openContactView() {
-        alert('Kontakta Oss');
-    }
-    handleClick(){
-        alert('Button clicked!');
-    }
+
+
     render() {
 
+        //const { navigate } = this.props.navigation;
+
         const buttonTextColor = '#B9B9B9';
+        const {navigate} =this.props.navigation;
+
 
         return (
             <View style={styles.nav}>
 
-                <TouchableOpacity onPress={this.openPriceView}>
+                <TouchableOpacity onPress={() => navigate('PriceSuggestion')}>
+
                     <Image source={require('../../images/icons/prisforslag.png')}
                     style={styles.images}
                     />
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={this.openProductView}>
+                <TouchableOpacity onPress={() => navigate('Products')}>
                     <Image source={require('../../images/icons/produkter.png')}
                     style={styles.images}
                     />
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={this.openRetailerView}>
+                <TouchableOpacity onPress={() => navigate('Retailers')}>
                     <Image source={require('../../images/icons/aterforsaljare.png')}
                     style={styles.images}
                     />
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={this.openAboutView}>
+                <TouchableOpacity onPress={() => navigate('AboutUs')}>
                     <Image source={require('../../images/icons/om-oss.png')}
                     style={styles.images}
                     />
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={this.openContactView}>
+                <TouchableOpacity onPress={() => navigate('ContactUs')}>
                     <Image source={require('../../images/icons/kontakta-oss.png')}
                     style={styles.images}
                     />
                 </TouchableOpacity>
-
-
-
 
 
 
