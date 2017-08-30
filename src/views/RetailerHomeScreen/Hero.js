@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         flex: 1,
         left: 0,
-        opacity: 0.4,
+        opacity: 0.3,
         resizeMode: 'cover',
         right: 0,
         top: 0,
