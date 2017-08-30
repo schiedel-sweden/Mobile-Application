@@ -1,6 +1,7 @@
 import React from 'react';
 import Nav from '../../components/Nav/Nav'
 import Hero from './Hero';
+import ButtonLargeGetPrice from './ButtonLargeGetPrice';
 import {
     StatusBar,
     ScrollView,
@@ -18,6 +19,10 @@ export default class RetailerHomeScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <Hero />
+                <View style={styles.ButtonLargeWrapper}>
+                    <ButtonLargeGetPrice />
+                    <ButtonLargeGetPrice />
+                </View>
                 <Nav />
             </View>
         );
@@ -29,4 +34,9 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#EEEEEE',
     },
+    ButtonLargeWrapper: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        flex: 1,
+    }
 });
