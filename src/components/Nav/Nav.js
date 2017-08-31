@@ -7,9 +7,9 @@ import {
     StatusBar,
     Image,
     TouchableOpacity,
-
-
+    Text,
 } from 'react-native';
+
 import {StackNavigator, NavigationAction} from 'react-navigation';
 
 export default class Nav extends React.Component {
@@ -18,20 +18,14 @@ export default class Nav extends React.Component {
         super(props);
     }
 
-
     render() {
-
-        //const { navigate } = this.props.navigation;
-
         const buttonTextColor = '#B9B9B9';
-        const {navigate} =this.props.navigation;
-
+        const navigate = this.props.navigate;
 
         return (
             <View style={styles.nav}>
 
                 <TouchableOpacity onPress={() => navigate('PriceSuggestion')}>
-
                     <Image source={require('../../images/icons/prisforslag.png')}
                     style={styles.images}
                     />
@@ -60,8 +54,6 @@ export default class Nav extends React.Component {
                     style={styles.images}
                     />
                 </TouchableOpacity>
-
-
 
             </View>
         )

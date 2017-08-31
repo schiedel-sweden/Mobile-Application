@@ -15,7 +15,7 @@ export default class RetailerHomeScreen extends React.Component {
         return (
         <View style={styles.container}>
             <Text>Reatiler Home Screen</Text>
-            <Nav />
+        <Nav navigate = {navigate}/>
         </View>
         );
     }
