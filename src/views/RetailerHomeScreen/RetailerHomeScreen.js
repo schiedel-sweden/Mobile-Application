@@ -1,3 +1,6 @@
+// TODO: Add the icons for the Button
+// TODO: Add right button with styles and text
+// TODO: Check on iPad
 import React from 'react';
 import Nav from '../../components/Nav/Nav'
 import Hero from './Hero';
@@ -18,8 +21,10 @@ export default class RetailerHomeScreen extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
-                <Hero />
-                <View style={styles.ButtonLargeWrapper}>
+                <View style={styles.heroWrapper}>
+                    <Hero />
+                </View>
+                <View style={styles.buttonLargeWrapper}>
                     <ButtonLargeGetPrice />
                     <ButtonLargeGetPrice />
                 </View>
@@ -34,9 +39,14 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#EEEEEE',
     },
-    ButtonLargeWrapper: {
+    heroWrapper: {
+        borderBottomWidth: 2,
+        borderColor: '#333333',
+        flex: 0.5,
+    },
+    buttonLargeWrapper: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        flex: 1,
-    }
+        flex: 0.5,
+    },
 });

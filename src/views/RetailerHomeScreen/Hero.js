@@ -11,7 +11,7 @@ export default class Hero extends React.Component {
         return(
             <View style={styles.container}>
                 <Image style={styles.img} source={require('./img/roof_image.png')} />
-                <Text style={styles.text}>Välkomsttext Här</Text>
+                <Text style={styles.text}>Välkomsttext här</Text>
             </View>
         );
     }
@@ -21,9 +21,7 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         alignSelf: 'stretch',
-        borderBottomWidth: 2,
-        borderColor: '#333333',
-        flex: 0.5,
+        flex: 1,
         justifyContent: 'center',
     },
     img: {

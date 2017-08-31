@@ -19,13 +19,10 @@ export default class ButtonLargeGetPrice extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        alignSelf: 'stretch',
-        backgroundColor: 'red',
+        backgroundColor: '#F9CE3C',
         bottom: 0,
         flex: 1,
         justifyContent: 'center',
-        paddingLeft: 20,
-        paddingRight: 20,
         top: 0,
     },
     text: {
