@@ -1,13 +1,14 @@
 import React from 'react';
 import {TabNavigator} from 'react-navigation';
 import {StyleSheet} from 'react-native';
+
 import AboutUs from './src/views/AboutUs/AboutUs.js';
 import ContactUs from './src/views/ContactUs/ContactUs.js';
 import PriceSuggestion from './src/views/PriceSuggestion/PriceSuggestion.js';
 import Products from './src/views/Products/Products.js';
 import Retailers from './src/views/RetailersView/RetailersView.js';
 
-const Navigator = TabNavigator({
+const Hej = TabNavigator({
     Retailers: { screen: Retailers },
     PriceSuggestion: { screen: PriceSuggestion },
     Products: { screen: Products },
@@ -17,7 +18,6 @@ const Navigator = TabNavigator({
 {
     tabBarPosition: 'bottom'
 }
-
 );
 
-export default Navigator;
+export default Hej;

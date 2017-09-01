@@ -3,12 +3,11 @@ import React from 'react';
 import Hero from './Hero';
 import ButtonLargeLeft from './ButtonLargeLeft';
 import ButtonLargeRight from './ButtonLargeRight';
+
 import {
-    StatusBar,
-    ScrollView,
-    Text,
     Image,
     StyleSheet,
+    TouchableOpacity,
     View,
 } from 'react-native';
 
@@ -28,7 +27,7 @@ export default class RetailersView extends React.Component {
 
     render() {
         const iconStyle = require('../../styles/navStyles');
-        const { navigate } = this.props.navigation;
+        const {navigate} = this.props.navigation;
         return (
 
             <View style={styles.container}>
@@ -36,8 +35,12 @@ export default class RetailersView extends React.Component {
                     <Hero />
                 </View>
                 <View style={styles.buttonLargeWrapper}>
-                    <ButtonLargeLeft />
-                    <ButtonLargeRight />
+                    <TouchableOpacity style={styles.buttonContainer} onPress={()=> navigate('PriceSuggestion')}>
+                        <ButtonLargeLeft />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.buttonContainer} onPress={()=> navigate('Products')}>
+                        <ButtonLargeRight />
+                    </TouchableOpacity>
                 </View>
             </View>
         );
@@ -58,5 +61,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         flex: 0.5,
+    },
+    buttonContainer: {
+        bottom: 0,
+        flex: 1,
+        justifyContent: 'center',
+        top: 0,
     },
 });

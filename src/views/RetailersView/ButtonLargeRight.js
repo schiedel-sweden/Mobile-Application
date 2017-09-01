@@ -1,9 +1,8 @@
 import React from 'react';
 import {
-    View,
     StyleSheet,
-    TouchableOpacity,
     Text,
+    View,
 } from 'react-native';
 
 export default class ButtonLargeRight extends React.Component {
@@ -12,22 +11,20 @@ export default class ButtonLargeRight extends React.Component {
     }
     render() {
         return(
-            <TouchableOpacity style={styles.container} onPress={this.handleClick}>
+            <View style={styles.container}>
                 <Text style={styles.text}>Hello from larg button Right</Text>
                 <Text style={styles.text}>More text</Text>
-            </TouchableOpacity>
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        bottom: 0,
+        borderColor: '#333333',
+        borderLeftWidth: 1,
         flex: 1,
         justifyContent: 'center',
-        top: 0,
-        borderLeftWidth: 1,
-        borderColor: '#333333',
     },
     text: {
         textAlign: 'center',
