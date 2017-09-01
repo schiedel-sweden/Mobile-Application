@@ -8,7 +8,7 @@ import PriceSuggestion from './src/views/PriceSuggestion/PriceSuggestion.js';
 import Products from './src/views/Products/Products.js';
 import Retailers from './src/views/RetailersView/RetailersView.js';
 
-const Hej = TabNavigator({
+const App = TabNavigator({
     Retailers: { screen: Retailers },
     PriceSuggestion: { screen: PriceSuggestion },
     Products: { screen: Products },
@@ -20,4 +20,4 @@ const Hej = TabNavigator({
 }
 );
 
-export default Hej;
+export default App;
