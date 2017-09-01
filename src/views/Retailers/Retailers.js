@@ -5,6 +5,7 @@ import {
     Image,
     StyleSheet,
 } from 'react-native';
+const iconStyle = require('../../styles/navStyles');
 
 export default class Retailers extends React.Component {
     static navigationOptions = {
@@ -12,7 +13,7 @@ export default class Retailers extends React.Component {
         tabBarIcon: ({ tintColor }) => (
           <Image
             source={require('../../images/icons/aterforsaljare.png')}
-            style={[styles.icon]}
+            style={[iconStyle.icon]}
           />
       ),
     };
@@ -30,9 +31,5 @@ export default class Retailers extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    icon: {
-        height: 24,
-        width: 24,
     },
 });

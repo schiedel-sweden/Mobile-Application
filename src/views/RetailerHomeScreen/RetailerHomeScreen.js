@@ -8,16 +8,18 @@ import {
 } from 'react-native';
 
 export default class RetailerHomeScreen extends React.Component {
+
     static navigationOptions = {
         title: 'Välkommen',
         tabBarIcon: ({ tintColor }) => (
           <Image
             source={require('../../images/icons/prisforslag.png')}
-            style={[styles.icon]}
+            style={[iconStyle.icon]}
           />
       ),
     };
     render() {
+        const iconStyle = require('../../styles/navStyles');
         const { navigate } = this.props.navigation;
         return (
         <View style={styles.container}>
@@ -31,9 +33,5 @@ export default class RetailerHomeScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    icon: {
-        height: 24,
-        width: 24,
     },
 });

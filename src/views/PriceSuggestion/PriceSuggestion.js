@@ -5,14 +5,18 @@ import {
     Image,
     StyleSheet,
 } from 'react-native';
+const iconStyle = require('../../styles/navStyles');
 
 export default class PriceSuggestion extends React.Component {
+
+
+
     static navigationOptions = {
         title: 'Prisförslag',
         tabBarIcon: ({ tintColor }) => (
           <Image
             source={require('../../images/icons/prisforslag.png')}
-            style={[styles.icon]}
+            style={[iconStyle.icon]}
           />
       ),
     };
@@ -30,9 +34,5 @@ export default class PriceSuggestion extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    icon: {
-        height: 24,
-        width: 24,
     },
 });

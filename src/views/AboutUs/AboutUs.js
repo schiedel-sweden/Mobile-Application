@@ -5,6 +5,7 @@ import {
     Image,
     StyleSheet,
 } from 'react-native';
+const iconStyle = require('../../styles/navStyles');
 
 export default class AboutUs extends React.Component {
     static navigationOptions = {
@@ -12,7 +13,7 @@ export default class AboutUs extends React.Component {
         tabBarIcon: ({ tintColor }) => (
           <Image
             source={require('../../images/icons/om-oss.png')}
-            style={[styles.icon]}
+            style={[iconStyle.icon]}
           />
       ),
     };
