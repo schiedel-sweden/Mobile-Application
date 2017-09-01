@@ -2,19 +2,37 @@ import React from 'react';
 import {
     View,
     Text,
+    Image,
+    StyleSheet,
 } from 'react-native';
 
 export default class AboutUs extends React.Component {
-
+    static navigationOptions = {
+        title: 'Om oss',
+        tabBarIcon: ({ tintColor }) => (
+          <Image
+            source={require('../../images/icons/om-oss.png')}
+            style={[styles.icon]}
+          />
+      ),
+    };
     render() {
-        return(
-            <View>
+        const { navigate } = this.props.navigation;
+        return (
+        <View style={styles.container}>
+            <Text>Om oss yo</Text>
 
-                <Text>AboutUs</Text>
-            </View>
-
+        </View>
         );
-
     }
-
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    icon: {
+        height: 24,
+        width: 24,
+    },
+});

@@ -10,9 +10,12 @@ import {
     Text,
 } from 'react-native';
 
-import {StackNavigator, NavigationAction} from 'react-navigation';
+import {TabNavigator, NavigationAction} from 'react-navigation';
 
 export default class Nav extends React.Component {
+
+
+
 
     constructor(props) {
         super(props);
@@ -24,6 +27,8 @@ export default class Nav extends React.Component {
 
         return (
             <View style={styles.nav}>
+
+    
 
                 <TouchableOpacity onPress={() => navigate('PriceSuggestion')}>
                     <Image source={require('../../images/icons/prisforslag.png')}
