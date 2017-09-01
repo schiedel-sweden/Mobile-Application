@@ -16,8 +16,21 @@ const App = TabNavigator({
     AboutUs: { screen: AboutUs },
     ContactUs: { screen: ContactUs },
 
-});
+},
+{
+    tabBarPosition: 'bottom'
+}
 
+);
+// export default class App extends Component {
+//  render() {
+//     return (
+//       <Navigator
+//         renderScene={(route, navigator) =>
+//           <RetailerHomeScreen />
+//         }
+//       />
+//   );
+// }
+// }
 export default App;
-
-// TODO: Remove View and add ScrollView set position fixed to Nav.js
