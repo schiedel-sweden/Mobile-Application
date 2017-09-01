@@ -6,11 +6,14 @@ import {
     Text,
 } from 'react-native';
 
-export default class ButtonLargeGetPrice extends React.Component {
+export default class ButtonLargeRight extends React.Component {
+    handleClick(){
+        alert('Right button clicked!');
+    }
     render() {
         return(
-            <TouchableOpacity style={styles.container}>
-                <Text style={styles.text}>Hello from larg button</Text>
+            <TouchableOpacity style={styles.container} onPress={this.handleClick}>
+                <Text style={styles.text}>Hello from larg button Right</Text>
                 <Text style={styles.text}>More text</Text>
             </TouchableOpacity>
         );
@@ -24,6 +27,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         top: 0,
+        borderLeftWidth: 1,
+        borderColor: '#333333',
     },
     text: {
         textAlign: 'center',

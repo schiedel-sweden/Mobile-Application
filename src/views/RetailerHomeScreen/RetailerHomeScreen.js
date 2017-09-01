@@ -1,10 +1,9 @@
 // TODO: Add the icons for the Button
-// TODO: Add right button with styles and text
-// TODO: Check on iPad
 import React from 'react';
 import Nav from '../../components/Nav/Nav'
 import Hero from './Hero';
-import ButtonLargeGetPrice from './ButtonLargeGetPrice';
+import ButtonLargeLeft from './ButtonLargeLeft';
+import ButtonLargeRight from './ButtonLargeRight';
 import {
     StatusBar,
     ScrollView,
@@ -25,8 +24,8 @@ export default class RetailerHomeScreen extends React.Component {
                     <Hero />
                 </View>
                 <View style={styles.buttonLargeWrapper}>
-                    <ButtonLargeGetPrice />
-                    <ButtonLargeGetPrice />
+                    <ButtonLargeLeft />
+                    <ButtonLargeRight />
                 </View>
                 <Nav />
             </View>
