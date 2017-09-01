@@ -1,46 +1,64 @@
 import React from 'react';
+import App from '../../../App.js';
 import {
     StyleSheet,
     View,
     Button,
+    StatusBar,
+    Image,
+    TouchableOpacity,
+    Text,
 } from 'react-native';
+
+import {TabNavigator, NavigationAction} from 'react-navigation';
 
 export default class Nav extends React.Component {
 
-    handleClick(){
-        alert('Button clicked!');
-    }
-    render() {
 
+
+
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
         const buttonTextColor = '#B9B9B9';
+        const navigate = this.props.navigate;
 
         return (
             <View style={styles.nav}>
 
-                <Button title="Prisförslag"
-                    color={buttonTextColor}
-                    onPress={this.handleClick}
-                />
+    
 
-                <Button title="Produkter"
-                    color={buttonTextColor}
-                    onPress={this.handleClick}
-                />
+                <TouchableOpacity onPress={() => navigate('PriceSuggestion')}>
+                    <Image source={require('../../images/icons/prisforslag.png')}
+                    style={styles.images}
+                    />
+                </TouchableOpacity>
 
-                <Button title="Återförsäljare"
-                    color={buttonTextColor}
-                    onPress={this.handleClick}
-                />
+                <TouchableOpacity onPress={() => navigate('Products')}>
+                    <Image source={require('../../images/icons/produkter.png')}
+                    style={styles.images}
+                    />
+                </TouchableOpacity>
 
-                <Button title="Om oss"
-                    color={buttonTextColor}
-                    onPress={this.handleClick}
-                />
+                <TouchableOpacity onPress={() => navigate('Retailers')}>
+                    <Image source={require('../../images/icons/aterforsaljare.png')}
+                    style={styles.images}
+                    />
+                </TouchableOpacity>
 
-                <Button title="Kontakta oss"
-                    color={buttonTextColor}
-                    onPress={this.handleClick}
-                />
+                <TouchableOpacity onPress={() => navigate('AboutUs')}>
+                    <Image source={require('../../images/icons/om-oss.png')}
+                    style={styles.images}
+                    />
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => navigate('ContactUs')}>
+                    <Image source={require('../../images/icons/kontakta-oss.png')}
+                    style={styles.images}
+                    />
+                </TouchableOpacity>
 
             </View>
         )
@@ -62,4 +80,8 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 0,
     },
+    images: {
+        height: 56,
+        width: 56,
+    }
 });
