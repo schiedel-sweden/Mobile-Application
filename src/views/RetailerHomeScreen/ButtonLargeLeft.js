@@ -22,7 +22,6 @@ export default class ButtonLargeLeft extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#F9CE3C',
         bottom: 0,
         flex: 1,
         justifyContent: 'center',
