@@ -5,12 +5,10 @@ import {
     Image,
     StyleSheet,
 } from 'react-native';
+
 const iconStyle = require('../../styles/navStyles');
 
 export default class PriceSuggestion extends React.Component {
-
-
-
     static navigationOptions = {
         title: 'Prisförslag',
         tabBarIcon: ({ tintColor }) => (
@@ -20,13 +18,13 @@ export default class PriceSuggestion extends React.Component {
           />
       ),
     };
+
     render() {
         const { navigate } = this.props.navigation;
         return (
-        <View style={styles.container}>
-            <Text>Prisförslag yo</Text>
-
-        </View>
+            <View style={styles.container}>
+                <Text>Prisförslag yo</Text>
+            </View>
         );
     }
 }

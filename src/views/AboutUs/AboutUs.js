@@ -5,6 +5,7 @@ import {
     Image,
     StyleSheet,
 } from 'react-native';
+
 const iconStyle = require('../../styles/navStyles');
 
 export default class AboutUs extends React.Component {
@@ -17,12 +18,12 @@ export default class AboutUs extends React.Component {
           />
       ),
     };
+
     render() {
         const { navigate } = this.props.navigation;
         return (
         <View style={styles.container}>
             <Text>Om oss yo</Text>
-
         </View>
         );
     }

@@ -1,5 +1,4 @@
 import React from 'react';
-import Nav from '../../components/Nav/Nav'
 import {
     View,
     Text,
@@ -24,7 +23,6 @@ export default class Products extends React.Component {
         return (
         <View style={styles.container}>
             <Text>Produkter yo</Text>
-
         </View>
         );
     }

@@ -1,6 +1,5 @@
 // TODO: Add the icons for the Button
 import React from 'react';
-import Nav from '../../components/Nav/Nav'
 import Hero from './Hero';
 import ButtonLargeLeft from './ButtonLargeLeft';
 import ButtonLargeRight from './ButtonLargeRight';
@@ -37,7 +36,6 @@ export default class RetailerHomeScreen extends React.Component {
                     <ButtonLargeLeft />
                     <ButtonLargeRight />
                 </View>
-                <Nav />
             </View>
         );
     }

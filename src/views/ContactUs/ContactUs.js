@@ -5,6 +5,7 @@ import {
     Image,
     StyleSheet,
 } from 'react-native';
+
 const iconStyle = require('../../styles/navStyles');
 
 export default class ContactUs extends React.Component {
@@ -17,13 +18,13 @@ export default class ContactUs extends React.Component {
           />
       ),
     };
+
     render() {
         const { navigate } = this.props.navigation;
         return (
-        <View style={styles.container}>
-            <Text>Kontakta oss my dude</Text>
-
-        </View>
+            <View style={styles.container}>
+                <Text>Kontakta oss my dude</Text>
+            </View>
         );
     }
 }
