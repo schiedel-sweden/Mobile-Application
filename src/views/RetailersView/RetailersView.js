@@ -12,17 +12,20 @@ import {
     View,
 } from 'react-native';
 
-export default class RetailerHomeScreen extends React.Component {
+const iconStyle = require('../../styles/navStyles');
+
+export default class RetailersView extends React.Component {
 
     static navigationOptions = {
-        title: 'Välkommen',
+        title: 'Återförsäljare',
         tabBarIcon: ({ tintColor }) => (
           <Image
-            source={require('../../images/icons/prisforslag.png')}
+            source={require('../../images/icons/aterforsaljare.png')}
             style={[iconStyle.icon]}
           />
       ),
     };
+
     render() {
         const iconStyle = require('../../styles/navStyles');
         const { navigate } = this.props.navigation;
