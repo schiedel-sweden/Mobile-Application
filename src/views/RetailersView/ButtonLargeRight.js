@@ -36,7 +36,7 @@ export default class ButtonLargeRight extends React.Component {
 const styles = StyleSheet.create({
     container: {
         borderColor: '#333333',
-        borderRightWidth: 1,
+        borderLeftWidth: 1,
         flex: 1,
         justifyContent: 'center',
     },
