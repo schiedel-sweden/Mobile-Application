@@ -1,4 +1,3 @@
-// TODO: Add the icons for the Button
 import React from 'react';
 import Hero from './Hero';
 import ButtonLargeLeft from './ButtonLargeLeft';
