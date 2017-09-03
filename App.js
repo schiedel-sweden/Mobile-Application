@@ -15,13 +15,13 @@ const App = TabNavigator({
         navigationOptions: {
             tabBarLabel: 'Återförsäljare',
             tabBarIcon: ({ focused }) => {
-                  let imgSource = focused ? require('./src/images/icons/aterforsaljare_focus.png') : require('./src/images/icons/aterforsaljare.png');
+                const imgSource = focused ? require('./src/images/icons/aterforsaljare_focus.png') : require('./src/images/icons/aterforsaljare.png');
 
-                  return <Image
-                    source={imgSource}
-                    style={iconStyle.icon}
-                  />
-              },
+                return <Image
+                source={imgSource}
+                style={iconStyle.icon}
+                />
+            },
         },
     },
 
@@ -29,26 +29,26 @@ const App = TabNavigator({
         navigationOptions: {
             tabBarLabel: 'Prisförslag',
             tabBarIcon: ({ focused }) => {
-                  let imgSource = focused ? require('./src/images/icons/prisforslag_focus.png') : require('./src/images/icons/prisforslag.png');
+                const imgSource = focused ? require('./src/images/icons/prisforslag_focus.png') : require('./src/images/icons/prisforslag.png');
 
-                  return <Image
-                    source={imgSource}
-                    style={iconStyle.icon}
-                  />
-              },
+                return <Image
+                source={imgSource}
+                style={iconStyle.icon}
+                />
+            },
         },
     },
     Products: { screen: Products,
         navigationOptions: {
             tabBarLabel: 'Produkter',
             tabBarIcon: ({ focused }) => {
-                  let imgSource = focused ? require('./src/images/icons/produkter_focus.png') : require('./src/images/icons/produkter.png');
+                const imgSource = focused ? require('./src/images/icons/produkter_focus.png') : require('./src/images/icons/produkter.png');
 
-                  return <Image
-                    source={imgSource}
-                    style={iconStyle.icon}
-                  />
-              },
+                return <Image
+                source={imgSource}
+                style={iconStyle.icon}
+                />
+            },
         },
     },
 
@@ -57,13 +57,13 @@ const App = TabNavigator({
         navigationOptions: {
             tabBarLabel: 'Om oss',
             tabBarIcon: ({ focused }) => {
-                  let imgSource = focused ? require('./src/images/icons/om-oss_focus.png') : require('./src/images/icons/om-oss.png');
+                const imgSource = focused ? require('./src/images/icons/om-oss_focus.png') : require('./src/images/icons/om-oss.png');
 
-                  return <Image
-                    source={imgSource}
-                    style={iconStyle.icon}
-                  />
-              },
+                return <Image
+                source={imgSource}
+                style={iconStyle.icon}
+                />
+            },
         },
     },
 
@@ -71,13 +71,13 @@ const App = TabNavigator({
         navigationOptions: {
             tabBarLabel: 'Kontakta oss',
             tabBarIcon: ({ focused }) => {
-                  let imgSource = focused ? require('./src/images/icons/kontakta-oss_focus.png') : require('./src/images/icons/kontakta-oss.png');
+                const imgSource = focused ? require('./src/images/icons/kontakta-oss_focus.png') : require('./src/images/icons/kontakta-oss.png');
 
-                  return <Image
-                    source={imgSource}
-                    style={iconStyle.icon}
-                  />
-              },
+                return <Image
+                source={imgSource}
+                style={iconStyle.icon}
+                />
+            },
         },
     },
 },
