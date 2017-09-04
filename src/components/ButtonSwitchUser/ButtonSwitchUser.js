@@ -1,5 +1,4 @@
 import React from 'react';
-// https://facebook.github.io/react-native/docs/modal.html
 import {
     Modal,
     Image,
@@ -21,14 +20,15 @@ export default class ButtonSwitchUser extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Modal style={styles.modal}
+                <Modal
                     animationType="fade"
                     transparent={true}
                     visible={this.state.modalVisible}
                     onRequestClose={() => {}}
                 >
                     <View style={styles.modalContainer}>
-                        <TouchableOpacity style={styles.hideModalButton} onPress={() => {
+                        <TouchableOpacity style={styles.hideModalButton}
+                            onPress={() => {
                              this.setModalVisible(!this.state.modalVisible)
                         }}>
                             <Text>Hide Modal</Text>
@@ -36,14 +36,23 @@ export default class ButtonSwitchUser extends React.Component {
 
                         <View style={styles.buttonsContainer}>
                             <Text style={styles.h2}>Växla användare</Text>
-                            <TouchableOpacity style={styles.buttonSelectUser} onPress={() => {alert('button pressed!')}}>
-                                <Text style={styles.buttonText}>Återförsäljare</Text>
+                            <TouchableOpacity style={styles.buttonSelectUser}
+                                onPress={() => {alert('button pressed!')}}>
+                                <Text style={styles.buttonText}>
+                                    Återförsäljare
+                                </Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttonSelectUser} onPress={() => {alert('button pressed!')}}>
-                                <Text style={styles.buttonText}>Montör</Text>
+                            <TouchableOpacity style={styles.buttonSelectUser}
+                                onPress={() => {alert('button pressed!')}}>
+                                <Text style={styles.buttonText}>
+                                    Montör
+                                </Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttonSelectUser} onPress={() => {alert('button pressed!')}}>
-                                <Text style={styles.buttonText}>Privatperson</Text>
+                            <TouchableOpacity style={styles.buttonSelectUser}
+                                onPress={() => {alert('button pressed!')}}>
+                                <Text style={styles.buttonText}>
+                                    Privatperson
+                                </Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -52,7 +61,10 @@ export default class ButtonSwitchUser extends React.Component {
                 <TouchableOpacity onPress={() => {
                         this.setModalVisible(!this.state.modalVisible)
                 }}>
-                    <Image style={styles.img} source={require('../../images/icons/kontakta-oss.png')} />
+                    <Image style={styles.img}
+                        source={
+                            require('../../images/icons/kontakta-oss.png')
+                        } />
                 </TouchableOpacity>
             </View>
         );
@@ -71,13 +83,6 @@ const styles = StyleSheet.create({
         width: 40,
         zIndex: 2,
     },
-    img: {
-        height: 25,
-        width: 25,
-    },
-    modal: {
-        // flex: 1,
-    },
     modalContainer: {
         alignSelf: 'stretch',
         backgroundColor: '#B9B9B9',
@@ -85,9 +90,15 @@ const styles = StyleSheet.create({
         // opacity: 0.98,
     },
     hideModalButton: {
-        alignSelf: 'stretch',
-        right: 0,
+        alignItems: 'center',
+        flex: 1,
+        height: 40,
+        justifyContent: 'center',
+        position: 'absolute',
+        right: 5,
         top: 25,
+        width: 40,
+        zIndex: 2,
     },
     buttonsContainer: {
         alignItems: 'center',
@@ -114,5 +125,9 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: 26,
         textAlign: 'center',
+    },
+    img: {
+        height: 25,
+        width: 25,
     },
 });
