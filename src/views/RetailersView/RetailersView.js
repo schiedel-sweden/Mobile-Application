@@ -44,12 +44,12 @@ const styles = StyleSheet.create({
     heroWrapper: {
         borderBottomWidth: 2,
         borderColor: '#333333',
-        flex: 0.5,
+        flex: 0.7,
     },
     buttonLargeWrapper: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        flex: 0.5,
+        flex: 0.3,
     },
     buttonContainer: {
         bottom: 0,
