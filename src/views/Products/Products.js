@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, FlatList, Text, View } from 'react-native';
+import {
+    ActivityIndicator,
+    FlatList,
+    Text,
+    View
+} from 'react-native';
+
+// https://www.youtube.com/watch?v=IuYo009yc8w
 
 export default class Products extends Component {
     constructor(props) {
