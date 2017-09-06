@@ -31,7 +31,10 @@ export default class ButtonSwitchUser extends React.Component {
                             onPress={() => {
                              this.setModalVisible(!this.state.modalVisible)
                         }}>
-                            <Text>Hide Modal</Text>
+                        <Image style={styles.img}
+                            source={
+                                require('../../images/icons/cross.png')
+                            } />
                         </TouchableOpacity>
 
                         <View style={styles.buttonsContainer}>
@@ -63,7 +66,7 @@ export default class ButtonSwitchUser extends React.Component {
                 }}>
                     <Image style={styles.img}
                         source={
-                            require('../../images/icons/kontakta-oss.png')
+                            require('../../images/icons/switch_user.png')
                         } />
                 </TouchableOpacity>
             </View>
