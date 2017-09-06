@@ -11,19 +11,8 @@ import {
     View,
 } from 'react-native';
 
-const iconStyle = require('../../styles/navStyles');
 
 export default class RetailersView extends React.Component {
-
-    static navigationOptions = {
-        title: 'Återförsäljare',
-        tabBarIcon: ({ tintColor }) => (
-          <Image
-            source={require('../../images/icons/aterforsaljare.png')}
-            style={[iconStyle.icon]}
-          />
-      ),
-    };
 
     render() {
         const iconStyle = require('../../styles/navStyles');

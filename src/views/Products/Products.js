@@ -5,18 +5,8 @@ import {
     Image,
     StyleSheet,
 } from 'react-native';
-const iconStyle = require('../../styles/navStyles');
 
 export default class Products extends React.Component {
-    static navigationOptions = {
-        title: 'Produkter',
-        tabBarIcon: ({ tintColor }) => (
-          <Image
-            source={require('../../images/icons/produkter.png')}
-            style={[iconStyle.icon]}
-          />
-      ),
-    };
 
     render() {
         const { navigate } = this.props.navigation;
