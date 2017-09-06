@@ -14,7 +14,7 @@ export default class AboutUs extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
-            <Text>Om oss yo</Text>
+                <Text>Om oss yo</Text>
             </View>
         );
     }
