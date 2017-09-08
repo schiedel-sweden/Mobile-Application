@@ -40,19 +40,25 @@ export default class ButtonSwitchUser extends React.Component {
                         <View style={styles.buttonsContainer}>
                             <Text style={styles.h2}>Växla användare</Text>
                             <TouchableOpacity style={styles.buttonSelectUser}
-                                onPress={() => {alert('button pressed!')}}>
+                                onPress={() => {
+                                 this.setModalVisible(!this.state.modalVisible)
+                            }}>
                                 <Text style={styles.buttonText}>
                                     Återförsäljare
                                 </Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.buttonSelectUser}
-                                onPress={() => {alert('button pressed!')}}>
+                                onPress={() => {
+                                 this.setModalVisible(!this.state.modalVisible)
+                            }}>
                                 <Text style={styles.buttonText}>
                                     Montör
                                 </Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.buttonSelectUser}
-                                onPress={() => {alert('button pressed!')}}>
+                                onPress={() => {
+                                 this.setModalVisible(!this.state.modalVisible)
+                            }}>
                                 <Text style={styles.buttonText}>
                                     Privatperson
                                 </Text>
