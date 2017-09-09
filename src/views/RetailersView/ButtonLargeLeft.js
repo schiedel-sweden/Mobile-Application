@@ -25,7 +25,7 @@ export default class ButtonLargeLeft extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.wrapper}>
-                    <Text style={globalStyles.p, styles.pos}>
+                    <Text style={[globalStyles.p, styles.pos]}>
                         Skräddarsy en offtert efter dina önskemål och ditt hus
                     </Text>
                 </View>

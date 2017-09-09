@@ -30,11 +30,16 @@ export default class ContactUs extends React.Component {
 
             <View style={styles.container}>
                 <View>
-                    <Text style={styles.text}>Kontakta oss</Text>
+                    <Text style={[styles.text, globalStyles.h2]}>Kontakta oss</Text>
                 </View>
 
                 <View>
-                    <Text>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Text>
+                    <Text style={globalStyles.p}>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna
+                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </Text>
                 </View>
 
                 <TextInput
@@ -86,7 +91,6 @@ const styles = StyleSheet.create({
     },
     text: {
         alignSelf: 'stretch',
-        fontSize: 26,
         textAlign: 'center',
     },
 });

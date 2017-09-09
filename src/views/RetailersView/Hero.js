@@ -21,7 +21,7 @@ export default class Hero extends React.Component {
                 </View>
                 <View style={styles.textContainer}>
                     <Text style={globalStyles.h1}>Välkomsttext här</Text>
-                    <Text style={globalStyles.p, styles.pos}>
+                    <Text style={[globalStyles.p, styles.pos]}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore
                         magna aliqua.

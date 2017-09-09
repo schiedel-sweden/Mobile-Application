@@ -25,7 +25,7 @@ export default class ButtonLargeRight extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.wrapper}>
-                    <Text style={globalStyles.p, styles.pos}>
+                    <Text style={[globalStyles.p, styles.pos]}>
                         Kolla in vårt sortiment där du kan finna alla våra
                         skorstnar och
                     </Text>
