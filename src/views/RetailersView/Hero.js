@@ -12,7 +12,7 @@ export default class Hero extends React.Component {
             <View style={styles.container}>
                 <Image style={styles.img} source={require('./img/roof_image.png')} />
                 <View style={styles.logoWrapper}>
-                    <Text style={styles.logo}>SCHIEDEL</Text>
+                    <Image style={styles.logo} source={require('../../images/Schiedel_logo.png')} />
                 </View>
                 <View style={styles.textContainer}>
                     <Text style={styles.h1}>Välkomsttext här</Text>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         backgroundColor: 'rgba(0,0,0,0)',
-        left: 100,
+        left: 75,
         position: 'absolute',
         top: 150,
     },
