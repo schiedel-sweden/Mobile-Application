@@ -10,7 +10,7 @@ const ratioX = x < 375 ? (x < 320 ? 0.75 : 0.875) : 1 ;
 const ratioY = y < 568 ? (y < 480 ? 0.75 : 0.875) : 1 ;
 
 // We set our base font size value
-const base_unit = 16;
+const base_unit = 14;
 
 // We're simulating EM by changing font size according to Ratio
 const unit = base_unit * ratioX;
@@ -29,18 +29,37 @@ export default Style = {
   RATIO_X: ratioX,
   RATIO_Y: ratioY,
   UNIT: em(1),
-  PADDING: em(1.25),
+  // PADDING: em(1.25),
 
   // CARD
-  CARD_WIDTH: x - em(1.25) * 2,
   CARD_HEIGHT: (x - em(1.25) * 2) * (3/5),
-  CARD_PADDING_X: em(1.875),
-  CARD_PADDING_Y: em(1.25),
 
   // FONT
   FONT_SIZE: em(1),
-  FONT_SIZE_SMALLER: em(0.75),
-  FONT_SIZE_SMALL: em(0.875),
-  FONT_SIZE_TITLE: em(1.25),
+  h1: {
+    fontSize: em(2.571),
+    color: '#333333',
+    backgroundColor: 'rgba(0,0,0,0)',
+  },
+  h2: {
+    fontSize: em(1.714),
+    color: '#333333',
+    backgroundColor: 'rgba(0,0,0,0)',
+  },
+  h3: {
+    fontSize: em(1.286),
+    color: '#333333',
+    backgroundColor: 'rgba(0,0,0,0)',
+  },
+  h4: {
+     fontSize:  em(1.286),
+     color: '#333333',
+     backgroundColor: 'rgba(0,0,0,0)',
+  },
+  p: {
+    fontSize: em(1),
+    color: '#333333',
+    backgroundColor: 'rgba(0,0,0,0)',
+  },
 
 };

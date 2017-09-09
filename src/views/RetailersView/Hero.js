@@ -1,5 +1,6 @@
 import React from 'react';
 import ButtonSwitchUser from '../../components/ButtonSwitchUser/ButtonSwitchUser';
+import Style from '../../styles/globalStyles';
 import {
     View,
     Text,
@@ -13,7 +14,9 @@ export default class Hero extends React.Component {
             <View style={styles.container}>
                 <ButtonSwitchUser />
                 <Image style={styles.img} source={require('./img/roof_image.png')} />
-                <Text style={styles.text}>Välkomsttext här</Text>
+                <View style={styles.pos}>
+                    <Text style={Style.h2}>Välkomsttext här</Text>
+                </View>
             </View>
         );
     }
@@ -35,9 +38,7 @@ const styles = StyleSheet.create({
         right: 0,
         top: 0,
     },
-    text: {
-        backgroundColor: 'rgba(0,0,0,0)',
-        fontSize: 25,
+    pos: {
         position: 'absolute',
     }
 });
