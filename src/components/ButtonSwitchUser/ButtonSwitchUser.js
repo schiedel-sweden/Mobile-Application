@@ -70,7 +70,7 @@ export default class ButtonSwitchUser extends React.Component {
                     </View>
                 </Modal>
 
-                <TouchableOpacity onPress={() => {
+                <TouchableOpacity style={styles.showModalButton} onPress={() => {
                         this.setModalVisible(!this.state.modalVisible)
                 }}>
                     <Image style={styles.img}
@@ -99,17 +99,29 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         backgroundColor: '#B9B9B9',
         flex: 1,
+        opacity: 0.8,
     },
     hideModalButton: {
         alignItems: 'center',
         flex: 1,
-        height: 40,
+        height: 50,
         justifyContent: 'center',
         position: 'absolute',
         right: 5,
         top: 25,
-        width: 40,
+        width: 50,
         zIndex: 2,
+    },
+    showModalButton: {
+        alignItems: 'center',
+        flex: 1,
+        height: 50,
+        justifyContent: 'center',
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        width: 50,
+        zIndex: 1,
     },
     buttonsContainer: {
         alignItems: 'center',
