@@ -1,4 +1,5 @@
 import React from 'react';
+import ButtonSwitchUser from '../../components/ButtonSwitchUser/ButtonSwitchUser';
 import {
     View,
     Text,
@@ -10,6 +11,7 @@ export default class Hero extends React.Component {
     render() {
         return(
             <View style={styles.container}>
+                <ButtonSwitchUser />
                 <Image style={styles.img} source={require('./img/roof_image.png')} />
                 <Text style={styles.text}>Välkomsttext här</Text>
             </View>
