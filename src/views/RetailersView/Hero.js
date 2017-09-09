@@ -1,11 +1,14 @@
 import React from 'react';
 import ButtonSwitchUser from '../../components/ButtonSwitchUser/ButtonSwitchUser';
+import Style from '../../styles/globalStyles';
 import {
     View,
     Text,
     StyleSheet,
     Image,
 } from 'react-native';
+
+import globalStyles from '../../styles/globalStyles';
 
 export default class Hero extends React.Component {
     render() {
@@ -17,8 +20,8 @@ export default class Hero extends React.Component {
                     <Image style={styles.logo} source={require('../../images/Schiedel_logo.png')} />
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.h1}>Välkomsttext här</Text>
-                    <Text style={styles.text}>
+                    <Text style={globalStyles.h1}>Välkomsttext här</Text>
+                    <Text style={globalStyles.p, styles.pos}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore
                         magna aliqua.
@@ -60,17 +63,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 150,
     },
-    h1: {
-        color: '#333333',
-        fontSize: 36,
-        left: 0,
-        marginBottom: 10,
-        top: 0,
-    },
-    text: {
-        color: '#333333',
-        fontSize: 14,
-        left: 0,
+    pos: {
         marginTop: 10,
         top: 0,
         width: 300,

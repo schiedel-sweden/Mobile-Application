@@ -6,6 +6,8 @@ import {
     Image,
 } from 'react-native';
 
+import globalStyles from '../../styles/globalStyles';
+
 export default class ButtonLargeLeft extends React.Component {
     render() {
 
@@ -18,12 +20,12 @@ export default class ButtonLargeLeft extends React.Component {
                     />
                 </View>
                 <View style={styles.wrapper}>
-                    <Text style={styles.h2}>
-                        Hämta prisforslag
+                    <Text style={globalStyles.h2}>
+                        Hämta prisförslag
                     </Text>
                 </View>
                 <View style={styles.wrapper}>
-                    <Text style={styles.h4}>
+                    <Text style={globalStyles.p, styles.pos}>
                         Skräddarsy en offtert efter dina önskemål och ditt hus
                     </Text>
                 </View>
@@ -45,19 +47,11 @@ const styles = StyleSheet.create({
     },
     icon: {
         height: 65,
-        margin: 30,
+        margin: 25,
         width: 65,
     },
-    h2: {
-        color: '#333333',
-        fontSize: 24,
-        margin: 10,
-        textAlign: 'center',
-    },
-    h4: {
-        color: '#333333',
-        fontSize: 14,
-        margin: 10,
+    pos: {
+        marginTop: 15,
         textAlign: 'center',
         width: 210,
     },
