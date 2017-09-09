@@ -8,6 +8,8 @@ import {
     Button,
 } from 'react-native';
 
+import globalStyles from '../../styles/globalStyles';
+
 export default class ContactUs extends React.Component {
 
     constructor(props) {

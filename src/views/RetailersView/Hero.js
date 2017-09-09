@@ -1,4 +1,6 @@
 import React from 'react';
+import ButtonSwitchUser from '../../components/ButtonSwitchUser/ButtonSwitchUser';
+import Style from '../../styles/globalStyles';
 import {
     View,
     Text,
@@ -6,12 +8,25 @@ import {
     Image,
 } from 'react-native';
 
+import globalStyles from '../../styles/globalStyles';
+
 export default class Hero extends React.Component {
     render() {
         return(
             <View style={styles.container}>
+                <ButtonSwitchUser />
                 <Image style={styles.img} source={require('./img/roof_image.png')} />
-                <Text style={styles.text}>Välkomsttext här</Text>
+                <View style={styles.logoWrapper}>
+                    <Image style={styles.logo} source={require('../../images/Schiedel_logo.png')} />
+                </View>
+                <View style={styles.textContainer}>
+                    <Text style={globalStyles.h1}>Välkomsttext här</Text>
+                    <Text style={globalStyles.p, styles.pos}>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua.
+                    </Text>
+                </View>
             </View>
         );
     }
@@ -28,14 +43,29 @@ const styles = StyleSheet.create({
         bottom: 0,
         flex: 1,
         left: 0,
-        opacity: 0.3,
         resizeMode: 'cover',
         right: 0,
         top: 0,
     },
-    text: {
-        backgroundColor: 'rgba(0,0,0,0)',
-        fontSize: 25,
+    logoWrapper: {
+        alignItems: 'center',
+        justifyContent: 'center',
         position: 'absolute',
-    }
+        top: 40,
+    },
+    logo: {
+        backgroundColor: 'rgba(0,0,0,0)',
+        justifyContent: 'center',
+    },
+    textContainer: {
+        backgroundColor: 'rgba(0,0,0,0)',
+        left: 75,
+        position: 'absolute',
+        top: 150,
+    },
+    pos: {
+        marginTop: 10,
+        top: 0,
+        width: 300,
+    },
 });
