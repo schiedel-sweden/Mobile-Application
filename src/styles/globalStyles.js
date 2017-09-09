@@ -21,7 +21,7 @@ function em(value) {
 }
 
 // Then we set our styles with the help of the em() function
-export default Style = {
+export default globalStyles = {
 
   // GENERAL
   DEVICE_WIDTH: x,

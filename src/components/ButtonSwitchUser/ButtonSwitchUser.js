@@ -7,6 +7,7 @@ import {
     View,
     Text,
 } from 'react-native';
+import globalStyles from '../../styles/globalStyles';
 
 export default class ButtonSwitchUser extends React.Component {
     state = {
@@ -22,7 +23,7 @@ export default class ButtonSwitchUser extends React.Component {
             <View style={styles.container}>
                 <Modal
                     animationType="fade"
-                    transparent={true}
+                    transparent={false}
                     visible={this.state.modalVisible}
                     onRequestClose={() => {}}
                 >
@@ -38,7 +39,9 @@ export default class ButtonSwitchUser extends React.Component {
                         </TouchableOpacity>
 
                         <View style={styles.buttonsContainer}>
-                            <Text style={styles.h2}>Växla användare</Text>
+                            <View style={styles.pos}>
+                                <Text style={globalStyles.h2}>Växla användare</Text>
+                            </View>
                             <TouchableOpacity style={styles.buttonSelectUser}
                                 onPress={() => {
                                  this.setModalVisible(!this.state.modalVisible)
@@ -96,7 +99,6 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         backgroundColor: '#B9B9B9',
         flex: 1,
-        // opacity: 0.98,
     },
     hideModalButton: {
         alignItems: 'center',
@@ -115,10 +117,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: 50,
     },
-    h2: {
-        color: '#333333',
-        fontSize: 26,
-        fontWeight: 'bold',
+    pos: {
         marginBottom: 60,
     },
     buttonSelectUser: {

@@ -6,14 +6,15 @@ import {
     StyleSheet,
 } from 'react-native';
 
-export default class Products extends React.Component {
+import globalStyles from '../../styles/globalStyles';
 
+export default class Products extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
-        <View style={styles.container}>
-            <Text>Produkter yo</Text>
-        </View>
+            <View style={styles.container}>
+                <Text style={globalStyles.p}>Produkter yo</Text>
+            </View>
         );
     }
 }
@@ -21,5 +22,6 @@ export default class Products extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        top: 30,
     },
 });
