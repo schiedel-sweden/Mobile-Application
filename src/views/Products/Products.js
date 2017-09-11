@@ -1,58 +1,35 @@
 import React, { Component } from 'react';
-import {
-    ActivityIndicator,
-    FlatList,
-    Text,
-    View
-} from 'react-native';
-
-// https://www.youtube.com/watch?v=IuYo009yc8w
+import { ActivityIndicator, ListView, Text, View, StyleSheet } from 'react-native';
+import axios from 'axios';
 
 export default class Products extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLoading: true
-        }
-    }
 
+  render() {
+      console.log('start');
+      const url = 'https://api.dev/api/excel/12';
+      console.log(url);
+      axios.request(url)
+      .then((response) => {
+          console.log(response);
+          console.log('hej bög');
+      })
+      .catch(function (error) {
+          console.log(error);
+          console.log('då');
+      });
+      console.log('stop');
 
-    state = {
-        data: []
-    }
-
-    componentWillMount(){
-        this.fetchData();
-    }
-
-    fetchData = async () => {
-        const response = await fetch('https://randomuser.me/api?results=1000');
-        // const response = await fetch('http://127.0.0.1:8000/api/excel');
-        const json = await response.json();
-        this.setState({data: json.results});
-        // this.setState({data: json});
-    }
-
-    render() {
-        if (this.state.isLoading) {
-            this.state = {
-                isLoading: false
-            }
-            return (
-                <View style={{flex: 1, paddingTop: 20}}>
-                    <ActivityIndicator />
-                </View>
-            );
-        }
-        return (
-            <View style={{flex: 1, paddingTop: 20}}>
-                <FlatList
-                    data={this.state.data}
-                    KeyExtrctor={(x, i) => i}
-                    renderItem={({ item }) =>
-                    <Text>{`${item.name.first} ${item.name.last}`}</Text>}
-                />
-            </View>
-        );
-    }
+    return (
+        <View style={styles.container}>
+            <Text>Hej</Text>
+        </View>
+    );
+  }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        top: 30,
+    },
+});
