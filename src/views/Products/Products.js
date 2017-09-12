@@ -1,57 +1,34 @@
 import React, { Component } from 'react';
-import {
-    ActivityIndicator,
-    ListView,
-    Text,
-    View,
-    StyleSheet } from 'react-native';
-
+import { View, StyleSheet, FlatList, Text } from 'react-native';
 import axios from 'axios';
 
-
-var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-
 export default class Products extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: [],
-            isReady: false,
-            dataSource: ds,
-        }
-    }
+    state = {
+        data: [],
+    };
+    // https://api.dev/api/excel/10
     componentWillMount() {
-        axios.get('https://api.dev/api/excel/10', {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            }
-        })
-
-        .then((response) => response.json())
-
-        .then((responseData) => {
-            this.setState({data: responseData, isReady: true});
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
-
-        .done();
-
+        this.fetchData();
     }
 
-  render() {
+    fetchData = async () => {
+        const response = await fetch('https://api.dev/api/excel/10');
+        const json = await response.json();
+        console.log(json);
+        this.setState({ data: json });
+    };
 
-    return (
-
-        <View style={styles.container}>
-            <Text>Pretext</Text>
-            <Text>{this.state.data[0]["material"]]}</Text>
-            <Text>Hej</Text>
-        </View>
-    );
-  }
+    render() {
+        return (
+            <View style={styles.container}>
+                <FlatList
+                    data={this.state.data}
+                    keyExtractor={(x, i) => i}
+                    renderItem={({ item }) => <Text>{item[0]}</Text>}
+                />
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
