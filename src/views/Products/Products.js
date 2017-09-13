@@ -12,13 +12,37 @@ export default class Products extends Component {
     }
 
     fetchData = async () => {
-        const response = await fetch('https://api.dev/api/excel/10');
-        const json = await response.json();
-        console.log(json);
-        this.setState({ data: json[0] });
-        console.log(this.state);
+        axios
+            .get('https://api.dev/api/excel/10', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(responseData => this.setState([(data: responseData)]))
+            .catch(function(error) {
+                console.log(error);
+                throw error;
+            });
     };
+    /*
+const response = await fetch('https://api.dev/api/excel/10');
+const json = await response.json();
+console.log(json);
+this.setState({ data: json[0] });
+console.log(this.state);
 
+
+<FlatList
+    data={this.state.data}
+    keyExtractor={(x, i) => i}
+    renderItem={({ item }) => (
+        <Text>{`${item.id} ${item.material}`}</Text>
+    )}
+/>
+
+*/
     render() {
         return (
             <View style={styles.container}>
@@ -27,7 +51,7 @@ export default class Products extends Component {
                     data={this.state.data}
                     keyExtractor={(x, i) => i}
                     renderItem={({ item }) => (
-                        <Text>{`${item.id} ${item.material}`}</Text>
+                        <Text>{item.id}</Text>
                     )}
                 />
             </View>
