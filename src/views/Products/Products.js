@@ -67,6 +67,7 @@ render() {
             <ActivityIndicator />
             <Text>LOADING</Text>
         </View>
+
     }
     console.log(this.state.data);
 

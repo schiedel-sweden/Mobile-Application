@@ -1,8 +1,8 @@
-// TODO: Add the icons for the Button
 import React from 'react';
 import Hero from './Hero';
 import ButtonLargeLeft from './ButtonLargeLeft';
 import ButtonLargeRight from './ButtonLargeRight';
+import Style from '../../styles/globalStyles';
 
 import {
     Image,
@@ -40,16 +40,18 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#EEEEEE',
+        width: Style.CARD_WIDTH,
+        height: Style.CARD_HEIGHT,
     },
     heroWrapper: {
         borderBottomWidth: 2,
         borderColor: '#333333',
-        flex: 0.5,
+        flex: 0.7,
     },
     buttonLargeWrapper: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        flex: 0.5,
+        flex: 0.3,
     },
     buttonContainer: {
         bottom: 0,
