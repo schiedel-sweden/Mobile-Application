@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         alignSelf: 'stretch',
-        // flex: 2,
         justifyContent: 'center',
         height: 85,
         backgroundColor: '#EEEEEE',
@@ -33,7 +32,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         position: 'absolute',
-        top: 35,
+        top: 40,
     },
     logo: {
         backgroundColor: 'rgba(0,0,0,0)',
