@@ -5,7 +5,7 @@ import {
     Image,
     StyleSheet,
     TextInput,
-    Button,
+    TouchableOpacity,
     KeyboardAvoidingView,
 } from 'react-native';
 
@@ -70,11 +70,12 @@ export default class ContactUs extends React.Component {
                     selectionColor="#F9CE3C"
                 />
 
-                <Button
-                    title="Skicka"
+                <TouchableOpacity
                     onPress={this.handlePress}
                     style={styles.button}
-                />
+                >
+                    <Text>Skicka!</Text>
+                </TouchableOpacity>
 
                 {/* <View>
                     <Image />
@@ -105,10 +106,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 15,
-        marginTop: 15,
-        marginRight: 55,
-        marginBottom: 15,
-        marginLeft: 55,
+        marginVertical: 15,
+        marginHorizontal: 45,
     },
     input: {
         borderRadius: 5,
@@ -116,10 +115,8 @@ const styles = StyleSheet.create({
         borderColor: '#333333',
         backgroundColor: '#fff',
         padding: 15,
-        marginTop: 15,
-        marginRight: 45,
-        marginBottom: 15,
-        marginLeft: 45,
+        marginVertical: 15,
+        marginHorizontal: 45,
     },
     textAria: {
         borderRadius: 5,
@@ -127,18 +124,21 @@ const styles = StyleSheet.create({
         borderColor: '#333333',
         backgroundColor: '#fff',
         padding: 15,
-        marginTop: 15,
-        marginRight: 45,
-        marginBottom: 15,
-        marginLeft: 45,
+        marginVertical: 15,
+        marginHorizontal: 45,
         flex: 0.3,
     },
     button: {
         borderRadius: 5,
         borderWidth: 2,
         borderColor: '#333333',
-        backgroundColor: '#fff',
-        padding: 15,
+        backgroundColor: '#F9CE3C',
+        paddingHorizontal: 25,
+        paddingVertical: 20,
         margin: 15,
+        width: 105,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
