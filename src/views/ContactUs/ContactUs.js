@@ -1,5 +1,13 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TextInput, Button } from 'react-native';
+import {
+    View,
+    Text,
+    Image,
+    StyleSheet,
+    TextInput,
+    Button,
+    KeyboardAvoidingView,
+} from 'react-native';
 
 import globalStyles from '../../styles/globalStyles';
 
@@ -20,14 +28,12 @@ export default class ContactUs extends React.Component {
         const { navigate } = this.props.navigation;
 
         return (
-            <View style={styles.container}>
-                <View>
-                    <Text style={[styles.text, globalStyles.h2]}>
-                        Kontakta oss
-                    </Text>
+            <KeyboardAvoidingView behavior="padding" style={styles.container}>
+                <View style={styles.headerContainer}>
+                    <Text style={globalStyles.h2}>Kontakta oss</Text>
                 </View>
 
-                <View>
+                <View style={styles.ingressContainer}>
                     <Text style={globalStyles.p}>
                         Lorem ipsum dolor sit amet, consectetur adipisicing
                         elit, sed do eiusmod tempor incididunt ut labore et
@@ -77,7 +83,7 @@ export default class ContactUs extends React.Component {
 
                     <Image />
                 </View> */}
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }
@@ -86,6 +92,23 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         top: 45,
+        backgroundColor: '#B9B9B9',
+    },
+    headerContainer: {
+        alignSelf: 'stretch',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 45,
+    },
+    ingressContainer: {
+        alignSelf: 'stretch',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: 15,
+        marginTop: 15,
+        marginRight: 55,
+        marginBottom: 15,
+        marginLeft: 55,
     },
     input: {
         borderRadius: 5,
@@ -93,7 +116,10 @@ const styles = StyleSheet.create({
         borderColor: '#333333',
         backgroundColor: '#fff',
         padding: 15,
-        margin: 15,
+        marginTop: 15,
+        marginRight: 45,
+        marginBottom: 15,
+        marginLeft: 45,
     },
     textAria: {
         borderRadius: 5,
@@ -101,7 +127,10 @@ const styles = StyleSheet.create({
         borderColor: '#333333',
         backgroundColor: '#fff',
         padding: 15,
-        margin: 15,
+        marginTop: 15,
+        marginRight: 45,
+        marginBottom: 15,
+        marginLeft: 45,
         flex: 0.3,
     },
     button: {
