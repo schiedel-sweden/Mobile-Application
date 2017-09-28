@@ -7,14 +7,19 @@ import {
     TextInput,
     Button,
 } from 'react-native';
-
+import Header from '../../components/Header/Header';
 import globalStyles from '../../styles/globalStyles';
 
 export default class ContactUs extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { name: 'Ditt namn', email: 'Din email', message: 'Ditt meddelande', empty: '' };
+        this.state = {
+            name: 'Ditt namn',
+            email: 'Din email',
+            message: 'Ditt meddelande',
+            empty: ''
+        };
 
     }
 
@@ -29,6 +34,7 @@ export default class ContactUs extends React.Component {
         return (
 
             <View style={styles.container}>
+                <Header />
                 <View>
                     <Text style={[styles.text, globalStyles.h2]}>Kontakta oss</Text>
                 </View>
@@ -82,8 +88,6 @@ export default class ContactUs extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 20,
-
     },
     icon: {
         height: 24,

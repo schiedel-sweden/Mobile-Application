@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, FlatList, Text, ActivityIndicator, List, AppRegistry  } from 'react-native';
 import axios from 'axios';
-// this is the youtube video https://www.youtube.com/watch?v=IuYo009yc8w
+import Header from '../../components/Header/Header';
 
 export default class Products extends Component {
 
@@ -80,7 +80,7 @@ render() {
     return (
 
         <View style={styles.container}>
-
+            <Header />
 
         <Text>oh bananas</Text>
         {/* flatlist gets data from the state not sure if item[0] is right... */}
@@ -97,7 +97,6 @@ render() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        top: 30,
     },
 });
 
