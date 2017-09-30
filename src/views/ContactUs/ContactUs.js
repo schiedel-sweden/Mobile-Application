@@ -7,6 +7,7 @@ import {
     TextInput,
     TouchableOpacity,
     KeyboardAvoidingView,
+    FlatList,
 } from 'react-native';
 
 import globalStyles from '../../styles/globalStyles';
@@ -28,63 +29,67 @@ export default class ContactUs extends React.Component {
         const { navigate } = this.props.navigation;
 
         return (
-            <KeyboardAvoidingView behavior="padding" style={styles.container}>
-                <View style={styles.headerContainer}>
-                    <Text style={globalStyles.h2}>Kontakta oss</Text>
-                </View>
+            <FlatList>
+                <View style={styles.container}>
+                    <View style={styles.headerContainer}>
+                        <Text style={globalStyles.h2}>Kontakta oss</Text>
+                    </View>
 
-                <View style={styles.ingressContainer}>
-                    <Text style={globalStyles.p}>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco laboris nisi ut aliquip ex
-                        ea commodo consequat.
-                    </Text>
-                </View>
+                    <KeyboardAvoidingView
+                        behavior="padding"
+                        style={styles.ingressContainer}
+                    >
+                        <Text style={globalStyles.p}>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat.
+                        </Text>
+                    </KeyboardAvoidingView>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={name => this.setState({ name })}
+                        placeholder="Ditt namn"
+                        autoCapitalize="words"
+                        returnKeyLabel="next"
+                        selectionColor="#F9CE3C"
+                    />
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={email => this.setState({ email })}
+                        placeholder="Din epost adress"
+                        autoCapitalize="none"
+                        returnKeyLabel="next"
+                        selectionColor="#F9CE3C"
+                        keyboardType="email-address"
+                    />
 
-                <TextInput
-                    style={styles.input}
-                    onChangeText={name => this.setState({ name })}
-                    placeholder="Ditt namn"
-                    autoCapitalize="words"
-                    returnKeyLabel="next"
-                    selectionColor="#F9CE3C"
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={email => this.setState({ email })}
-                    placeholder="Din epost adress"
-                    autoCapitalize="none"
-                    returnKeyLabel="next"
-                    selectionColor="#F9CE3C"
-                    keyboardType="email-address"
-                />
+                    <TextInput
+                        multiline={true}
+                        style={styles.textAria}
+                        onChangeText={message => this.setState({ message })}
+                        placeholder="Ditt meddelande"
+                        returnKeyLabel="send"
+                        selectionColor="#F9CE3C"
+                    />
 
-                <TextInput
-                    multiline={true}
-                    style={styles.textAria}
-                    onChangeText={message => this.setState({ message })}
-                    placeholder="Ditt meddelande"
-                    returnKeyLabel="send"
-                    selectionColor="#F9CE3C"
-                />
+                    <TouchableOpacity
+                        onPress={this.handlePress}
+                        style={styles.button}
+                    >
+                        <Text>Skicka!</Text>
+                    </TouchableOpacity>
 
-                <TouchableOpacity
-                    onPress={this.handlePress}
-                    style={styles.button}
-                >
-                    <Text>Skicka!</Text>
-                </TouchableOpacity>
-
-                {/* <View>
+                    {/* <View>
                     <Image />
 
                     <Image />
 
                     <Image />
                 </View> */}
-            </KeyboardAvoidingView>
+                </View>
+            </FlatList>
         );
     }
 }
