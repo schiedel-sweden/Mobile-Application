@@ -1,4 +1,4 @@
-Chimneyimport React, { Component } from 'react';
+import React, { Component } from 'react';
 import {
     View,
     Text,
@@ -26,7 +26,7 @@ export default class PriceSuggestion extends Component {
         // bind all functions
         this.chimneytype = this.chimneytype.bind(this);
         this.housetype = this.housetype.bind(this);
-        this.skorsten = this.skorsten.bind(this);
+        this.chimney = this.chimney.bind(this);
         this.customerdetails = this.customerdetails.bind(this);
         this.pricepage = this.pricepage.bind(this);
         this.order = this.order.bind(this);
@@ -52,10 +52,10 @@ export default class PriceSuggestion extends Component {
             currentTab: "housetype"
         })
     };
-    skorsten() {
+    chimney() {
         this.setState({
-            activeTab: <Skorsten />,
-            currentTab: "skorsten"
+            activeTab: <Chimney />,
+            currentTab: "chimney"
         })
     };
     customerdetails() {
@@ -111,8 +111,8 @@ export default class PriceSuggestion extends Component {
 
                     <View>
                         <ButtonNav
-                        style={this.state.currentTab == "skorsten" ? styles.currentTab : styles.tabItem}
-                        onPress={this.skorsten}
+                        style={this.state.currentTab == "chimney" ? styles.currentTab : styles.tabItem}
+                        onPress={this.chimney}
                         tagline="SKORSTEN" />
                     </View>
 
