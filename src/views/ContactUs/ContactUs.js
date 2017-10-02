@@ -80,14 +80,6 @@ export default class ContactUs extends React.Component {
                     >
                         <Text>Skicka!</Text>
                     </TouchableOpacity>
-
-                    {/* <View>
-                    <Image />
-
-                    <Image />
-
-                    <Image />
-                </View> */}
                 </View>
             </FlatList>
         );
