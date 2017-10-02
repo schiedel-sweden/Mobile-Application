@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     hideModalButton: {
         alignItems: 'center',
         flex: 1,
-        height: 50,
+        height: 65,
         justifyContent: 'center',
         position: 'absolute',
         right: 5,
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     showModalButton: {
         alignItems: 'center',
         flex: 1,
-        height: 50,
+        height: 65,
         justifyContent: 'center',
         position: 'absolute',
         right: 0,
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     img: {
-        height: 25,
-        width: 25,
+        height: 30,
+        width: 30,
     },
 });

@@ -5,92 +5,161 @@ import {
     Image,
     StyleSheet,
     TextInput,
-    Button,
+    TouchableOpacity,
+    KeyboardAvoidingView,
 } from 'react-native';
-
+import Header from '../../components/Header/Header';
 import globalStyles from '../../styles/globalStyles';
 
 export default class ContactUs extends React.Component {
-
     constructor(props) {
         super(props);
-        this.state = { name: 'Ditt namn', email: 'Din email', message: 'Ditt meddelande', empty: '' };
-
+        this.state = {
+            name: '',
+            email: '',
+            message: '',
+            empty: '',
+            ingress: 'Lorem ipsum dolor sit amet, consectetur adipisicing.',
+        };
     }
-
     handlePress() {
-        alert("pressed");
+        alert('pressed');
     }
-
-
     render() {
         const { navigate } = this.props.navigation;
 
         return (
-
             <View style={styles.container}>
-                <View>
-                    <Text style={[styles.text, globalStyles.h2]}>Kontakta oss</Text>
-                </View>
-
-                <View>
-                    <Text style={globalStyles.p}>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </Text>
-                </View>
-
-                <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                    onChangeText={(name) => this.setState({name})}
-                    value={this.state.name}
-                 />
-                 <TextInput
-                     style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                     onChangeText={(email) => this.setState({email})}
-                     value={this.state.email}
-                  />
-
-                  <TextInput
-                      multiline={true}
-                      style={{height: 200, borderColor: 'gray', borderWidth: 1}}
-                      onChangeText={(message) => this.setState({email})}
-                      value={this.state.message}
-                   />
-
-
-
-                <Button
-                    title="Skicka"
-                    onPress={this.handlePress}/>
-
-                <View>
-                    <Image />
-
-                    <Image />
-
-                    <Image />
-                </View>
+                <Header />
+                <KeyboardAvoidingView behavior="padding" style={styles.body}>
+                    <View style={styles.headerContainer}>
+                        <View style={styles.headerTitle}>
+                            <Text style={globalStyles.h2}>Kontakta oss</Text>
+                        </View>
+                        <View style={styles.headerIngress}>
+                            <Text style={globalStyles.p}>
+                                {this.state.ingress}
+                            </Text>
+                        </View>
+                    </View>
+                    <View>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={name => this.setState({ name })}
+                            placeholder="Ditt namn"
+                            autoCapitalize="words"
+                            returnKeyLabel="next"
+                            selectionColor="#F9CE3C"
+                        />
+                    </View>
+                    <View>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={email => this.setState({ email })}
+                            placeholder="Din epost adress"
+                            autoCapitalize="none"
+                            returnKeyLabel="next"
+                            selectionColor="#F9CE3C"
+                            keyboardType="email-address"
+                        />
+                    </View>
+                    <View>
+                        <TextInput
+                            multiline={true}
+                            numberOfLines={8}
+                            style={styles.textAria}
+                            onChangeText={message => this.setState({ message })}
+                            placeholder="Ditt meddelande"
+                            returnKeyLabel="send"
+                            selectionColor="#F9CE3C"
+                        />
+                    </View>
+                    <View style={styles.buttonWrapper}>
+                        <TouchableOpacity
+                            onPress={this.handlePress}
+                            style={styles.button}
+                        >
+                            <Text>Skicka!</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.footerWrapper}>
+                        <View>
+                            <Text>IMAGE</Text>
+                        </View>
+                        <View>
+                            <Text>IMAGE</Text>
+                        </View>
+                        <View>
+                            <Text>IMAGE</Text>
+                        </View>
+                    </View>
+                </KeyboardAvoidingView>
             </View>
         );
     }
-
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 20,
-
+        backgroundColor: '#B9B9B9',
+    },
+    body: {
+        padding: globalStyles.PADDING,
+    },
+    headerContainer: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    headerTitle: {
+        marginBottom: globalStyles.PADDING,
+    },
+    headerIngress: {
+        marginBottom: globalStyles.PADDING,
+    },
+    input: {
+        borderRadius: 5,
+        borderWidth: 2,
+        borderColor: '#333333',
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        backgroundColor: '#ffffff',
+        marginVertical: 10,
+    },
+    textAria: {
+        borderRadius: 5,
+        borderWidth: 2,
+        borderColor: '#333333',
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        backgroundColor: '#ffffff',
+        marginVertical: 10,
+    },
+    buttonWrapper: {
+        justifyContent: 'flex-end',
+        flexDirection: 'row',
+    },
+    button: {
+        borderRadius: 5,
+        borderWidth: 2,
+        borderColor: '#333333',
+        paddingVertical: 12,
+        paddingHorizontal: 17,
+        backgroundColor: '#F9CE3C',
+        marginVertical: 10,
+        width: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    footerWrapper: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginVertical: 30,
     },
     icon: {
-        height: 24,
         width: 24,
-    },
-    text: {
-        alignSelf: 'stretch',
-        textAlign: 'center',
+        height: 24,
     },
 });

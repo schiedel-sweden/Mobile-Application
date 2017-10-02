@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, StyleSheet, FlatList, Text, ActivityIndicator, List, AppRegistry  } from 'react-native';
 import axios from 'axios';
-// this is the youtube video https://www.youtube.com/watch?v=IuYo009yc8w
+import Header from '../../components/Header/Header';
 
 export default class Products extends Component {
 
@@ -146,7 +146,6 @@ render() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        top: 30,
     },
     items1: {
         alignItems: "center",
