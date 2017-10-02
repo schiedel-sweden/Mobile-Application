@@ -6,12 +6,12 @@ import {
     Text,
 } from 'react-native';
 
-export default class Kundupgifter extends Component {
+export default class Chimney extends Component {
 
     render() {
         return (
             <View>
-                <Text>Kundupgifter</Text>
+                <Text>Skorsten</Text>
             </View>
 
         );

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+Chimneyimport React, { Component } from 'react';
 import {
     View,
     Text,
@@ -10,12 +10,12 @@ import Header from '../../components/Header/Header';
 import globalStyles from '../../styles/globalStyles';
 
 // import local views
-import Skorstenstyp from './Skorstenstyp'
-import Hustyp from './Hustyp'
-import Skorsten from './Skorsten'
-import Kundupgifter from './Kundupgifter'
-import Prisforslag from './Prisforslag'
-import Bestallning from './Bestallning'
+import ChimneyType from './ChimneyType'
+import HouseType from './HouseType'
+import Chimney from './Chimney'
+import CustomerDetails from './CustomerDetails'
+import PricePage from './PricePage'
+import Order from './Order'
 
 import ButtonNav from './ButtonNav';
 
@@ -24,32 +24,32 @@ export default class PriceSuggestion extends Component {
     constructor(props) {
         super(props);
         // bind all functions
-        this.skorstenstyp = this.skorstenstyp.bind(this);
-        this.hustyp = this.hustyp.bind(this);
+        this.chimneytype = this.chimneytype.bind(this);
+        this.housetype = this.housetype.bind(this);
         this.skorsten = this.skorsten.bind(this);
-        this.kundupgifter = this.kundupgifter.bind(this);
-        this.prisforslag = this.prisforslag.bind(this);
-        this.bestallning = this.bestallning.bind(this);
+        this.customerdetails = this.customerdetails.bind(this);
+        this.pricepage = this.pricepage.bind(this);
+        this.order = this.order.bind(this);
         // set initial state
         this.state = {
-            activeTab: <Skorstenstyp />,
-            currentTab: "skorstenstyp",
+            activeTab: <Chimney />,
+            currentTab: "chimneytype",
 
         }
 
     }
 
     // functions to set active tab to set tab file
-    skorstenstyp(){
+    chimneytype(){
         this.setState({
-            activeTab: <Skorstenstyp />,
-            currentTab: "skorstenstyp",
+            activeTab: <ChimneyType />,
+            currentTab: "chimneytype",
         })
     };
-    hustyp() {
+    housetype() {
         this.setState({
-            activeTab: <Hustyp />,
-            currentTab: "hustyp"
+            activeTab: <HouseType />,
+            currentTab: "housetype"
         })
     };
     skorsten() {
@@ -58,22 +58,22 @@ export default class PriceSuggestion extends Component {
             currentTab: "skorsten"
         })
     };
-    kundupgifter() {
+    customerdetails() {
         this.setState({
-            activeTab: <Kundupgifter />,
-            currentTab: "kundupgifter"
+            activeTab: <CustomerDetails />,
+            currentTab: "customerdetails"
         })
     };
-    prisforslag() {
+    pricepage() {
         this.setState({
-            activeTab: <Prisforslag />,
-            currentTab: "prisforslag"
+            activeTab: <PricePage />,
+            currentTab: "pricepage"
         })
     };
-    bestallning() {
+    order() {
         this.setState({
-            activeTab: <Bestallning />,
-            currentTab: "bestallning"
+            activeTab: <Order />,
+            currentTab: "order"
         })
     };
 
@@ -97,15 +97,15 @@ export default class PriceSuggestion extends Component {
 
                     <View>
                         <ButtonNav
-                        style={this.state.currentTab == "skorstenstyp" ? styles.currentTab : styles.tabItem}
-                        onPress={this.skorstenstyp}
+                        style={this.state.currentTab == "chimneytype" ? styles.currentTab : styles.tabItem}
+                        onPress={this.chimneytype}
                         tagline="SKORSTENSTYP" />
                     </View>
 
                     <View>
                         <ButtonNav
-                        style={this.state.currentTab == "hustyp" ? styles.currentTab: styles.tabItem}
-                        onPress={this.hustyp}
+                        style={this.state.currentTab == "housetype" ? styles.currentTab: styles.tabItem}
+                        onPress={this.housetype}
                         tagline="HUSTYP" />
                     </View>
 
@@ -118,28 +118,28 @@ export default class PriceSuggestion extends Component {
 
                     <View>
                         <ButtonNav
-                        style={this.state.currentTab == "kundupgifter" ? styles.currentTab : styles.tabItem}
-                        onPress={this.kundupgifter}
+                        style={this.state.currentTab == "customerdetails" ? styles.currentTab : styles.tabItem}
+                        onPress={this.customerdetails}
                         tagline="KUNDUPGIFTER" />
                     </View>
 
                     <View>
                         <ButtonNav
-                        style={this.state.currentTab == "prisforslag" ? styles.currentTab : styles.tabItem}
-                        onPress={this.prisforslag}
+                        style={this.state.currentTab == "pricepage" ? styles.currentTab : styles.tabItem}
+                        onPress={this.pricepage}
                         tagline="PRISFÖRSLAG" />
                     </View>
 
                     <View>
                         <ButtonNav
-                        style={this.state.currentTab == "bestallning" ? styles.currentTab : styles.tabItem}
-                        onPress={this.bestallning}
+                        style={this.state.currentTab == "order" ? styles.currentTab : styles.tabItem}
+                        onPress={this.order}
                         tagline="BESTÄLLNING" />
                     </View>
 
                 </View>
 
-                
+
                 <View>
                     {this.state.activeTab}
                 </View>
