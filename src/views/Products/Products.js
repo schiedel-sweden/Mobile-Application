@@ -6,6 +6,7 @@ import {
     Text,
     ActivityIndicator,
 } from 'react-native';
+import TouchableBlock from './TouchableBlock';
 import Header from '../../components/Header/Header';
 
 export default class Products extends Component {
@@ -137,10 +138,17 @@ export default class Products extends Component {
         }
 
         return (
-            <View>
+            <View style={styles.container}>
                 <Header />
-                <View style={styles.container}>
-                    <TouchableOpacity
+                <View style={styles.body}>
+                    <TouchableBlock
+                        onPress={this.setVisibleMat1}
+                        tagLine="Toggle material 1 items"
+                        ingress="material one"
+                        visible={this.state.visible1}
+                        mat={this.state.mat1}
+                    />
+                    {/* <TouchableOpacity
                         onPress={this.setVisibleMat1}
                         style={styles.items1}
                     >
@@ -192,7 +200,7 @@ export default class Products extends Component {
                                 </View>
                             )}
                         </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                 </View>
             </View>
         );
@@ -203,4 +211,5 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    body: {},
 });
