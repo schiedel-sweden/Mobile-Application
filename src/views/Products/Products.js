@@ -5,6 +5,8 @@ import {
     StyleSheet,
     Text,
     ActivityIndicator,
+    ScrollView,
+    RefreshControl,
 } from 'react-native';
 import TouchableBlock from './TouchableBlock';
 import Header from '../../components/Header/Header';
@@ -26,11 +28,21 @@ export default class Products extends Component {
                 visible3: true,
                 isLoading: true,
                 data: [],
+                refreshing: false,
             });
         this.componentWillMount = this.componentWillMount.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
         this.fetchData = this.fetchData.bind(this);
         this.getMaterial = this.getMaterial.bind(this);
+    }
+
+    /**
+    */
+    _onRefresh() {
+        this.setState({ refreshing: true });
+        this.fetchData().then(() => {
+            this.setState({ refreshing: false });
+        });
     }
 
     /**
@@ -140,68 +152,44 @@ export default class Products extends Component {
         return (
             <View style={styles.container}>
                 <Header />
-                <View style={styles.body}>
+                <ScrollView
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.state.refreshing}
+                            onRefresh={this._onRefresh.bind(this)}
+                        />
+                    }
+                    style={styles.body}
+                >
                     <TouchableBlock
                         onPress={this.setVisibleMat1}
-                        tagLine="Toggle material 1 items"
+                        tagline="Toggle material 1 items"
                         ingress="material one"
                         visible={this.state.visible1}
                         mat={this.state.mat1}
                     />
-                    {/* <TouchableOpacity
-                        onPress={this.setVisibleMat1}
-                        style={styles.items1}
-                    >
-                        <View>
-                            <Text>Toggle material 1 items</Text>
-
-                            <Text>material one</Text>
-                            {this.state.visible1 && (
-                                <View>
-                                    {this.state.mat1.map(function(object, i) {
-                                        return <Text key={i}>{object}</Text>;
-                                    })}
-                                </View>
-                            )}
-                        </View>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
+                    <TouchableBlock
                         onPress={this.setVisibleMat2}
-                        style={styles.items2}
-                    >
-                        <View>
-                            <Text>Toggle materal 2 items</Text>
-                            <Text>material 2 </Text>
-
-                            {this.state.visible2 && (
-                                <View>
-                                    {this.state.mat2.map(function(object, i) {
-                                        return <Text key={i}>{object}</Text>;
-                                    })}
-                                </View>
-                            )}
-                        </View>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                        onPress={this.setVisibleMat3}
-                        style={styles.items3}
-                    >
-                        <View>
-                            <Text>Toggle material 3 items</Text>
-
-                            <Text>materal 3</Text>
-                            {this.state.visible3 && (
-                                <View>
-                                    {this.state.mat3.map(function(object, i) {
-                                        return <Text key={i}>{object}</Text>;
-                                    })}
-                                </View>
-                            )}
-                        </View>
-                    </TouchableOpacity> */}
-                </View>
+                        tagline="Toggle materal 2 items"
+                        ingress="material Two"
+                        visible={this.state.visible2}
+                        mat={this.state.mat2}
+                    />
+                    <TouchableBlock
+                        onPress={this.setVisibleMat1}
+                        tagline="Toggle material 3 items"
+                        ingress="material tree"
+                        visible={this.state.visible3}
+                        mat={this.state.mat3}
+                    />
+                    <TouchableBlock
+                        onPress={this.setVisibleMat4}
+                        tagline="Toggle material 4 items"
+                        ingress="material for"
+                        visible={this.state.visible4}
+                        mat={this.state.mat4}
+                    />
+                </ScrollView>
             </View>
         );
     }
@@ -210,6 +198,7 @@ export default class Products extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#EEEEEE',
     },
     body: {},
 });
