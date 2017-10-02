@@ -9,7 +9,7 @@ import {
     KeyboardAvoidingView,
     FlatList,
 } from 'react-native';
-
+import Header from '../../components/Header/Header';
 import globalStyles from '../../styles/globalStyles';
 
 export default class ContactUs extends React.Component {
