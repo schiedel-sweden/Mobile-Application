@@ -6,7 +6,7 @@ import {
     Text,
 } from 'react-native';
 
-export default class Bestallning extends Component {
+export default class Order extends Component {
 
     render() {
         return (

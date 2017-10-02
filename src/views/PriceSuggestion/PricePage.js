@@ -6,12 +6,12 @@ import {
     Text,
 } from 'react-native';
 
-export default class Hustyp extends Component {
+export default class PricePage extends Component {
 
     render() {
         return (
-            <View>
-                <Text>Hustyp</Text>
+            <View >
+                <Text>Prisforslag</Text>
             </View>
 
         );

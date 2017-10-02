@@ -6,7 +6,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-export default class Skorstenstyp extends Component {
+export default class ChimneyType extends Component {
 
     constructor(props) {
         super(props);
