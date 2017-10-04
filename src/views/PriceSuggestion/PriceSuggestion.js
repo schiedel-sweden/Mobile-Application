@@ -31,7 +31,7 @@ export default class PriceSuggestion extends Component {
         this.pricepage = this.pricepage.bind(this);
         this.order = this.order.bind(this);
         // set initial state
-        this.offertnummer = 192381;
+        this.quotationnumber = 192381;
         this.state = {
             activeTab: <Chimney />,
             currentTab: "chimneytype",
@@ -50,7 +50,7 @@ export default class PriceSuggestion extends Component {
     // pass offertnummer as the prop "offNum"
     housetype() {
         this.setState({
-            activeTab: <HouseType offNum={this.offertnummer} />,
+            activeTab: <HouseType quotNum={this.quotationnumber} />,
             currentTab: "housetype"
         })
     };

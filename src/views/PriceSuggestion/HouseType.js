@@ -25,7 +25,7 @@ export default class HouseType extends Component {
             <View>
                 <View>
                     {/* prop passed in PriceSuggestion */}
-                    <Text>Offertnummer: {this.props.offNum}</Text>
+                    <Text>Offertnummer: {this.props.quotNum}</Text>
                 </View>
                 {/* Image is HUGE, scale down?*/}
                 <View>
