@@ -13,6 +13,7 @@ cd Mobile-Application
 npm install
 npm start
 ```
+Use the [expo](https://expo.io/) app on your iPad or android tablet.
 
 ## Contrbuting
 Follow the guidelines found in the [Contrbuting.md](https://github.com/schiedel-sweden/Mobile-Application/blob/master/CONTRIBUTING.md) file.
