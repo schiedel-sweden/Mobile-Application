@@ -17,4 +17,5 @@ npm start
 ## Contrbuting
 Follow the guidelines found in the [Contrbuting.md](https://github.com/schiedel-sweden/Mobile-Application/blob/master/CONTRIBUTING.md) file.
 
+## License
 #### [MIT License](https://mitlicense.org/)

@@ -1,4 +1,10 @@
 # Contrbuting
+### General
+
+* Most important: Look around. Match the style you see used in the rest of the project. This includes formatting, naming things in code, naming things in documentation.
+* Add trailing commas,
+* 2 spaces for indentation (no tabs)
+
 ### JavaScript
 * Use semicolons `;`
 * ES6 standards
