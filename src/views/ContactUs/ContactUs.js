@@ -89,8 +89,10 @@ export default class ContactUs extends React.Component {
     }
     handlePress() {
         let value = this.refs.contactform.getValue();
+        if (value != null) {
+            alert(value.name + " " +value.email +" " + value.message);
+        }
 
-        alert(value.name + " " +value.email +" " + value.message);
     }
     render() {
         const { navigate } = this.props.navigation;
