@@ -7,11 +7,11 @@ import {
     Text,
 } from 'react-native';
 
-var t = require('tcomb-form-native');
-var Form = t.form.Form;
+const t = require('tcomb-form-native');
+const Form = t.form.Form;
 
-2
-var Invoice = t.struct({
+
+const Invoice = t.struct({
   company: t.String,
   name: t.String,
   surname: t.String,
@@ -23,7 +23,7 @@ var Invoice = t.struct({
   email: t.String
 });
 
-var Delivery = t.struct({
+const Delivery = t.struct({
     sameAsAbove: t.Boolean,
     receiver: t.String,
     adress: t.String,
@@ -33,7 +33,7 @@ var Delivery = t.struct({
 })
 
 
-var options={};
+const options={};
 export default class CustomerDetails extends Component {
 
     onPress() {
