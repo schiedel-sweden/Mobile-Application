@@ -65,7 +65,7 @@ export default class Products extends Component {
     * @return getMaterial()
     */
     fetchData = async () => {
-        fetch('https://jeremydanner.com/api/excel/30')
+        fetch('https://jeremydanner.com/api/excel/100')
             .then(response => response.json())
             .then(responseData => {
                 console.log(responseData);
@@ -157,6 +157,8 @@ export default class Products extends Component {
                         <RefreshControl
                             refreshing={this.state.refreshing}
                             onRefresh={this._onRefresh.bind(this)}
+                            tintColor="#F9CE3C"
+                            progressBackgroundColor="#F9CE3C"
                         />
                     }
                     style={styles.body}
