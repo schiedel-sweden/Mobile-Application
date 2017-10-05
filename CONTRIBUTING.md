@@ -10,6 +10,7 @@
 * ES6 standards
 * Prefer `'` over `"`
 * 80 character line length
+* Do NOT use `var` when declaring a variable
 
 ### JSX
 * Prefer `"` over `'` for string literal props
