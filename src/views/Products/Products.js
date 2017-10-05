@@ -4,7 +4,6 @@ import {
     TouchableOpacity,
     StyleSheet,
     Text,
-    ActivityIndicator,
     ScrollView,
     RefreshControl,
 } from 'react-native';
@@ -18,25 +17,24 @@ export default class Products extends Component {
     */
     constructor(props) {
         super(props);
-        (this.fetchData = this.fetchData.bind(this)),
-            (this.state = {
+        this.fetchData = this.fetchData.bind(this);
+            this.state = {
                 mat1: [],
                 mat2: [],
                 mat3: [],
                 visible1: true,
                 visible2: true,
                 visible3: true,
-                isLoading: true,
                 data: [],
                 refreshing: false,
-            });
+            };
         this.componentWillMount = this.componentWillMount.bind(this);
-        this.componentDidMount = this.componentDidMount.bind(this);
         this.fetchData = this.fetchData.bind(this);
         this.getMaterial = this.getMaterial.bind(this);
     }
 
     /**
+    * @return bool state false
     */
     _onRefresh() {
         this.setState({ refreshing: true });
@@ -46,29 +44,19 @@ export default class Products extends Component {
     }
 
     /**
-    * @return fetchData()
+    * @return object data
     */
     componentWillMount() {
         this.fetchData();
     }
 
     /**
-    * @return setState
-    */
-    componentDidMount() {
-        this.setState({
-            isLoading: false,
-        });
-    }
-
-    /**
-    * @return getMaterial()
+    * @return object data
     */
     fetchData = async () => {
-        fetch('https://jeremydanner.com/api/excel/100')
+        fetch('https://jeremydanner.com/api/excel/')
             .then(response => response.json())
             .then(responseData => {
-                console.log(responseData);
                 this.setState({ data: responseData });
                 this.getMaterial();
             })
@@ -78,7 +66,7 @@ export default class Products extends Component {
     };
 
     /**
-    * @return arr.push()
+    * @return return array
     */
     getMaterial() {
         let ids = [];
@@ -112,43 +100,9 @@ export default class Products extends Component {
     }
 
     /**
-    * @return setState
-    */
-    setVisibleMat1 = () => {
-        this.setState({
-            visible1: !this.state.visible1,
-        });
-    };
-
-    /**
-    * @return setState
-    */
-    setVisibleMat2 = () => {
-        this.setState({
-            visible2: !this.state.visible2,
-        });
-    };
-
-    /**
-    * @return setState
-    */
-    setVisibleMat3 = () => {
-        this.setState({
-            visible3: !this.state.visible3,
-        });
-    };
-
-    /**
     * @return View
     */
     render() {
-        if (this.state.isLoading) {
-            <View>
-                <ActivityIndicator />
-                <Text>LOADING</Text>
-            </View>;
-        }
-
         return (
             <View style={styles.container}>
                 <Header />
@@ -164,32 +118,22 @@ export default class Products extends Component {
                     style={styles.body}
                 >
                     <TouchableBlock
-                        onPress={this.setVisibleMat1}
                         tagline="Toggle material 1 items"
                         ingress="material one"
                         visible={this.state.visible1}
                         mat={this.state.mat1}
                     />
                     <TouchableBlock
-                        onPress={this.setVisibleMat2}
                         tagline="Toggle materal 2 items"
                         ingress="material Two"
                         visible={this.state.visible2}
                         mat={this.state.mat2}
                     />
                     <TouchableBlock
-                        onPress={this.setVisibleMat1}
                         tagline="Toggle material 3 items"
                         ingress="material tree"
                         visible={this.state.visible3}
                         mat={this.state.mat3}
-                    />
-                    <TouchableBlock
-                        onPress={this.setVisibleMat4}
-                        tagline="Toggle material 4 items"
-                        ingress="material for"
-                        visible={this.state.visible4}
-                        mat={this.state.mat4}
                     />
                 </ScrollView>
             </View>
@@ -202,5 +146,4 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#EEEEEE',
     },
-    body: {},
 });

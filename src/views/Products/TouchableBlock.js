@@ -1,36 +1,58 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
     View,
     TouchableOpacity,
     StyleSheet,
     Text,
-    ActivityIndicator,
 } from 'react-native';
 import globalStyles from '../../styles/globalStyles';
 
-const TouchableBlock = props => {
-    return (
-        <TouchableOpacity style={styles.container}>
-            <View>
-                <Text style={globalStyles.h1}>{props.tagline}</Text>
-            </View>
-            <View>
-                <Text style={globalStyles.h3}>{props.ingress}</Text>
-            </View>
-            {props.visible && (
-                <View style={styles.dropDownContiner}>
-                    {props.mat.map(function(object, i) {
-                        return (
-                            <Text style={styles.dropDownText} key={i}>
-                                {object}
-                            </Text>
-                        );
-                    })}
+export default class TouchableBlock extends Component {
+    /**
+    * @param props
+    * @return setState
+    */
+    constructor(props) {
+        super(props);
+        this.state = {
+            visible: false,
+        }
+        this.setVisibleMat = this.setVisibleMat.bind(this);
+    }
+    /**
+    * @return bool setState
+    */
+    setVisibleMat() {
+        this.setState({visible: !this.state.visible});
+    };
+
+    /**
+    * @return View
+    */
+    render() {
+        return (
+            <TouchableOpacity onPress={this.setVisibleMat} style={styles.container}>
+                <View>
+                    <Text style={globalStyles.h1}>{this.props.tagline}</Text>
                 </View>
-            )}
-        </TouchableOpacity>
-    );
-};
+                <View>
+                    <Text style={globalStyles.h3}>{this.props.ingress}</Text>
+                </View>
+                {this.state.visible && (
+                    <View style={styles.dropDownContiner}>
+                        {this.props.mat.map(function(object, i) {
+                            return (
+                                <Text style={styles.dropDownText} key={i}>
+                                    {object}
+                                </Text>
+                            );
+                        })}
+                    </View>
+                )}
+            </TouchableOpacity>
+        );
+    }
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -47,5 +69,3 @@ const styles = StyleSheet.create({
         textAlign: 'left',
     },
 });
-
-export default TouchableBlock;
