@@ -93,8 +93,8 @@ export default class PriceSuggestion extends Component {
                     <ButtonNav
                         style={
                             this.state.currentTab == 'chimneytype'
-                                ? styles.currentTab
-                                : styles.tabItem
+                                ? [styles.currentTab, styles.tab]
+                                : [styles.tabItem, styles.tab]
                         }
                         onPress={this.chimneytype}
                         tagline="SKORSTENSTYP"
@@ -103,8 +103,8 @@ export default class PriceSuggestion extends Component {
                     <ButtonNav
                         style={
                             this.state.currentTab == 'housetype'
-                                ? styles.currentTab
-                                : styles.tabItem
+                                ? [styles.currentTab, styles.tab]
+                                : [styles.tabItem, styles.tab]
                         }
                         onPress={this.housetype}
                         tagline="HUSTYP"
@@ -113,8 +113,8 @@ export default class PriceSuggestion extends Component {
                     <ButtonNav
                         style={
                             this.state.currentTab == 'chimney'
-                                ? styles.currentTab
-                                : styles.tabItem
+                                ? [styles.currentTab, styles.tab]
+                                : [styles.tabItem, styles.tab]
                         }
                         onPress={this.chimney}
                         tagline="SKORSTEN"
@@ -123,8 +123,8 @@ export default class PriceSuggestion extends Component {
                     <ButtonNav
                         style={
                             this.state.currentTab == 'customerdetails'
-                                ? styles.currentTab
-                                : styles.tabItem
+                                ? [styles.currentTab, styles.tab]
+                                : [styles.tabItem, styles.tab]
                         }
                         onPress={this.customerdetails}
                         tagline="KUNDUPGIFTER"
@@ -133,8 +133,8 @@ export default class PriceSuggestion extends Component {
                     <ButtonNav
                         style={
                             this.state.currentTab == 'pricepage'
-                                ? styles.currentTab
-                                : styles.tabItem
+                                ? [styles.currentTab, styles.tab]
+                                : [styles.tabItem, styles.tab]
                         }
                         onPress={this.pricepage}
                         tagline="PRISFÖRSLAG"
@@ -143,8 +143,8 @@ export default class PriceSuggestion extends Component {
                     <ButtonNav
                         style={
                             this.state.currentTab == 'order'
-                                ? styles.currentTab
-                                : styles.tabLastChild
+                                ? [styles.currentTab, styles.tab]
+                                : [styles.tabLastChild, styles.tab]
                         }
                         onPress={this.order}
                         tagline="BESTÄLLNING"
@@ -168,44 +168,30 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#949494',
     },
-    tabItem: {
+    tab: {
         justifyContent: 'center',
         flexGrow: 1,
         height: '100%',
-        borderRightWidth: 2,
-        borderRightColor: '#333333',
-        borderTopWidth: 2,
-        borderTopColor: '#333333',
-        borderBottomWidth: 2,
-        borderBottomColor: '#333333',
         flex: 1,
         alignSelf: 'stretch',
         alignItems: 'center',
+        borderTopWidth: 2,
+        borderTopColor: '#333333',
+    },
+    tabItem: {
+        borderRightWidth: 2,
+        borderRightColor: '#333333',
+        borderBottomWidth: 2,
+        borderBottomColor: '#333333',
     },
     currentTab: {
         backgroundColor: '#EEEEEE',
-        justifyContent: 'center',
-        flexGrow: 1,
-        height: '100%',
-        borderTopWidth: 2,
-        borderTopColor: '#333333',
         borderBottomWidth: 2,
         borderBottomColor: '#EEEEEE',
-        flex: 1,
-        alignSelf: 'stretch',
-        alignItems: 'center',
     },
     tabLastChild: {
-        justifyContent: 'center',
-        flexGrow: 1,
-        height: '100%',
         borderBottomWidth: 2,
         borderBottomColor: '#333333',
-        borderTopWidth: 2,
-        borderTopColor: '#333333',
-        flex: 1,
-        alignSelf: 'stretch',
-        alignItems: 'center',
     },
     body: {
         backgroundColor: '#EEEEEE',
