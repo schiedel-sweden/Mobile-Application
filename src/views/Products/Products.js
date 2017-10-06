@@ -54,7 +54,7 @@ export default class Products extends Component {
     * @return object data
     */
     fetchData = async () => {
-        fetch('https://jeremydanner.com/api/excel/')
+        fetch('https://jeremydanner.com/api/excel/10')
             .then(response => response.json())
             .then(responseData => {
                 this.setState({ data: responseData });
