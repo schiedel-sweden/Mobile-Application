@@ -79,6 +79,7 @@ export default class ContactUs extends React.Component {
     constructor(props) {
         super(props);
         this.handlePress = this.handlePress.bind(this);
+        this.checkName = this.checkName.bind(this);
         this.state = {
             name: '',
             email: '',
@@ -92,8 +93,17 @@ export default class ContactUs extends React.Component {
         if (value != null) {
             alert(value.name + " " +value.email +" " + value.message);
         }
-
     }
+
+    checkName(){
+        let a = this.refs.contactform.getComponent('name').getValue();
+        if (a != null) {
+
+            this.refs.contactform.getComponent('name').color = '#00FF00';
+        }
+    }
+
+
     render() {
         const { navigate } = this.props.navigation;
 
@@ -115,6 +125,7 @@ export default class ContactUs extends React.Component {
                     <Form
                     ref="contactform"
                     style={styles.input}
+                    onChange={this.checkName}
                     type={ContactForm}
                     options={options}
 
