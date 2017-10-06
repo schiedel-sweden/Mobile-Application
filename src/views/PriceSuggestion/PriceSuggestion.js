@@ -144,7 +144,7 @@ export default class PriceSuggestion extends Component {
                         style={
                             this.state.currentTab == 'order'
                                 ? styles.currentTab
-                                : styles.tabItem
+                                : styles.tabLastChild
                         }
                         onPress={this.order}
                         tagline="BESTÄLLNING"
@@ -172,8 +172,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexGrow: 1,
         height: '100%',
-        borderWidth: 2,
-        borderColor: '#333333',
+        borderRightWidth: 2,
+        borderRightColor: '#333333',
+        borderTopWidth: 2,
+        borderTopColor: '#333333',
+        borderBottomWidth: 2,
+        borderBottomColor: '#333333',
         flex: 1,
         alignSelf: 'stretch',
         alignItems: 'center',
@@ -183,6 +187,20 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexGrow: 1,
         height: '100%',
+        borderTopWidth: 2,
+        borderTopColor: '#333333',
+        borderBottomWidth: 2,
+        borderBottomColor: '#EEEEEE',
+        flex: 1,
+        alignSelf: 'stretch',
+        alignItems: 'center',
+    },
+    tabLastChild: {
+        justifyContent: 'center',
+        flexGrow: 1,
+        height: '100%',
+        borderBottomWidth: 2,
+        borderBottomColor: '#333333',
         borderTopWidth: 2,
         borderTopColor: '#333333',
         flex: 1,
