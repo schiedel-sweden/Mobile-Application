@@ -89,80 +89,68 @@ export default class PriceSuggestion extends Component {
         return (
             <View style={styles.container}>
                 <Header />
+                <View style={styles.navWrapper}>
+                    <ButtonNav
+                        style={
+                            this.state.currentTab == 'chimneytype'
+                                ? styles.currentTab
+                                : styles.tabItem
+                        }
+                        onPress={this.chimneytype}
+                        tagline="SKORSTENSTYP"
+                    />
+
+                    <ButtonNav
+                        style={
+                            this.state.currentTab == 'housetype'
+                                ? styles.currentTab
+                                : styles.tabItem
+                        }
+                        onPress={this.housetype}
+                        tagline="HUSTYP"
+                    />
+
+                    <ButtonNav
+                        style={
+                            this.state.currentTab == 'chimney'
+                                ? styles.currentTab
+                                : styles.tabItem
+                        }
+                        onPress={this.chimney}
+                        tagline="SKORSTEN"
+                    />
+
+                    <ButtonNav
+                        style={
+                            this.state.currentTab == 'customerdetails'
+                                ? styles.currentTab
+                                : styles.tabItem
+                        }
+                        onPress={this.customerdetails}
+                        tagline="KUNDUPGIFTER"
+                    />
+
+                    <ButtonNav
+                        style={
+                            this.state.currentTab == 'pricepage'
+                                ? styles.currentTab
+                                : styles.tabItem
+                        }
+                        onPress={this.pricepage}
+                        tagline="PRISFÖRSLAG"
+                    />
+
+                    <ButtonNav
+                        style={
+                            this.state.currentTab == 'order'
+                                ? styles.currentTab
+                                : styles.tabItem
+                        }
+                        onPress={this.order}
+                        tagline="BESTÄLLNING"
+                    />
+                </View>
                 <ScrollView style={styles.body}>
-                    <View style={styles.navWrapper}>
-                        <View>
-                            <ButtonNav
-                                style={
-                                    this.state.currentTab == 'chimneytype'
-                                        ? styles.currentTab
-                                        : styles.tabItem
-                                }
-                                onPress={this.chimneytype}
-                                tagline="SKORSTENSTYP"
-                            />
-                        </View>
-
-                        <View>
-                            <ButtonNav
-                                style={
-                                    this.state.currentTab == 'housetype'
-                                        ? styles.currentTab
-                                        : styles.tabItem
-                                }
-                                onPress={this.housetype}
-                                tagline="HUSTYP"
-                            />
-                        </View>
-
-                        <View>
-                            <ButtonNav
-                                style={
-                                    this.state.currentTab == 'chimney'
-                                        ? styles.currentTab
-                                        : styles.tabItem
-                                }
-                                onPress={this.chimney}
-                                tagline="SKORSTEN"
-                            />
-                        </View>
-
-                        <View>
-                            <ButtonNav
-                                style={
-                                    this.state.currentTab == 'customerdetails'
-                                        ? styles.currentTab
-                                        : styles.tabItem
-                                }
-                                onPress={this.customerdetails}
-                                tagline="KUNDUPGIFTER"
-                            />
-                        </View>
-
-                        <View>
-                            <ButtonNav
-                                style={
-                                    this.state.currentTab == 'pricepage'
-                                        ? styles.currentTab
-                                        : styles.tabItem
-                                }
-                                onPress={this.pricepage}
-                                tagline="PRISFÖRSLAG"
-                            />
-                        </View>
-
-                        <View>
-                            <ButtonNav
-                                style={
-                                    this.state.currentTab == 'order'
-                                        ? styles.currentTab
-                                        : styles.tabItem
-                                }
-                                onPress={this.order}
-                                tagline="BESTÄLLNING"
-                            />
-                        </View>
-                    </View>
                     <View>{this.state.activeTab}</View>
                 </ScrollView>
             </View>
@@ -174,37 +162,34 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    body: {
-        backgroundColor: '#EEEEEE',
-    },
     navWrapper: {
-        display: 'flex',
         flexDirection: 'row',
-        alignSelf: 'stretch',
         height: 75,
-        justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#949494',
     },
     tabItem: {
-        // alignItems: 'center',
         justifyContent: 'center',
+        flexGrow: 1,
         height: '100%',
         borderWidth: 2,
         borderColor: '#333333',
-        // alignItems: 'stretch',
-        // flexGrow: 1,
         flex: 1,
+        alignSelf: 'stretch',
+        alignItems: 'center',
     },
     currentTab: {
-        // alignItems: 'center',
         backgroundColor: '#EEEEEE',
         justifyContent: 'center',
+        flexGrow: 1,
         height: '100%',
-        // alignItems: 'stretch',
-        // borderWidth: 3,
-        // borderColor: '#333333',
-        // flexGrow: 1,
+        borderTopWidth: 2,
+        borderTopColor: '#333333',
         flex: 1,
+        alignSelf: 'stretch',
+        alignItems: 'center',
+    },
+    body: {
+        backgroundColor: '#EEEEEE',
     },
 });
