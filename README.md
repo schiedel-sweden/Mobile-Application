@@ -1,5 +1,5 @@
-# About us [![Build Status](https://travis-ci.org/schiedel-sweden/Mobile-Application.svg?branch=master)](https://travis-ci.org/schiedel-sweden/Mobile-Application)
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+# About us [![Build Status](https://travis-ci.org/schiedel-sweden/Mobile-Application.svg?branch=master)](https://travis-ci.org/schiedel-sweden/Mobile-Application) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+
 This application is built in [React Native](https://facebook.github.io/react-native/)
 for the chimney company [Schiedel](https://www.schiedel.com/se/) built by
 [HandelsmMrketing](http://www.handelsmarketing.se/). HandelsmMrketing is a
