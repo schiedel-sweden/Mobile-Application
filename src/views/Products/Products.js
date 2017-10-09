@@ -18,16 +18,16 @@ export default class Products extends Component {
     constructor(props) {
         super(props);
         this.fetchData = this.fetchData.bind(this);
-            this.state = {
-                mat1: [],
-                mat2: [],
-                mat3: [],
-                visible1: true,
-                visible2: true,
-                visible3: true,
-                data: [],
-                refreshing: false,
-            };
+        this.state = {
+            mat1: [],
+            mat2: [],
+            mat3: [],
+            visible1: true,
+            visible2: true,
+            visible3: true,
+            data: [],
+            refreshing: false,
+        };
         this.componentWillMount = this.componentWillMount.bind(this);
         this.fetchData = this.fetchData.bind(this);
         this.getMaterial = this.getMaterial.bind(this);
@@ -54,7 +54,7 @@ export default class Products extends Component {
     * @return object data
     */
     fetchData = async () => {
-        fetch('https://jeremydanner.com/api/excel/10')
+        fetch('https://jeremydanner.com/api/excel/30')
             .then(response => response.json())
             .then(responseData => {
                 this.setState({ data: responseData });

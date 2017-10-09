@@ -4,23 +4,23 @@ import {
     Text,
     Image,
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    ScrollView,
 } from 'react-native';
 import Header from '../../components/Header/Header';
 import globalStyles from '../../styles/globalStyles';
 
 // import local views
-import ChimneyType from './ChimneyType'
-import HouseType from './HouseType'
-import Chimney from './Chimney'
-import CustomerDetails from './CustomerDetails'
-import PricePage from './PricePage'
-import Order from './Order'
+import ChimneyType from './ChimneyType';
+import HouseType from './HouseType';
+import Chimney from './Chimney';
+import CustomerDetails from './CustomerDetails';
+import PricePage from './PricePage';
+import Order from './Order';
 
 import ButtonNav from './ButtonNav';
 
 export default class PriceSuggestion extends Component {
-
     constructor(props) {
         super(props);
         // bind all functions
@@ -34,50 +34,48 @@ export default class PriceSuggestion extends Component {
         this.quotationnumber = 192381;
         this.state = {
             activeTab: <Chimney />,
-            currentTab: "chimneytype",
-
-        }
-
+            currentTab: 'chimneytype',
+        };
     }
 
     // functions to set active tab to set tab file
-    chimneytype(){
+    chimneytype() {
         this.setState({
             activeTab: <ChimneyType />,
-            currentTab: "chimneytype",
-        })
-    };
+            currentTab: 'chimneytype',
+        });
+    }
     // pass offertnummer as the prop "offNum"
     housetype() {
         this.setState({
             activeTab: <HouseType quotNum={this.quotationnumber} />,
-            currentTab: "housetype"
-        })
-    };
+            currentTab: 'housetype',
+        });
+    }
     chimney() {
         this.setState({
             activeTab: <Chimney />,
-            currentTab: "chimney"
-        })
-    };
+            currentTab: 'chimney',
+        });
+    }
     customerdetails() {
         this.setState({
             activeTab: <CustomerDetails />,
-            currentTab: "customerdetails"
-        })
-    };
+            currentTab: 'customerdetails',
+        });
+    }
     pricepage() {
         this.setState({
             activeTab: <PricePage />,
-            currentTab: "pricepage"
-        })
-    };
+            currentTab: 'pricepage',
+        });
+    }
     order() {
         this.setState({
             activeTab: <Order />,
-            currentTab: "order"
-        })
-    };
+            currentTab: 'order',
+        });
+    }
 
     // 6 views!
 
@@ -88,96 +86,114 @@ export default class PriceSuggestion extends Component {
     // 5: PRISFÖRSLAG
     // 6: BESTÄLLNING
     render() {
-
         return (
             <View style={styles.container}>
-
-
-            <Header />
-
-                <View style={styles.body}>
-
-                    <View>
-                        <ButtonNav
-                        style={this.state.currentTab == "chimneytype" ? styles.currentTab : styles.tabItem}
+                <Header />
+                <View style={styles.navWrapper}>
+                    <ButtonNav
+                        style={
+                            this.state.currentTab == 'chimneytype'
+                                ? [styles.currentTab, styles.tab]
+                                : [styles.tabItem, styles.tab]
+                        }
                         onPress={this.chimneytype}
-                        tagline="SKORSTENSTYP" />
-                    </View>
+                        tagline="SKORSTENSTYP"
+                    />
 
-                    <View>
-                        <ButtonNav
-                        style={this.state.currentTab == "housetype" ? styles.currentTab: styles.tabItem}
+                    <ButtonNav
+                        style={
+                            this.state.currentTab == 'housetype'
+                                ? [styles.currentTab, styles.tab]
+                                : [styles.tabItem, styles.tab]
+                        }
                         onPress={this.housetype}
-                        tagline="HUSTYP" />
-                    </View>
+                        tagline="HUSTYP"
+                    />
 
-                    <View>
-                        <ButtonNav
-                        style={this.state.currentTab == "chimney" ? styles.currentTab : styles.tabItem}
+                    <ButtonNav
+                        style={
+                            this.state.currentTab == 'chimney'
+                                ? [styles.currentTab, styles.tab]
+                                : [styles.tabItem, styles.tab]
+                        }
                         onPress={this.chimney}
-                        tagline="SKORSTEN" />
-                    </View>
+                        tagline="SKORSTEN"
+                    />
 
-                    <View>
-                        <ButtonNav
-                        style={this.state.currentTab == "customerdetails" ? styles.currentTab : styles.tabItem}
+                    <ButtonNav
+                        style={
+                            this.state.currentTab == 'customerdetails'
+                                ? [styles.currentTab, styles.tab]
+                                : [styles.tabItem, styles.tab]
+                        }
                         onPress={this.customerdetails}
-                        tagline="KUNDUPGIFTER" />
-                    </View>
+                        tagline="KUNDUPGIFTER"
+                    />
 
-                    <View>
-                        <ButtonNav
-                        style={this.state.currentTab == "pricepage" ? styles.currentTab : styles.tabItem}
+                    <ButtonNav
+                        style={
+                            this.state.currentTab == 'pricepage'
+                                ? [styles.currentTab, styles.tab]
+                                : [styles.tabItem, styles.tab]
+                        }
                         onPress={this.pricepage}
-                        tagline="PRISFÖRSLAG" />
-                    </View>
+                        tagline="PRISFÖRSLAG"
+                    />
 
-                    <View>
-                        <ButtonNav
-                        style={this.state.currentTab == "order" ? styles.currentTab : styles.tabItem}
+                    <ButtonNav
+                        style={
+                            this.state.currentTab == 'order'
+                                ? [styles.currentTab, styles.tab]
+                                : [styles.tabLastChild, styles.tab]
+                        }
                         onPress={this.order}
-                        tagline="BESTÄLLNING" />
-                    </View>
-
+                        tagline="BESTÄLLNING"
+                    />
                 </View>
-
-
-                <View>
-                    {this.state.activeTab}
-                </View>
-
-
-
+                <ScrollView style={styles.body}>
+                    <View>{this.state.activeTab}</View>
+                </ScrollView>
             </View>
-
         );
     }
 }
-
-
-
-
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    body: {
-        justifyContent: 'space-between',
+    navWrapper: {
         flexDirection: 'row',
+        height: 75,
+        alignItems: 'center',
+        backgroundColor: '#949494',
     },
-    separate: {
-        paddingTop: 20,
-        paddingBottom: 20,
+    tab: {
+        justifyContent: 'center',
+        flexGrow: 1,
+        height: '100%',
+        flex: 1,
+        alignSelf: 'stretch',
+        alignItems: 'center',
+        borderTopWidth: 2,
+        borderTopColor: '#333333',
     },
     tabItem: {
-        alignItems: 'center',
-        height: 100,
-        backgroundColor: "#FF0000"
+        borderRightWidth: 2,
+        borderRightColor: '#333333',
+        borderBottomWidth: 2,
+        borderBottomColor: '#333333',
     },
     currentTab: {
-        alignItems: 'center',
-        height: 100,
-        backgroundColor: "#00FF00"
-    }
+        backgroundColor: '#EEEEEE',
+        borderBottomWidth: 2,
+        borderBottomColor: '#EEEEEE',
+    },
+    tabLastChild: {
+        borderBottomWidth: 2,
+        borderBottomColor: '#333333',
+    },
+    body: {
+        backgroundColor: '#EEEEEE',
+    },
 });
