@@ -1,23 +1,26 @@
 import React from 'react';
 import ButtonSwitchUser from '../../components/ButtonSwitchUser/ButtonSwitchUser';
 import Style from '../../styles/globalStyles';
-import {
-    View,
-    Text,
-    StyleSheet,
-    Image,
-} from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 
 import globalStyles from '../../styles/globalStyles';
 
 export default class Hero extends React.Component {
     render() {
-        return(
+        return (
             <View style={styles.container}>
                 <ButtonSwitchUser />
-                <Image style={styles.img} source={require('./img/roof_image.png')} />
+                <Image
+                    style={styles.img}
+                    // source={require('./img/roof_image.png')}
+                    // image size is 5mb + fix soon!
+                    source={require('./img/roof.png')}
+                />
                 <View style={styles.logoWrapper}>
-                    <Image style={styles.logo} source={require('../../images/Schiedel_logo.png')} />
+                    <Image
+                        style={styles.logo}
+                        source={require('../../images/Schiedel_logo.png')}
+                    />
                 </View>
                 <View style={styles.textContainer}>
                     <Text style={globalStyles.h1}>Välkomsttext här</Text>
@@ -40,12 +43,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     img: {
-        bottom: 0,
-        flex: 1,
-        left: 0,
+        // bottom: 0,
+        // flex: 1,
+        // left: 0,
         resizeMode: 'cover',
-        right: 0,
+        // right: 0,
         top: 0,
+        flex: 1,
+        width: globalStyles.DEVICE_WIDTH,
+        height: globalStyles.DEVICE_HEIGHT * 0.4,
     },
     logoWrapper: {
         alignItems: 'center',
