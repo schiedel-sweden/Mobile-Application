@@ -76,7 +76,6 @@ export default class PriceSuggestion extends Component {
             currentTab: 'order',
         });
     }
-
     // 6 views!
 
     // 1: SKORSTENSTYP
