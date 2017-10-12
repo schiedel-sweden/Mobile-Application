@@ -39,7 +39,7 @@ export default class TouchableBlock extends Component {
                     <Text style={globalStyles.h3}>{this.props.ingress}</Text>
                 </View>
                 {this.state.visible && (
-                    <View style={styles.dropDownContiner}>
+                    <View style={styles.dropDownContainer}>
                         {this.props.mat.map(function(object, i) {
                             return (
                                 <Text style={styles.dropDownText} key={i}>
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: globalStyles.PADDING,
     },
-    dropDownContiner: {
+    dropDownContainer: {
         paddingHorizontal: globalStyles.PADDING,
     },
     dropDownText: {
