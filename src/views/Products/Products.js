@@ -19,9 +19,9 @@ export default class Products extends Component {
         super(props);
         this.fetchData = this.fetchData.bind(this);
         this.state = {
-            matTopics: [{tagline: "Toggle material 1 items", ingress: "material one"},
-                        {tagline: "Toggle material 2 items", ingress: "material two"},
-                        {tagline: "Toggle material 3 items", ingress: "material tree"}],
+            matTopics: [{id: 0, tagline: "Toggle material 1 items", ingress: "material one"},
+                        {id: 1, tagline: "Toggle material 2 items", ingress: "material two"},
+                        {id: 2, tagline: "Toggle material 3 items", ingress: "material tree"}],
             mat1: [],
             mat2: [],
             mat3: [],
@@ -123,8 +123,7 @@ export default class Products extends Component {
                 >
                     {this.state.matTopics.map((topic, i) =>
                       <TouchableBlock key = {i}
-                        tagline={topic.tagline}
-                        ingress={topic.ingress}
+                        matTopic={topic}
                         visible={this.state.visible1}
                         mat={this.state.mat1}
                      />)}

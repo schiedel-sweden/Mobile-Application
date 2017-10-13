@@ -31,12 +31,12 @@ export default class TouchableBlock extends Component {
     */
     render() {
         return (
-            <TouchableOpacity onPress={this.setVisibleMat} style={styles.container}>
+            <TouchableOpacity onPress={this.setVisibleMat} style={[styles.container, bGColor(this.props.matTopic.id)]}>
                 <View>
-                    <Text style={globalStyles.h1}>{this.props.tagline}</Text>
+                    <Text style={globalStyles.h1}>{this.props.matTopic.tagline}</Text>
                 </View>
                 <View>
-                    <Text style={globalStyles.h3}>{this.props.ingress}</Text>
+                    <Text style={globalStyles.h3}>{this.props.matTopic.ingress}</Text>
                 </View>
                 {this.state.visible && (
                     <View style={styles.dropDownContainer}>
@@ -54,16 +54,33 @@ export default class TouchableBlock extends Component {
     }
 }
 
+/**
+* @param props.matTopic.id
+* @return styles
+*/
+function bGColor(id){
+  if (id % 2 == 0) {
+    return styles.lightBackground;
+  } else {
+    return styles.darkBackground;
+  }
+}
+
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#B9B9B9',
         alignSelf: 'stretch',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 1,
-        borderWidth: 0.5,
+        borderWidth: 1,
         borderColor: '#B9B9B9',
         padding: globalStyles.PADDING,
+    },
+    lightBackground: {
+      backgroundColor: '#EEEEEE',
+    },
+    darkBackground: {
+      backgroundColor: '#B9B9B9',
     },
     dropDownContainer: {
         paddingHorizontal: globalStyles.PADDING,
