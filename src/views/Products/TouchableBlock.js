@@ -60,6 +60,9 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         justifyContent: 'center',
         alignItems: 'center',
+        borderRadius: 1,
+        borderWidth: 0.5,
+        borderColor: '#B9B9B9',
         padding: globalStyles.PADDING,
     },
     dropDownContainer: {

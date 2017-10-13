@@ -19,6 +19,9 @@ export default class Products extends Component {
         super(props);
         this.fetchData = this.fetchData.bind(this);
         this.state = {
+            matTopics: [{tagline: "Toggle material 1 items", ingress: "material one"},
+                        {tagline: "Toggle material 2 items", ingress: "material two"},
+                        {tagline: "Toggle material 3 items", ingress: "material tree"}],
             mat1: [],
             mat2: [],
             mat3: [],
@@ -32,6 +35,7 @@ export default class Products extends Component {
         this.fetchData = this.fetchData.bind(this);
         this.getMaterial = this.getMaterial.bind(this);
     }
+
 
     /**
     * @return bool state false
@@ -117,24 +121,13 @@ export default class Products extends Component {
                     }
                     style={styles.body}
                 >
-                    <TouchableBlock
-                        tagline="Toggle material 1 items"
-                        ingress="material one"
+                    {this.state.matTopics.map((topic, i) =>
+                      <TouchableBlock key = {i}
+                        tagline={topic.tagline}
+                        ingress={topic.ingress}
                         visible={this.state.visible1}
                         mat={this.state.mat1}
-                    />
-                    <TouchableBlock
-                        tagline="Toggle materal 2 items"
-                        ingress="material Two"
-                        visible={this.state.visible2}
-                        mat={this.state.mat2}
-                    />
-                    <TouchableBlock
-                        tagline="Toggle material 3 items"
-                        ingress="material tree"
-                        visible={this.state.visible3}
-                        mat={this.state.mat3}
-                    />
+                     />)}
                 </ScrollView>
             </View>
         );
