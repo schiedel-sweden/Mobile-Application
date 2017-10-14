@@ -36,7 +36,6 @@ export default class Products extends Component {
         this.getMaterial = this.getMaterial.bind(this);
     }
 
-
     /**
     * @return bool state false
     */
@@ -46,14 +45,12 @@ export default class Products extends Component {
             this.setState({ refreshing: false });
         });
     }
-
     /**
     * @return object data
     */
     componentWillMount() {
         this.fetchData();
     }
-
     /**
     * @return object data
     */
@@ -67,8 +64,7 @@ export default class Products extends Component {
             .catch(error => {
                 console.log(error);
             });
-    };
-
+    }
     /**
     * @return return array
     */
@@ -95,7 +91,6 @@ export default class Products extends Component {
 
             ids.push(this.state.data[i].id);
         }
-
         this.setState({
             mat1: mat1Arr,
             mat2: mat2Arr,
@@ -121,18 +116,25 @@ export default class Products extends Component {
                     }
                     style={styles.body}
                 >
-                    {this.state.matTopics.map((topic, i) =>
-                      <TouchableBlock key = {i}
-                        matTopic={topic}
-                        visible={this.state.visible1}
-                        mat={this.state.mat1}
-                     />)}
+                    {listTouchableBlock(this.state)}
                 </ScrollView>
             </View>
         );
     }
 }
 
+/**
+* @param state
+* @return TouchableBlock[...]
+*/
+function listTouchableBlock(state) {
+    const listTouchableBlock = state.matTopics.map((topic, i) =>
+        <TouchableBlock key = {i} matTopic={topic}
+        visible={state.visible1}
+        mat={state.mat1} />
+    );
+    return listTouchableBlock;
+};
 const styles = StyleSheet.create({
     container: {
         flex: 1,

@@ -5,6 +5,7 @@ import {
     StyleSheet,
     Text,
 } from 'react-native';
+import Material from './Material';
 import globalStyles from '../../styles/globalStyles';
 
 export default class TouchableBlock extends Component {
@@ -32,35 +33,35 @@ export default class TouchableBlock extends Component {
     */
     render() {
         return (
-          <View>
-            <TouchableOpacity onPress={this.setVisibleMat}>
-              <View style={[styles.container,bGSwitchingColor(this.props.matTopic.id)]}>
-                <View>
-                    <Text style={globalStyles.h1}>{this.props.matTopic.tagline}</Text>
-                </View>
-                <View>
-                    <Text style={globalStyles.h3}>{this.props.matTopic.ingress}</Text>
-                </View>
-              </View>
-          </TouchableOpacity>
-          {this.state.visible && (
             <View>
-                {this.props.mat.map(function(object, i) {
-                    return (
-                      <View style={styles.dropDownContainer} key={i}>
-                        <Text style={styles.dropDownText} key={i}>
-                            {object}
-                        </Text>
-                      </View>
-                    );
-                })}
+                <TouchableOpacity onPress={this.setVisibleMat}>
+                    <View style={[styles.container,bGSwitchingColor(this.props.matTopic.id)]}>
+                        <View>
+                            <Text style={globalStyles.h1}>{this.props.matTopic.tagline}</Text>
+                        </View>
+                        <View>
+                            <Text style={globalStyles.h3}>{this.props.matTopic.ingress}</Text>
+                        </View>
+                    </View>
+                </TouchableOpacity>
+                {this.state.visible && (listMaterial(this.props))}
             </View>
-        )}
-        </View>
         );
     }
 }
 
+
+/**
+* @param state
+* @return TouchableBlock[...]
+*/
+function listMaterial(props) {
+    const listMaterial = props.mat.map((mat, i) =>
+            <Material key={i}
+                      mat={mat} />
+        );
+    return listMaterial;
+};
 /**
 * @param props.matTopic.id
 * @return styles
@@ -88,14 +89,5 @@ const styles = StyleSheet.create({
     },
     darkBackground: {
       backgroundColor: '#B9B9B9',
-    },
-    dropDownContainer: {
-      padding: globalStyles.PADDING,
-      borderRadius: 1,
-      borderWidth: 1,
-      borderColor: '#B9B9B9',
-    },
-    dropDownText: {
-        textAlign: 'left',
     },
 });
