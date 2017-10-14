@@ -58,7 +58,8 @@ export default class TouchableBlock extends Component {
 function listMaterial(props) {
     const listMaterial = props.mat.map((mat, i) =>
             <Material key={i}
-                      mat={mat} />
+                      mat={mat}
+                      navigation = {props.navigation}/>
         );
     return listMaterial;
 };
@@ -82,12 +83,12 @@ const styles = StyleSheet.create({
         padding: globalStyles.PADDING,
     },
     lightBackground: {
-      backgroundColor: '#EEEEEE',
-      borderRadius: 1,
-      borderWidth: 1,
-      borderColor: '#B9B9B9',
+        backgroundColor: '#EEEEEE',
+        borderRadius: 1,
+        borderWidth: 1,
+        borderColor: '#B9B9B9',
     },
     darkBackground: {
-      backgroundColor: '#B9B9B9',
+        backgroundColor: '#B9B9B9',
     },
 });

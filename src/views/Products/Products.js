@@ -116,7 +116,7 @@ export default class Products extends Component {
                     }
                     style={styles.body}
                 >
-                    {listTouchableBlock(this.state)}
+                    {listTouchableBlock(this.state,this.props)}
                 </ScrollView>
             </View>
         );
@@ -127,11 +127,12 @@ export default class Products extends Component {
 * @param state
 * @return TouchableBlock[...]
 */
-function listTouchableBlock(state) {
+function listTouchableBlock(state,props) {
     const listTouchableBlock = state.matTopics.map((topic, i) =>
         <TouchableBlock key = {i} matTopic={topic}
         visible={state.visible1}
-        mat={state.mat1} />
+        mat={state.mat1}
+        navigation={props.navigation}/>
     );
     return listTouchableBlock;
 };
