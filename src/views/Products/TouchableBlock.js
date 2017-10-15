@@ -4,8 +4,10 @@ import {
     TouchableOpacity,
     StyleSheet,
     Text,
+    Image,
 } from 'react-native';
 import Material from './Material';
+import navStyles from '../../styles/navStyles';
 import globalStyles from '../../styles/globalStyles';
 
 export default class TouchableBlock extends Component {
@@ -32,6 +34,10 @@ export default class TouchableBlock extends Component {
     * @return View
     */
     render() {
+        let image = this.state.visible? <Image style={[navStyles.icon,styles.img]}
+                                        source={require('../../images/icons/cross.png')}/>
+                                        : <Image style={[navStyles.icon,styles.img]}
+                                        source={require('../../images/icons/email.png')}/>;
         return (
             <View>
                 <TouchableOpacity onPress={this.setVisibleMat}>
@@ -42,6 +48,7 @@ export default class TouchableBlock extends Component {
                         <View>
                             <Text style={globalStyles.h3}>{this.props.matTopic.ingress}</Text>
                         </View>
+                        {image}
                     </View>
                 </TouchableOpacity>
                 {this.state.visible && (listMaterial(this.props))}
@@ -59,7 +66,7 @@ function listMaterial(props) {
     const listMaterial = props.mat.map((mat, i) =>
             <Material key={i}
                       mat={mat}
-                      navigation = {props.navigation}/>
+                      navigation={props.navigation}/>
         );
     return listMaterial;
 };
@@ -91,4 +98,7 @@ const styles = StyleSheet.create({
     darkBackground: {
         backgroundColor: '#B9B9B9',
     },
+    img: {
+        alignSelf: 'flex-end',
+    }
 });
