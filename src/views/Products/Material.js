@@ -24,7 +24,7 @@ export default class Material extends Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
-          <View style={styles.container}>
+          <View style={switchingContainerColor(this.props.isLightBackground)}>
               <Text style={[globalStyles.h4, styles.text]}>
                   {this.props.mat}
               </Text>
@@ -39,12 +39,28 @@ export default class Material extends Component {
     }
 }
 
+function switchingContainerColor(lightBackground){
+  if (lightBackground) {
+    return styles.containerLightBackground;
+  } else {
+    return styles.containerDarkBackground;
+  }
+};
+
 const styles = StyleSheet.create({
-    container: {
+    containerLightBackground: {
+        backgroundColor: '#EEEEEE',
         padding: globalStyles.PADDING,
         borderRadius: 1,
         borderWidth: 1,
         borderColor: '#B9B9B9',
+    },
+    containerDarkBackground: {
+        backgroundColor: '#B9B9B9',
+        padding: globalStyles.PADDING,
+        borderRadius: 1,
+        borderWidth: 1,
+        borderColor: '#EEEEEE',
     },
     text: {
         paddingHorizontal: globalStyles.PADDING,

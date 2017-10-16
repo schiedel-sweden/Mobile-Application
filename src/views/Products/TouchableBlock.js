@@ -35,9 +35,9 @@ export default class TouchableBlock extends Component {
     */
     render() {
         let image = this.state.visible? <Image style={[navStyles.icon,styles.img]}
-                                        source={require('../../images/icons/cross.png')}/>
+                                        source={require('./img/arrow_opened.png')}/>
                                         : <Image style={[navStyles.icon,styles.img]}
-                                        source={require('../../images/icons/email.png')}/>;
+                                        source={require('./img/arrow.png')}/>;
         return (
             <View>
                 <TouchableOpacity onPress={this.setVisibleMat}>
@@ -63,10 +63,17 @@ export default class TouchableBlock extends Component {
 * @return TouchableBlock[...]
 */
 function listMaterial(props) {
+    let isLightBackground = true;
+    if (props.matTopic.id % 2 == 0) {
+      isLightBackground = true;
+    } else {
+      isLightBackground = false;
+    };
     const listMaterial = props.mat.map((mat, i) =>
             <Material key={i}
                       mat={mat}
-                      navigation={props.navigation}/>
+                      navigation={props.navigation}
+                      isLightBackground={isLightBackground}/>
         );
     return listMaterial;
 };
