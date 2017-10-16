@@ -132,7 +132,8 @@ function listTouchableBlock(state,props) {
         <TouchableBlock key = {i} matTopic={topic}
         visible={state.visible1}
         mat={state.mat1}
-        navigation={props.navigation}/>
+        navigation={props.navigation}
+        order={i}/>
     );
     return listTouchableBlock;
 };

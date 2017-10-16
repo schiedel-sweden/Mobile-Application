@@ -41,7 +41,7 @@ export default class TouchableBlock extends Component {
         return (
             <View>
                 <TouchableOpacity onPress={this.setVisibleMat}>
-                    <View style={[styles.container,bGSwitchingColor(this.props.matTopic.id)]}>
+                    <View style={[styles.container,bGSwitchingColor(this.props.order)]}>
                         <View>
                             <Text style={globalStyles.h1}>{this.props.matTopic.tagline}</Text>
                         </View>
@@ -64,7 +64,7 @@ export default class TouchableBlock extends Component {
 */
 function listMaterial(props) {
     let isLightBackground = true;
-    if (props.matTopic.id % 2 == 0) {
+    if (props.order % 2 == 0) {
       isLightBackground = true;
     } else {
       isLightBackground = false;
@@ -81,8 +81,8 @@ function listMaterial(props) {
 * @param props.matTopic.id
 * @return styles
 */
-function bGSwitchingColor(id){
-  if (id % 2 == 0) {
+function bGSwitchingColor(order){
+  if (order % 2 == 0) {
     return styles.lightBackground;
   } else {
     return styles.darkBackground;
