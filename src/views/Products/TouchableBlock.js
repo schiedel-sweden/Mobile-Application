@@ -47,6 +47,7 @@ export default class TouchableBlock extends Component {
                           mat={mat}
                           navigation={this.props.navigation}
                           isLightBackground={isLightBackground}
+                          setActiveMaterialDetailView = {this.props.setActiveMaterialDetailView}
                 />
             );
         return listMaterial;
@@ -66,10 +67,13 @@ export default class TouchableBlock extends Component {
     * @return Image
     */
     getArrowIcon(){
-        const arrowIcon = this.state.visible? <Image style={[navStyles.icon,styles.img]}
-                                          source={require('./img/arrow_opened.png')}/>
-                                          : <Image style={[navStyles.icon,styles.img]}
-                                          source={require('./img/arrow.png')}/>;
+        const arrowIcon = this.state.visible
+            ? <Image style={[navStyles.icon,styles.img]}
+                     source={require('./img/arrow_opened.png')}
+              />
+            : <Image style={[navStyles.icon,styles.img]}
+                     source={require('./img/arrow.png')}
+              />;
         return arrowIcon;
     }
 

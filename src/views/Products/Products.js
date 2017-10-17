@@ -8,6 +8,7 @@ import {
     RefreshControl,
 } from 'react-native';
 import TouchableBlock from './TouchableBlock';
+import MaterialDetail from './MaterialDetail';
 import Header from '../../components/Header/Header';
 
 export default class Products extends Component {
@@ -30,11 +31,14 @@ export default class Products extends Component {
             visible3: true,
             data: [],
             refreshing: false,
+            isMaterialDetailViewActived: false,
         };
         this.componentWillMount = this.componentWillMount.bind(this);
         this.fetchData = this.fetchData.bind(this);
         this.getMaterial = this.getMaterial.bind(this);
         this.listTouchableBlock = this.listTouchableBlock.bind(this);
+        this.setActiveMaterialDetailView = this.setActiveMaterialDetailView.bind(this);
+        this.activeView = this.activeView.bind(this);
     }
 
     /**
@@ -42,6 +46,10 @@ export default class Products extends Component {
     */
     _onRefresh() {
         this.setState({ refreshing: true });
+        // temporary -----
+        this.setState({
+          isMaterialDetailViewActived: false
+        });
         this.fetchData().then(() => {
             this.setState({ refreshing: false });
         });
@@ -51,6 +59,15 @@ export default class Products extends Component {
     */
     componentWillMount() {
         this.fetchData();
+    }
+    /**
+    * @return bool
+    */
+    setActiveMaterialDetailView(e) {
+        e.preventDefault()
+          this.setState({
+            isMaterialDetailViewActived: !this.state.isMaterialDetailViewActived
+          });
     }
     /**
     * @return object data
@@ -107,10 +124,19 @@ export default class Products extends Component {
             visible={this.state.visible1}
             mat={this.state.mat1}
             navigation={this.props.navigation}
-            order={i}/>
+            order={i}
+            setActiveMaterialDetailView = {this.setActiveMaterialDetailView}/>
         );
         return listTouchableBlock;
     };
+    /**
+    * @return View
+    */
+    activeView() {
+        return this.state.isMaterialDetailViewActived
+          ? <MaterialDetail />
+          : this.listTouchableBlock();
+    }
 
     /**
     * @return View
@@ -130,7 +156,7 @@ export default class Products extends Component {
                     }
                     style={styles.body}
                 >
-                    {this.listTouchableBlock()}
+                    {this.activeView()}
                 </ScrollView>
             </View>
         );
