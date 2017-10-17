@@ -21,6 +21,8 @@ export default class TouchableBlock extends Component {
             visible: false,
         }
         this.setVisibleMat = this.setVisibleMat.bind(this);
+        this.listMaterial = this.listMaterial.bind(this);
+        this.bGSwitchingColor = this.bGSwitchingColor.bind(this);
     }
 
     /**
@@ -29,6 +31,36 @@ export default class TouchableBlock extends Component {
     setVisibleMat() {
         this.setState({visible: !this.state.visible});
     }
+    /**
+    * @return listMaterial[...]
+    */
+    listMaterial() {
+        let isLightBackground = true;
+        if (this.props.order % 2 == 0) {
+          isLightBackground = true;
+        } else {
+          isLightBackground = false;
+        };
+        const listMaterial = this.props.mat.map((mat, i) =>
+                <Material key={i}
+                          mat={mat}
+                          navigation={this.props.navigation}
+                          isLightBackground={isLightBackground}
+                />
+            );
+        return listMaterial;
+    };
+    /**
+    * @param props.order
+    * @return styles
+    */
+    bGSwitchingColor(order){
+      if (order % 2 == 0) {
+        return styles.lightBackground;
+      } else {
+        return styles.darkBackground;
+      }
+    };
 
     /**
     * @return View
@@ -41,53 +73,25 @@ export default class TouchableBlock extends Component {
         return (
             <View>
                 <TouchableOpacity onPress={this.setVisibleMat}>
-                    <View style={[styles.container,bGSwitchingColor(this.props.order)]}>
-                        <View>
-                            <Text style={globalStyles.h1}>{this.props.matTopic.tagline}</Text>
+                    <View style={[styles.container,this.bGSwitchingColor(this.props.order)]}>
+                        <View style={styles.topic}>
+                            <Text style={globalStyles.h1}>
+                                {this.props.matTopic.tagline}
+                            </Text>
                         </View>
                         <View>
-                            <Text style={globalStyles.h3}>{this.props.matTopic.ingress}</Text>
+                            <Text style={globalStyles.h3}>
+                                {this.props.matTopic.ingress}
+                            </Text>
                         </View>
                         {image}
                     </View>
                 </TouchableOpacity>
-                {this.state.visible && (listMaterial(this.props))}
+                {this.state.visible && (this.listMaterial())}
             </View>
         );
     }
 }
-
-
-/**
-* @param state
-* @return TouchableBlock[...]
-*/
-function listMaterial(props) {
-    let isLightBackground = true;
-    if (props.order % 2 == 0) {
-      isLightBackground = true;
-    } else {
-      isLightBackground = false;
-    };
-    const listMaterial = props.mat.map((mat, i) =>
-            <Material key={i}
-                      mat={mat}
-                      navigation={props.navigation}
-                      isLightBackground={isLightBackground}/>
-        );
-    return listMaterial;
-};
-/**
-* @param props.matTopic.id
-* @return styles
-*/
-function bGSwitchingColor(order){
-  if (order % 2 == 0) {
-    return styles.lightBackground;
-  } else {
-    return styles.darkBackground;
-  }
-};
 
 const styles = StyleSheet.create({
     container: {
@@ -107,5 +111,8 @@ const styles = StyleSheet.create({
     },
     img: {
         alignSelf: 'flex-end',
-    }
+    },
+    topic: {
+        paddingTop: globalStyles.PADDING,
+    },
 });

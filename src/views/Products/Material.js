@@ -13,10 +13,19 @@ export default class Material extends Component {
     */
     constructor(props) {
         super(props);
-        this.state = {
-            mat: '',
-        }
+        this.switchingContainerColor = this.switchingContainerColor.bind(this);
     }
+    /**
+    * @param bool props.isLightBackground
+    * @return styles
+    */
+    switchingContainerColor(lightBackground){
+      if (lightBackground) {
+        return styles.containerLightBackground;
+      } else {
+        return styles.containerDarkBackground;
+      }
+    };
 
     /**
     * @return View
@@ -24,28 +33,22 @@ export default class Material extends Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
-          <View style={switchingContainerColor(this.props.isLightBackground)}>
+          <View style={this.switchingContainerColor(this.props.isLightBackground)}>
               <Text style={[globalStyles.h4, styles.text]}>
                   {this.props.mat}
               </Text>
               <Text style={[globalStyles.p, styles.text]}>
                   djshaf adskjfna fd askfj asd dsjf dsfjh dsaf jidsf öasfdhkhk
               </Text>
-              <Text style={[globalStyles.p, styles.link]} onPress={() => navigate('Retailers')}>
+              <Text
+                style={[globalStyles.p, styles.link]}
+                onPress={() => navigate('Retailers')}>
                   Läs mer... // the screen to navigate to is not avalaible yet
               </Text>
           </View>
         );
     }
 }
-
-function switchingContainerColor(lightBackground){
-  if (lightBackground) {
-    return styles.containerLightBackground;
-  } else {
-    return styles.containerDarkBackground;
-  }
-};
 
 const styles = StyleSheet.create({
     containerLightBackground: {

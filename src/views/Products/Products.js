@@ -34,6 +34,7 @@ export default class Products extends Component {
         this.componentWillMount = this.componentWillMount.bind(this);
         this.fetchData = this.fetchData.bind(this);
         this.getMaterial = this.getMaterial.bind(this);
+        this.listTouchableBlock = this.listTouchableBlock.bind(this);
     }
 
     /**
@@ -78,11 +79,11 @@ export default class Products extends Component {
         let mat3Arr = [];
 
         for (let i = 0; i < this.state.data.length; i++) {
-            // add 10 items to each material array
-            if (i < 10) {
+            // add items to each material array
+            if (i < 5) {
                 mat1Arr.push(this.state.data[i].designation);
             }
-            if (i >= 10 && i < 20) {
+            if (i >= 5 && i < 20) {
                 mat2Arr.push(this.state.data[i].designation);
             }
             if (i >= 20) {
@@ -97,6 +98,19 @@ export default class Products extends Component {
             mat3: mat3Arr,
         });
     }
+    /**
+    * @return TouchableBlock[...]
+    */
+    listTouchableBlock() {
+        const listTouchableBlock = this.state.matTopics.map((topic, i) =>
+            <TouchableBlock key = {i} matTopic={topic}
+            visible={this.state.visible1}
+            mat={this.state.mat1}
+            navigation={this.props.navigation}
+            order={i}/>
+        );
+        return listTouchableBlock;
+    };
 
     /**
     * @return View
@@ -116,27 +130,13 @@ export default class Products extends Component {
                     }
                     style={styles.body}
                 >
-                    {listTouchableBlock(this.state,this.props)}
+                    {this.listTouchableBlock()}
                 </ScrollView>
             </View>
         );
     }
 }
 
-/**
-* @param state
-* @return TouchableBlock[...]
-*/
-function listTouchableBlock(state,props) {
-    const listTouchableBlock = state.matTopics.map((topic, i) =>
-        <TouchableBlock key = {i} matTopic={topic}
-        visible={state.visible1}
-        mat={state.mat1}
-        navigation={props.navigation}
-        order={i}/>
-    );
-    return listTouchableBlock;
-};
 const styles = StyleSheet.create({
     container: {
         flex: 1,
