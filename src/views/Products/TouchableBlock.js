@@ -23,6 +23,7 @@ export default class TouchableBlock extends Component {
         this.setVisibleMat = this.setVisibleMat.bind(this);
         this.listMaterial = this.listMaterial.bind(this);
         this.bGSwitchingColor = this.bGSwitchingColor.bind(this);
+        this.getArrowIcon = this.getArrowIcon.bind(this);
     }
 
     /**
@@ -55,21 +56,27 @@ export default class TouchableBlock extends Component {
     * @return styles
     */
     bGSwitchingColor(order){
-      if (order % 2 == 0) {
-        return styles.lightBackground;
-      } else {
-        return styles.darkBackground;
-      }
+        if (order % 2 == 0) {
+          return styles.lightBackground;
+        } else {
+          return styles.darkBackground;
+        }
     };
+    /**
+    * @return Image
+    */
+    getArrowIcon(){
+        const arrowIcon = this.state.visible? <Image style={[navStyles.icon,styles.img]}
+                                          source={require('./img/arrow_opened.png')}/>
+                                          : <Image style={[navStyles.icon,styles.img]}
+                                          source={require('./img/arrow.png')}/>;
+        return arrowIcon;
+    }
 
     /**
     * @return View
     */
     render() {
-        let image = this.state.visible? <Image style={[navStyles.icon,styles.img]}
-                                        source={require('./img/arrow_opened.png')}/>
-                                        : <Image style={[navStyles.icon,styles.img]}
-                                        source={require('./img/arrow.png')}/>;
         return (
             <View>
                 <TouchableOpacity onPress={this.setVisibleMat}>
@@ -84,7 +91,7 @@ export default class TouchableBlock extends Component {
                                 {this.props.matTopic.ingress}
                             </Text>
                         </View>
-                        {image}
+                        {this.getArrowIcon()}
                     </View>
                 </TouchableOpacity>
                 {this.state.visible && (this.listMaterial())}
