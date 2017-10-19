@@ -112,7 +112,7 @@ export default class Products extends Component {
             setActiveMaterialDetailView = {this.setActiveMaterialDetailView}/>
         );
         return listTouchableBlock;
-    };
+    }
     /**
     * @return View
     */

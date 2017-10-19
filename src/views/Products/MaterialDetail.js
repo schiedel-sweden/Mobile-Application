@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import {
     View,
-    TouchableOpacity,
     StyleSheet,
     Text,
     Image,
 } from 'react-native';
 import globalStyles from '../../styles/globalStyles';
-import navStyles from '../../styles/navStyles';
+import MaterialInformationTouchableBlock from './MaterialInformationTouchableBlock';
 
 export default class MaterialDetail extends Component {
     /**
@@ -18,44 +17,23 @@ export default class MaterialDetail extends Component {
         super(props);
         this.state = {
             visible: false,
+            listMatInfo: ["Bruksområde", "Brenseltyper", "Funksjoner/Fordeler", "HUSK"],
         }
-        this.setVisibleMat = this.setVisibleMat.bind(this);
-        this.listItem = this.listItem.bind(this);
+        this.listMaterialInformation = this.listMaterialInformation.bind(this);
     }
 
     /**
-    * @return bool setState
+    * @return MaterialInformationTouchableBlock[...]
     */
-    setVisibleMat() {
-        this.setState({visible: !this.state.visible});
+    listMaterialInformation() {
+        const listMatInfoTabB=  this.state.listMatInfo.map((matInfo, i) =>
+          <MaterialInformationTouchableBlock
+              key={i}
+              matInfo={matInfo}
+          />
+        );
+        return listMatInfoTabB;
     }
-    /**
-    * @return Image
-    */
-    getArrowIcon(){
-        const arrowIcon = this.state.visible
-            ? <Image style={[navStyles.icon, styles.icon]}
-                     source={require('./img/arrow_opened.png')}
-              />
-            : <Image style={[navStyles.icon, styles.icon]}
-                     source={require('./img/arrow.png')}
-              />;
-        return arrowIcon;
-    }
-    /**
-    * @return listMaterial[...]
-    */
-    listItem() {
-        const listItem = <View>
-                            <Text style={globalStyles.h4}>
-                              Bruksområde
-                            </Text>
-                            <Text style={globalStyles.h4}>
-                              Bruksområde
-                            </Text>
-                        </View>
-        return listItem;
-    };
 
     /**
     * @return View
@@ -81,16 +59,7 @@ export default class MaterialDetail extends Component {
                       Solid vent
                   </Text>
               </View>
-              <TouchableOpacity onPress={this.setVisibleMat}>
-                  <View style={styles.touchableContainer}>
-                      <View style={styles.touchableItem}>
-                          <Text style={globalStyles.h4}>
-                              Bruksområde                 {this.getArrowIcon()}
-                          </Text>
-                      </View>
-                  </View>
-              </TouchableOpacity>
-              {this.state.visible && (this.listItem())}
+                  {this.listMaterialInformation()}
           </View>
         );
     }
@@ -100,17 +69,6 @@ const styles = StyleSheet.create({
     container: {
         alignSelf: 'stretch',
         padding: globalStyles.PADDING,
-    },
-    touchableContainer: {
-        backgroundColor: '#B9B9B9',
-        borderRadius: 1,
-        borderWidth: 1,
-        borderColor: '#EEEEEE',
-        paddingHorizontal: globalStyles.PADDING,
-        paddingVertical: globalStyles.PADDING * 0.25,
-    },
-    touchableItem: {
-        paddingHorizontal: globalStyles.PADDING,
     },
     topic: {
         paddingHorizontal: globalStyles.PADDING,
@@ -130,9 +88,6 @@ const styles = StyleSheet.create({
         flex: 1,
         width: globalStyles.DEVICE_WIDTH,
         height: globalStyles.DEVICE_HEIGHT * 0.22,
-    },
-    icon: {
-        alignSelf: 'flex-end',
     },
 
 });
