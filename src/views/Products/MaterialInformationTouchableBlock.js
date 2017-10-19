@@ -79,10 +79,6 @@ export default class MaterialInformationTouchableBlock extends Component {
 }
 
 const styles = StyleSheet.create({
-    ingress: {
-        paddingHorizontal: globalStyles.PADDING,
-        paddingBottom: globalStyles.PADDING,
-    },
     touchableContainer: {
         backgroundColor: '#B9B9B9',
         borderRadius: 1,
