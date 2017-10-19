@@ -8,6 +8,7 @@ import {
     RefreshControl,
 } from 'react-native';
 import TouchableBlock from './TouchableBlock';
+import MaterialDetail from './MaterialDetail';
 import Header from '../../components/Header/Header';
 
 export default class Products extends Component {
@@ -19,18 +20,21 @@ export default class Products extends Component {
         super(props);
         this.fetchData = this.fetchData.bind(this);
         this.state = {
-            mat1: [],
-            mat2: [],
-            mat3: [],
+            matTopics: [{id: 0, tagline: "Toggle material 1 items", ingress: "material one"},
+                        {id: 1, tagline: "Toggle material 2 items", ingress: "material two"},
+                        {id: 2, tagline: "Toggle material 3 items", ingress: "material tree"}],
+            mat: [],
             visible1: true,
-            visible2: true,
-            visible3: true,
             data: [],
             refreshing: false,
+            isMaterialDetailViewActived: false,
         };
         this.componentWillMount = this.componentWillMount.bind(this);
         this.fetchData = this.fetchData.bind(this);
         this.getMaterial = this.getMaterial.bind(this);
+        this.listTouchableBlock = this.listTouchableBlock.bind(this);
+        this.setActiveMaterialDetailView = this.setActiveMaterialDetailView.bind(this);
+        this.activeView = this.activeView.bind(this);
     }
 
     /**
@@ -38,18 +42,29 @@ export default class Products extends Component {
     */
     _onRefresh() {
         this.setState({ refreshing: true });
+        // temporary -----
+        this.setState({
+          isMaterialDetailViewActived: false
+        });
         this.fetchData().then(() => {
             this.setState({ refreshing: false });
         });
     }
-
     /**
     * @return object data
     */
     componentWillMount() {
         this.fetchData();
     }
-
+    /**
+    * @return bool
+    */
+    setActiveMaterialDetailView(e) {
+        e.preventDefault()
+          this.setState({
+            isMaterialDetailViewActived: !this.state.isMaterialDetailViewActived
+          });
+    }
     /**
     * @return object data
     */
@@ -63,40 +78,48 @@ export default class Products extends Component {
             .catch(error => {
                 console.log(error);
             });
-    };
-
+    }
     /**
     * @return return array
     */
     getMaterial() {
         let ids = [];
         // material "144029"
-        let mat1Arr = [];
-        // material "148918"
-        let mat2Arr = [];
-        // material "144026"
-        let mat3Arr = [];
+        let matArr = [];
 
         for (let i = 0; i < this.state.data.length; i++) {
-            // add 10 items to each material array
-            if (i < 10) {
-                mat1Arr.push(this.state.data[i].designation);
-            }
-            if (i >= 10 && i < 20) {
-                mat2Arr.push(this.state.data[i].designation);
-            }
-            if (i >= 20) {
-                mat3Arr.push(this.state.data[i].designation);
+            // add items to material array
+            if (i < 5) {
+                matArr.push(this.state.data[i].designation);
             }
 
             ids.push(this.state.data[i].id);
         }
-
         this.setState({
-            mat1: mat1Arr,
-            mat2: mat2Arr,
-            mat3: mat3Arr,
+            mat: matArr,
         });
+    }
+    /**
+    * @return TouchableBlock[...]
+    */
+    listTouchableBlock() {
+        const listTouchableBlock = this.state.matTopics.map((topic, i) =>
+            <TouchableBlock key = {i} matTopic={topic}
+            visible={this.state.visible1}
+            mat={this.state.mat}
+            navigation={this.props.navigation}
+            order={i}
+            setActiveMaterialDetailView = {this.setActiveMaterialDetailView}/>
+        );
+        return listTouchableBlock;
+    }
+    /**
+    * @return View
+    */
+    activeView() {
+        return this.state.isMaterialDetailViewActived
+          ? <MaterialDetail />
+          : this.listTouchableBlock();
     }
 
     /**
@@ -117,24 +140,7 @@ export default class Products extends Component {
                     }
                     style={styles.body}
                 >
-                    <TouchableBlock
-                        tagline="Toggle material 1 items"
-                        ingress="material one"
-                        visible={this.state.visible1}
-                        mat={this.state.mat1}
-                    />
-                    <TouchableBlock
-                        tagline="Toggle materal 2 items"
-                        ingress="material Two"
-                        visible={this.state.visible2}
-                        mat={this.state.mat2}
-                    />
-                    <TouchableBlock
-                        tagline="Toggle material 3 items"
-                        ingress="material tree"
-                        visible={this.state.visible3}
-                        mat={this.state.mat3}
-                    />
+                    {this.activeView()}
                 </ScrollView>
             </View>
         );
