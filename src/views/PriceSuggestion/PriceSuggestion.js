@@ -18,20 +18,21 @@ import CustomerDetails from './CustomerDetails';
 import PricePage from './PricePage';
 import Order from './Order';
 
+import { QUOT_NUMBER } from '../../components/redux-items/actions.js';
+
 import ButtonNav from './ButtonNav';
 
 export default class PriceSuggestion extends Component {
     constructor(props) {
         super(props);
         // bind all functions
-        this.chimneytype = this.chimneytype.bind(this);
-        this.housetype = this.housetype.bind(this);
-        this.chimney = this.chimney.bind(this);
+        this.chimneytype     = this.chimneytype.bind(this);
+        this.housetype       = this.housetype.bind(this);
+        this.chimney         = this.chimney.bind(this);
         this.customerdetails = this.customerdetails.bind(this);
-        this.pricepage = this.pricepage.bind(this);
-        this.order = this.order.bind(this);
+        this.pricepage       = this.pricepage.bind(this);
+        this.order           = this.order.bind(this);
         // set initial state
-        this.quotationnumber = 192381;
         this.state = {
             activeTab: <Chimney />,
             currentTab: 'chimneytype',
@@ -48,7 +49,7 @@ export default class PriceSuggestion extends Component {
     // pass offertnummer as the prop "offNum"
     housetype() {
         this.setState({
-            activeTab: <HouseType quotNum={this.quotationnumber} />,
+            activeTab: <HouseType quotNum={ QUOT_NUMBER } />,
             currentTab: 'housetype',
         });
     }
