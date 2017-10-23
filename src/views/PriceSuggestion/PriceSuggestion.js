@@ -33,7 +33,7 @@ export default class PriceSuggestion extends Component {
         // set initial state
         this.quotationnumber = 192381;
         this.state = {
-            activeTab: <Chimney />,
+            activeTab: <ChimneyType />,
             currentTab: 'chimneytype',
         };
     }
