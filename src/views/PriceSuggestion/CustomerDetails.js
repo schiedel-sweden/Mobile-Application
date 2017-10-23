@@ -8,6 +8,8 @@ import {
     Image,
 } from 'react-native';
 
+import Checkbox from 'react-native-checkbox';
+
 const t = require('tcomb-form-native');
 const Form = t.form.Form;
 
@@ -143,11 +145,14 @@ export default class CustomerDetails extends Component {
 
             checked: false,
 
+            sameAsAbove: false,
+
         }
 
         this.onPress = this.onPress.bind(this);
         this.onToggle = this.onToggle.bind(this);
         this.changeState = this.changeState.bind(this);
+        this.changeThings = this.changeThings.bind(this);
     }
 
 
@@ -205,13 +210,15 @@ export default class CustomerDetails extends Component {
                 email: contact.email,
 
             });
+            if (re.test(contact.email.toString())) {
+                alert('ok!');
+            }
+            else {
+                alert('no ok!');
+            }
         }
-        if (re.test(contact.email.toString())) {
-            alert('ok!');
-        }
-        else {
-            alert('no ok!');
-        }
+
+
     }
 
     changeState(item) {
@@ -219,6 +226,7 @@ export default class CustomerDetails extends Component {
 
             case 'company':
                 let val = this.refs.company.getValue();
+                alert(val);
 
                 if (val != null) {
                     let prev = this.state.company;
@@ -273,6 +281,33 @@ export default class CustomerDetails extends Component {
         }
     }
 
+    changeThings() {
+
+        if (!this.state.checked) {
+            this.setState({
+                receiver: '',
+                receiverAdress: '',
+                receiverPostnumber: '',
+                receiverCity: '',
+                receiverCountry: '',
+            });
+        }
+        else {
+            this.setState({
+                receiver: this.state.company,
+                receiverAdress: this.state.adress,
+                receiverPostnumber: this.state.postnumber,
+                receiverCity: this.state.city,
+                receiverCountry: this.state.country,
+            });
+
+        }
+
+        this.setState({
+            sameAsAbove: !this.state.sameAsAbove,
+        });
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -280,7 +315,7 @@ export default class CustomerDetails extends Component {
                     <Text>Faktureringsadress</Text>
                     <Form
                     ref='company'
-                    onChangeText={() => this.changeState('company')}
+                    onChangeText={() => alert('pressed')}
                     type={Company}
                     options={options}
                     />
@@ -323,15 +358,12 @@ export default class CustomerDetails extends Component {
                     <Text>Leveransadress</Text>
 
 
-                    <TouchableOpacity
-                    onPress={this.onToggle}>
-                        <Image
-                        style={styles.icon}
-                        source={this.state.checked ? require('../../images/icons/cross.png') : require('../../images/icons/email.png') } />
-                    </TouchableOpacity>
+                    <Checkbox
+                    label="Samma som faktureringsadress"
+                    checked={this.state.sameAsAbove}
+                    checkboxStyle={this.state.sameAsAbove ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
+                    onChange={() => this.changeThings()} />
 
-
-                    <Text>Samma som Faktureringsadress</Text>
                 </View>
                 <View>
                     <Form

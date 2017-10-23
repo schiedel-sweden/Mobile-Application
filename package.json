@@ -27,7 +27,7 @@
         "react-native-checkbox": "^1.2.0",
         "react-native-communications": "^2.2.1",
         "react-navigation": "^1.0.0-beta.11",
-        "tcomb-form-native": "^0.6.10",
+        "tcomb-form-native": "^0.6.1",
         "yarn": "^0.27.5"
     }
 }
