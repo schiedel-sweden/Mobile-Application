@@ -20,7 +20,7 @@ export default class MaterialInformationTouchableBlock extends Component {
             visible: false,
         }
         this.setVisibleMat = this.setVisibleMat.bind(this);
-        this.listInfoDescr = this.listInfoDescr.bind(this);
+        this.listInformationDescription = this.listInformationDescription.bind(this);
     }
 
     /**
@@ -45,8 +45,8 @@ export default class MaterialInformationTouchableBlock extends Component {
     /**
     * @return listMaterial[...]
     */
-    listInfoDescr() {
-        const listInfoDescr =
+    listInformationDescription() {
+        return(
           <View style={styles.infoDescContainer}>
               <View>
                   <Text style={[globalStyles.p, styles.infoDesc]}>
@@ -56,8 +56,8 @@ export default class MaterialInformationTouchableBlock extends Component {
                       Bruksområde
                   </Text>
               </View>
-          </View>;
-        return listInfoDescr;
+          </View>
+        );
     }
 
     /**
@@ -76,7 +76,7 @@ export default class MaterialInformationTouchableBlock extends Component {
                         </View>
                     </View>
                 </TouchableOpacity>
-                {this.state.visible && (this.listInfoDescr())}
+                {this.state.visible && (this.listInformationDescription())}
             </View>
         );
     }
