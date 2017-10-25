@@ -3,13 +3,12 @@ import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
-    Text,
     TouchableOpacity,
 } from 'react-native';
 import Checkbox from 'react-native-checkbox';
 import globalStyles from '../../../styles/globalStyles';
 
-export default class Chimney extends Component {
+export default class ChimneyTypeCheckbox extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -29,7 +28,7 @@ export default class Chimney extends Component {
                       onChange={() => this.setState({
                         toggle1: !this.state.toggle1,
                         toggle2: !this.state.toggle2,
-                      })} />
+                    })} />
                 </View>
             </View>
         );
@@ -38,7 +37,7 @@ export default class Chimney extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        paddingBottom: globalStyles.PADDING,
+        paddingTop: globalStyles.PADDING * 0.5,
     },
     containerCheckbox: {
         flexDirection: 'row',

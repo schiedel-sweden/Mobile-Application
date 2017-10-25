@@ -3,13 +3,12 @@ import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
-    Text,
     TouchableOpacity,
 } from 'react-native';
 import Checkbox from 'react-native-checkbox';
 import globalStyles from '../../../styles/globalStyles';
 
-export default class Chimney extends Component {
+export default class OfRoof extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -29,8 +28,8 @@ export default class Chimney extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <View style={[styles.containerOfRoof, styles.flexDirectionRow, styles.borderBottom]}>
+            <View>
+                <View style={[styles.container, styles.flexDirectionRow, styles.borderBottom]}>
                     <View style={styles.lblWidth}>
                     <Checkbox
                     label="Pusset pipe"
@@ -51,7 +50,7 @@ export default class Chimney extends Component {
 
                     })} />
                 </View>
-                <View style={[styles.containerOfRoof, styles.flexDirectionRow, styles.borderBottom]}>
+                <View style={[styles.container, styles.flexDirectionRow, styles.borderBottom]}>
                     <View style={styles.lblWidth}>
                     <Checkbox
                     label="Komplett firkantet beslag"
@@ -72,7 +71,7 @@ export default class Chimney extends Component {
 
                     })} />
                 </View>
-                <View style={[styles.containerOfRoof, styles.flexDirectionRow, styles.borderBottom]}>
+                <View style={[styles.container, styles.flexDirectionRow, styles.borderBottom]}>
                     <View style={styles.lblWidth}>
                     <Checkbox
                     label="Feieluke over tak"
@@ -94,7 +93,7 @@ export default class Chimney extends Component {
 
                     })} />
                 </View>
-                <View style={[styles.containerOfRoof, styles.flexDirectionRow, styles.borderBottom]}>
+                <View style={[styles.container, styles.flexDirectionRow, styles.borderBottom]}>
                     <View style={styles.lblWidth}>
                     <Checkbox
                     label="Flexiroll for tetting mot damsperre"
@@ -115,7 +114,7 @@ export default class Chimney extends Component {
 
                     })} />
                 </View>
-                <View style={[styles.containerOfRoof, styles.flexDirectionRow, styles.borderBottom]}>
+                <View style={[styles.container, styles.flexDirectionRow, styles.borderBottom]}>
                     <Checkbox
                     label="Wakaflex - Benyttes som ekstra tetting rundt beslag i spesielt i vaerutsatte områder"
                     checked={this.state.feieplatform}
@@ -133,9 +132,6 @@ export default class Chimney extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        paddingBottom: globalStyles.PADDING,
-    },
-    containerOfRoof: {
         paddingTop: globalStyles.PADDING * 0.5,
     },
     flexDirectionRow: {
