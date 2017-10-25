@@ -6,146 +6,49 @@ import {
     Text,
     TouchableOpacity,
 } from 'react-native';
-
 import Checkbox from 'react-native-checkbox';
+import globalStyles from '../../styles/globalStyles';
+import ChimneyTypeCheckbox from './Chimney/ChimneyTypeCheckbox';
+import OfRoof from './Chimney/OfRoof';
 
 export default class Chimney extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            toggle1: true,
-            toggle2: false,
-
-            pusset: false,
-            firkantBeslag: false,
-            feieluke: false,
-            flexiroll: false,
-            wakaflex: false,
-
-            tegelforblendet: false,
-            topavdekning: false,
-            undertakTetting: false,
-            feieplatform: false,
+            listChimneyTypeLbl: ["Alternative 1", "Alternative 2"],
 
             wireset: false,
             lokk: false,
-
-
         }
+        this.listChimneyTypeCheckbox = this.listChimneyTypeCheckbox.bind(this);
+    }
+
+    /**
+    * @return ChimneyTypeCheckbox[...]
+    */
+    listChimneyTypeCheckbox() {
+        const listChimneyTypeCheckbox=  this.state.listChimneyTypeLbl.map((chimneyTypeLbl, i) =>
+          <ChimneyTypeCheckbox
+              key={i}
+              chimneyTypeLbl={chimneyTypeLbl}
+          />
+        );
+        return listChimneyTypeCheckbox;
     }
 
     render() {
         return (
-            <View>
-                <View>
-                <Text>Typ av skorsten</Text>
-                    <Checkbox
-                    label="Alternative 1"
-                    checked={this.state.toggle1}
-                    checkboxStyle={this.state.toggle1 ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                    onChange={() => this.setState({
-                        toggle1: !this.state.toggle1,
-                        toggle2: !this.state.toggle2,
-                    })} />
-
-                    <Checkbox
-                    label="Alternative 2"
-                    checked={this.state.toggle2}
-                    checkboxStyle={this.state.toggle2 ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                    onChange={() => this.setState({
-                        toggle2: !this.state.toggle2,
-                        toggle1: !this.state.toggle1,
-
-                    })} />
+            <View style={styles.container}>
+                <View style={styles.sectionContainer}>
+                    <Text>Typ av skorsten</Text>
+                    {this.listChimneyTypeCheckbox()}
                 </View>
 
-                <View>
+                <View style={styles.sectionContainer}>
                     <Text>Över tak</Text>
-
-                    <Checkbox
-                    label="Pusset pipe"
-                    checked={this.state.pusset}
-                    checkboxStyle={this.state.pusset ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                    onChange={() => this.setState({
-                        pusset: !this.state.pusset,
-
-                    })} />
-                    <Checkbox
-                    label="Komplett firkantet beslag"
-                    checked={this.state.firkantBeslag}
-                    checkboxStyle={this.state.firkantBeslag ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                    onChange={() => this.setState({
-                        firkantBeslag: !this.state.firkantBeslag,
-
-                    })} />
-                    <Checkbox
-                    label="Feieluke over tak"
-                    checked={this.state.feieluke}
-                    checkboxStyle={this.state.feieluke ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                    onChange={() => this.setState({
-                        feieluke: !this.state.feieluke,
-
-                    })} />
-
-                    <Checkbox
-                    label="Flexiroll for tetting mot damsperre"
-                    checked={this.state.Flexiroll}
-                    checkboxStyle={this.state.flexiroll ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                    onChange={() => this.setState({
-                        flexiroll: !this.state.flexiroll,
-
-                    })} />
-                    <Checkbox
-                    label="Wakaflex - Benyttes som ekstra tetting rundt beslag i spesielt i vaerutsatte områder"
-                    checked={this.state.wakaflex}
-                    checkboxStyle={this.state.wakaflex ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                    onChange={() => this.setState({
-                        wakaflex: !this.state.wakaflex,
-
-                    })} />
-
-
-                    <Checkbox
-                    label="Tegelforblendet pipe"
-                    checked={this.state.tegelforblendet}
-                    checkboxStyle={this.state.tegelforblendet ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                    onChange={() => this.setState({
-                        tegelforblendet: !this.state.tegelforblendet,
-
-                    })} />
-
-                    <Checkbox
-                    label="Topavdekning"
-                    checked={this.state.topavdekning}
-                    checkboxStyle={this.state.topavdekning ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                    onChange={() => this.setState({
-                        topavdekning: !this.state.topavdekning,
-
-                    })} />
-
-                    <Checkbox
-                    label="Tetting mot undertak"
-                    checked={this.state.undertakTetting}
-                    checkboxStyle={this.state.undertakTetting ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                    onChange={() => this.setState({
-                        undertakTetting: !this.state.undertakTetting,
-
-                    })} />
-
-                    <Checkbox
-                    label="Feieplatform (Kun for takstein)"
-                    checked={this.state.feieplatform}
-                    checkboxStyle={this.state.feieplatform ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                    onChange={() => this.setState({
-                        feieplatform: !this.state.feieplatform,
-
-                    })} />
-
-
-
-
+                    <OfRoof />
                 </View>
-                <View>
+                <View style={styles.sectionContainer}>
                     <Text>Tillval</Text>
 
                     <Checkbox
@@ -171,3 +74,12 @@ export default class Chimney extends Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        padding: globalStyles.PADDING,
+    },
+    sectionContainer: {
+        paddingHorizontal: globalStyles.PADDING,
+    },
+});
