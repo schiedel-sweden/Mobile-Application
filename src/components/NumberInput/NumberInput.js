@@ -40,7 +40,13 @@ export default class NumberInput extends React.Component {
 
     render() {
         return (
-            <View style={styles.input}>
+            <View style={
+                        [styles.container
+                        ,styles.input
+                        ,styles.flexDirectionRow
+                        ,styles.borderBottom
+                        ,styles.lblWidth,]
+                      }>
                 <Text>{this.props.pretext}</Text>
                 <TextInput
                 keyboardType = 'numeric'
@@ -57,6 +63,21 @@ export default class NumberInput extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        paddingTop: globalStyles.PADDING,
+    },
+    flexDirectionRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    borderBottom: {
+        borderRadius: 1,
+        borderBottomWidth: 1,
+        borderColor: '#B9B9B9',
+    },
+    lblWidth: {
+        width: 285,
+    },
     input: {
         backgroundColor: '#EEEEEE',
     }

@@ -61,7 +61,13 @@ export default class IncNumberInput extends React.Component {
 
     render() {
         return (
-            <View style={styles.input}>
+            <View style={
+                        [styles.container
+                        ,styles.input
+                        ,styles.rowSpaceBetween
+                        ,styles.borderBottom
+                        ,styles.lblWidth,]
+                      }>
                 <Text>{this.props.piper}</Text>
                 <TextInput
                 keyboardType = 'numeric'
@@ -86,6 +92,21 @@ export default class IncNumberInput extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        paddingTop: globalStyles.PADDING,
+    },
+    rowSpaceBetween: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    borderBottom: {
+        borderRadius: 1,
+        borderBottomWidth: 1,
+        borderColor: '#B9B9B9',
+    },
+    lblWidth: {
+        width: 285,
+    },
     input: {
         backgroundColor: '#EEEEEE',
     }

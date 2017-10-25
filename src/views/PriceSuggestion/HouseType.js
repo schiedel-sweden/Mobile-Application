@@ -20,41 +20,56 @@ export default class HouseType extends Component {
                     {/* prop passed in PriceSuggestion */}
                     <Text>Offertnummer: {this.props.quotNum}</Text>
                 </View>
-                {/* Image is HUGE, scale down?*/}
-                <View style={[{ flex: 1 }]}>
-                    <Image
-                        style={styles.image}
-                        source={require('../../images/hus-skiss.png')}
-                    />
+                <View style={styles.container}>
+                    {/* Image is HUGE, scale down?*/}
+                    <View style={[{ alignItems: 'center', }]}>
+                        <Image
+                            style={styles.image}
+                            source={require('../../images/hus-skiss.png')}
+                        />
+                    </View>
+
+                    <View style={styles.sectionContainer}>
+                        <View style={styles.rowSpaceBetween}>
+                            <IncNumberInput piper={'antal piper: '} />
+
+                            <NumberInput
+                                pretext={'Höjd över tak (H2)'}
+                                postfix={this.state.postfix}
+                            />
+                        </View>
+                        <View style={styles.rowSpaceBetween}>
+                            <NumberInput
+                                pretext={'Total Höjd (H1)'}
+                                postfix={this.state.postfix}
+                            />
+
+                            <NumberInput pretext={'Takvinkel (V)'} postfix={'grader'} />
+                        </View>
+                    </View>
+                    <Text>Hustyp</Text>
                 </View>
-
-                <View>
-                    <IncNumberInput piper={'antal piper: '} />
-
-                    <NumberInput
-                        pretext={'Höjd över tak (H2)'}
-                        postfix={this.state.postfix}
-                    />
-
-                    <NumberInput
-                        pretext={'Total Höjd (H1)'}
-                        postfix={this.state.postfix}
-                    />
-
-                    <NumberInput pretext={'Takvinkel (V)'} postfix={'grader'} />
-                </View>
-
-                <View />
-                <Text>Hustyp</Text>
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    container: {
+        padding: globalStyles.PADDING,
+        paddingHorizontal: globalStyles.PADDING * 2,
+    },
+    sectionContainer: {
+        paddingVertical: globalStyles.PADDING,
+    },
+    rowSpaceBetween:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
     image: {
         flex: 1,
-        width: globalStyles.DEVICE_WIDTH,
-        height: globalStyles.DEVICE_HEIGHT * 0.4,
+        resizeMode: 'contain',
+        width: globalStyles.DEVICE_WIDTH * 0.6,
+        height: globalStyles.DEVICE_HEIGHT * 0.3,
     },
 });
