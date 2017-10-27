@@ -20,7 +20,7 @@ export default class MaterialInformationTouchableBlock extends Component {
             visible: false,
         }
         this.setVisibleMat = this.setVisibleMat.bind(this);
-        this.listItem = this.listItem.bind(this);
+        this.listInformationDescription = this.listInformationDescription.bind(this);
     }
 
     /**
@@ -34,10 +34,10 @@ export default class MaterialInformationTouchableBlock extends Component {
     */
     getArrowIcon(){
         const arrowIcon = this.state.visible
-            ? <Image style={[navStyles.icon, styles.icon]}
+            ? <Image style={navStyles.icon}
                      source={require('./img/arrow_opened.png')}
               />
-            : <Image style={[navStyles.icon, styles.icon]}
+            : <Image style={navStyles.icon}
                      source={require('./img/arrow.png')}
               />;
         return arrowIcon;
@@ -45,16 +45,19 @@ export default class MaterialInformationTouchableBlock extends Component {
     /**
     * @return listMaterial[...]
     */
-    listItem() {
-        const listItem = <View>
-                            <Text style={globalStyles.h4}>
-                              Bruksområde
-                            </Text>
-                            <Text style={globalStyles.h4}>
-                              Bruksområde
-                            </Text>
-                        </View>;
-        return listItem;
+    listInformationDescription() {
+        return(
+          <View style={styles.infoDescContainer}>
+              <View>
+                  <Text style={[globalStyles.p, styles.infoDesc]}>
+                      Bruksområde
+                  </Text>
+                  <Text style={[globalStyles.p, styles.infoDesc]}>
+                      Bruksområde
+                  </Text>
+              </View>
+          </View>
+        );
     }
 
     /**
@@ -67,12 +70,13 @@ export default class MaterialInformationTouchableBlock extends Component {
                     <View style={styles.touchableContainer}>
                         <View style={styles.touchableItem}>
                             <Text style={globalStyles.h4}>
-                                {this.props.matInfo}                {this.getArrowIcon()}
+                                {this.props.matInfo}
                             </Text>
+                             {this.getArrowIcon()}
                         </View>
                     </View>
                 </TouchableOpacity>
-                {this.state.visible && (this.listItem())}
+                {this.state.visible && (this.listInformationDescription())}
             </View>
         );
     }
@@ -89,8 +93,15 @@ const styles = StyleSheet.create({
     },
     touchableItem: {
         paddingHorizontal: globalStyles.PADDING,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
-    icon: {
-        alignSelf: 'flex-end',
+    infoDescContainer: {
+        paddingHorizontal: globalStyles.PADDING,
+        paddingTop: globalStyles.PADDING,
+    },
+    infoDesc: {
+        paddingHorizontal: globalStyles.PADDING,
+        paddingBottom: globalStyles.PADDING,
     },
 });

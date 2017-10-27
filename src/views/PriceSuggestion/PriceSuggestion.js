@@ -34,7 +34,7 @@ export default class PriceSuggestion extends Component {
         this.order           = this.order.bind(this);
         // set initial state
         this.state = {
-            activeTab: <Chimney />,
+            activeTab: <ChimneyType />,
             currentTab: 'chimneytype',
         };
     }

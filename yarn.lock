@@ -4444,6 +4444,12 @@ react-native-branch@2.0.0-beta.3:
   version "2.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/react-native-branch/-/react-native-branch-2.0.0-beta.3.tgz#2167af86bbc9f964bd45bd5f37684e5b54965e32"
 
+react-native-checkbox@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-checkbox/-/react-native-checkbox-1.2.0.tgz#57f7c5beb2d7d5047140d3a4e2409ee04d7c12fb"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-communications@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/react-native-communications/-/react-native-communications-2.2.1.tgz#7883b56b20a002eeb790c113f8616ea8692ca795"
@@ -5446,9 +5452,9 @@ tar@^2.1.1, tar@^2.2.1:
     fstream "^1.0.2"
     inherits "2"
 
-tcomb-form-native@^0.6.10:
-  version "0.6.10"
-  resolved "https://registry.yarnpkg.com/tcomb-form-native/-/tcomb-form-native-0.6.10.tgz#f0eb6f9c3ada4bab7dae0b3fde7fb80e6930deab"
+tcomb-form-native@^0.6.1:
+  version "0.6.11"
+  resolved "https://registry.yarnpkg.com/tcomb-form-native/-/tcomb-form-native-0.6.11.tgz#1fda9d8fc4ed9e954e60f08d4d976ec85e04697e"
   dependencies:
     tcomb-validation "^3.0.0"
 
