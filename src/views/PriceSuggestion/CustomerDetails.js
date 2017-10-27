@@ -120,6 +120,7 @@ export default class CustomerDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            // "top" form
             company: {
                 company: '',
             },
@@ -140,11 +141,10 @@ export default class CustomerDetails extends Component {
                 email: '',
             },
 
-
+            // "bottom" form
             receiver: {
                 receiver: '',
             },
-
             receiverAdress: {
                 adress: '',
                 postnumber: null,
@@ -157,20 +157,18 @@ export default class CustomerDetails extends Component {
             checked: false,
 
         }
-        this.testFunction = this.testFunction.bind(this);
-
-
-
+        // update states of top form
         this.updateCompany = this.updateCompany.bind(this);
         this.updateName = this.updateName.bind(this);
         this.updateAdress = this.updateAdress.bind(this);
         this.updateCity = this.updateCity.bind(this);
         this.updateContact = this.updateContact.bind(this);
-
+        // update states of bottom form
         this.updateReceiver = this.updateReceiver.bind(this);
         this.updateReceiverAdress = this.updateReceiverAdress.bind(this);
         this.updateReceiverCity = this.updateReceiverCity.bind(this);
-
+        // checkbox that changes the bottom form to be the same information
+        // as the top form 
         this.changeStates = this.changeStates.bind(this);
     }
 
@@ -258,11 +256,6 @@ export default class CustomerDetails extends Component {
         this.setState({
             checked: !this.state.checked,
         });
-    }
-
-    testFunction() {
-        alert(this.state.company.company);
-
     }
 
 
