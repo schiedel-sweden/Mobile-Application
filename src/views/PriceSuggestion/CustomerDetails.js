@@ -168,7 +168,7 @@ export default class CustomerDetails extends Component {
         this.updateReceiverAdress = this.updateReceiverAdress.bind(this);
         this.updateReceiverCity = this.updateReceiverCity.bind(this);
         // checkbox that changes the bottom form to be the same information
-        // as the top form 
+        // as the top form
         this.changeStates = this.changeStates.bind(this);
     }
 
@@ -355,7 +355,6 @@ export default class CustomerDetails extends Component {
         );
     }
 }
-
 const styles = StyleSheet.create({
     container: {
         alignSelf: 'stretch',
