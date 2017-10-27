@@ -4,6 +4,9 @@ import IncNumberInput from '../../components/NumberInput/IncNumberInput';
 import NumberInput from '../../components/NumberInput/NumberInput';
 import globalStyles from '../../styles/globalStyles';
 
+import { changeNumber } from '../../components/redux-items/actions.js';
+
+
 export default class HouseType extends Component {
     constructor(props) {
         super(props);
@@ -15,7 +18,7 @@ export default class HouseType extends Component {
 
     render() {
         return (
-            <View>
+            <View>                
                 <View>
                     {/* prop passed in PriceSuggestion */}
                     <Text>Offertnummer: {this.props.quotNum}</Text>
