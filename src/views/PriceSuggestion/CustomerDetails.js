@@ -8,6 +8,8 @@ import {
     Image,
 } from 'react-native';
 
+import Checkbox from 'react-native-checkbox';
+
 const t = require('tcomb-form-native');
 const Form = t.form.Form;
 
@@ -50,14 +52,7 @@ const Contact = t.struct({
 
 
 
-const Delivery = t.struct({
-    sameAsAbove: t.Boolean,
-    receiver: t.String,
-    adress: t.String,
-    postnumber: t.Number,
-    city: t.String,
-    country: t.String
-})
+
 
 // bottom forms'
 
@@ -125,153 +120,144 @@ export default class CustomerDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            company: '',
-            name: '',
-            surname: '',
-            adress: '',
-            postnumber: '',
-            city: '',
-            country: '',
-            phone: '',
-            email: '',
+            // "top" form
+            company: {
+                company: '',
+            },
+            name: {
+                name: '',
+                surname: '',
+            },
+            adress: {
+                adress: '',
+                postnumber: null,
+            },
+            city: {
+                city: '',
+                country: '',
+            },
+            contact: {
+                phone: null,
+                email: '',
+            },
 
-            receiver: '',
-            receiverAdress: '',
-            receiverPostnumber: '',
-            receiverCity: '',
-            receiverCountry: '',
+            // "bottom" form
+            receiver: {
+                receiver: '',
+            },
+            receiverAdress: {
+                adress: '',
+                postnumber: null,
+            },
+            receiverCity: {
+                city: '',
+                country: '',
+            },
 
             checked: false,
 
         }
+        // update states of top form
+        this.updateCompany = this.updateCompany.bind(this);
+        this.updateName = this.updateName.bind(this);
+        this.updateAdress = this.updateAdress.bind(this);
+        this.updateCity = this.updateCity.bind(this);
+        this.updateContact = this.updateContact.bind(this);
+        // update states of bottom form
+        this.updateReceiver = this.updateReceiver.bind(this);
+        this.updateReceiverAdress = this.updateReceiverAdress.bind(this);
+        this.updateReceiverCity = this.updateReceiverCity.bind(this);
+        // checkbox that changes the bottom form to be the same information
+        // as the top form 
+        this.changeStates = this.changeStates.bind(this);
+    }
 
-        this.onPress = this.onPress.bind(this);
-        this.onToggle = this.onToggle.bind(this);
-        this.changeState = this.changeState.bind(this);
+    updateCompany(value) {
+        if(this.state.checked) {
+            this.setState({
+                receiver:{
+                    receiver: value.company,
+                },
+            });
+        }
+
+        this.setState({
+            company: value,
+        });
+
+    }
+    updateName(value) {
+        this.setState({
+            name: value,
+        });
+
+    }
+    updateAdress(value) {
+        if(this.state.checked) {
+            this.setState({
+                receiverAdress: value,
+            });
+        }
+        this.setState({
+            adress: value,
+        });
+    }
+    updateCity(value) {
+        if(this.state.checked) {
+            this.setState({
+                receiverCity: value,
+            });
+        }
+        this.setState({
+            city: value,
+        });
+    }
+    updateContact(value) {
+        this.setState({
+            contact: value,
+        });
+    }
+
+    updateReceiver(value) {
+        this.setState({
+            receiver: value,
+        });
+    }
+    updateReceiverAdress(value) {
+        this.setState({
+            receiverAdress: value,
+        });
+    }
+    updateReceiverCity(value) {
+        this.setState({
+            receiverCity: value,
+        });
     }
 
 
+    changeStates(checked) {
 
-    onToggle() {
 
-        if (!this.state.checked) {
+        if (!checked) {
             this.setState({
-                receiver: '',
-                receiverAdress: '',
-                receiverPostnumber: '',
-                receiverCity: '',
-                receiverCountry: '',
+                receiver: { receiver: this.state.company.company},
+                receiverAdress: this.state.adress,
+                receiverCity: this.state.city,
             });
         }
         else {
             this.setState({
-                receiver: this.state.company,
-                receiverAdress: this.state.adress,
-                receiverPostnumber: this.state.postnumber,
-                receiverCity: this.state.city,
-                receiverCountry: this.state.country,
+                receiver: {receiver: '',},
+                receiverAdress: {adress: '', postnumber: null},
+                receiverCity: {city: '', country: ''},
             });
-
         }
 
         this.setState({
             checked: !this.state.checked,
         });
-
     }
 
-
-    onPress() {
-        let re = /(\w\.)*(\w)+\@((\w\.)+(\w)+)/g;
-        let company = this.refs.company.getValue();
-        let name = this.refs.name.getValue();
-        let addr = this.refs.adress.getValue();
-        let city = this.refs.city.getValue();
-        let contact = this.refs.contact.getValue();
-
-        // check that nothing is null
-        if (company != null && name != null && addr != null &&
-            city != null && contact != null){
-
-            this.setState({
-                company: company.company,
-                name : name.name,
-                surname : name.surname,
-                adress: addr.adress,
-                postnumber: addr.postnumber,
-                city: city.city,
-                country: city.country,
-                phone: contact.phone,
-                email: contact.email,
-
-            });
-        }
-        if (re.test(contact.email.toString())) {
-            alert('ok!');
-        }
-        else {
-            alert('no ok!');
-        }
-    }
-
-    changeState(item) {
-        switch (item) {
-
-            case 'company':
-                let val = this.refs.company.getValue();
-
-                if (val != null) {
-                    let prev = this.state.company;
-
-                    this.setState({
-                        company: val.company,
-                    });
-
-                    alert(this.state.company);
-
-                }
-                break;
-            case 'name':
-                val = this.refs.name.getValue();
-                if (val != null) {
-                    this.setState({
-                        name: val.name,
-                        surname: val.surname
-                    });
-                }
-                break;
-            case 'adress':
-                val = this.refs.adress.getValue();
-                if (val != null) {
-                    this.setState({
-                        adress: val.adress,
-                        postnumber: val.postnumber
-                    });
-                }
-                break;
-            case 'city':
-                val = this.refs.city.getValue();
-                if (val != null) {
-                    this.setState({
-                        city: val.city,
-                        country: val.country
-                    });
-                }
-                break;
-            case 'contact':
-                val = this.refs.contact.getValue();
-                if (val != null) {
-                    this.setState({
-                        phone: val.phone,
-                        email: val.email
-                    })
-                }
-                break;
-            default:
-                break;
-
-        }
-    }
 
     render() {
         return (
@@ -280,75 +266,89 @@ export default class CustomerDetails extends Component {
                     <Text>Faktureringsadress</Text>
                     <Form
                     ref='company'
-                    onChangeText={() => this.changeState('company')}
+                    value={this.state.company}
+                    onChange={this.updateCompany}
                     type={Company}
                     options={options}
                     />
 
                     <Form
                     ref='name'
-                    onChangeText={() => this.changeState('name')}
+                    value={this.state.name}
+                    onChange={this.updateName}
                     type={Name}
                     options={options}
                     />
 
                     <Form
                     ref='adress'
-                    onChangeText={() => this.changeState('adress')}
+                    value={this.state.adress}
+                    onChange={this.updateAdress}
                     type={Adress}
                     options={options}
                     />
 
                     <Form
                     ref='city'
-                    onChangeText={() => this.changeState('city')}
+                    value={this.state.city}
+                    onChange={this.updateCity}
                     type={City}
                     options={options}
                     />
 
                     <Form
                     ref='contact'
-                    onChangeText={() => this.changeState('contact')}
+                    value={this.state.contact}
+                    onChange={this.updateContact}
                     type={Contact}
                     options={options}
                     />
 
+
                 </View>
+
                 <TouchableOpacity
                 style={styles.button}
-                onPress={this.onPress}>
+                onPress={this.testFunction}>
+
                     <Text>Submit</Text>
                 </TouchableOpacity>
+
                 <View>
                     <Text>Leveransadress</Text>
 
 
-                    <TouchableOpacity
-                    onPress={this.onToggle}>
-                        <Image
-                        style={styles.icon}
-                        source={this.state.checked ? require('../../images/icons/cross.png') : require('../../images/icons/email.png') } />
-                    </TouchableOpacity>
+                    <Checkbox
+                    label="Samma som faktureringsadress"
+                    checked={this.state.checked}
+                    checkboxStyle={this.state.checked ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
+                    onChange={() => this.changeStates(this.state.checked)}/>
 
-
-                    <Text>Samma som Faktureringsadress</Text>
                 </View>
                 <View>
                     <Form
                     ref='receiver'
+                    value={this.state.receiver}
+                    onChange={this.updateReceiver}
                     type={Receiver}
                     options={options}
                     />
+
                     <Form
                     ref='receiverAdress'
+                    value={this.state.receiverAdress}
+                    onChange={this.updateReceiverAdress}
                     type={Adress}
                     options={options}
                     />
                     <Form
                     ref='receiverCity'
+                    value={this.state.receiverCity}
+                    onChange={this.updateReceiverCity}
                     type={City}
                     options={options}
                     />
+
                 </View>
             </View>
 
