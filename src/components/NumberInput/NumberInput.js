@@ -15,12 +15,12 @@ export default class NumberInput extends React.Component {
         super(props);
 
         this.state ={
-            myNumber: ''
+            myNumber: '0'
         }
     }
 
     onChangeText(text) {
-        let newText = '';
+        let newText = '0';
         let numbers = '1234567890';
 
         for(let i = 0; i < text.length; i++) {
@@ -43,18 +43,21 @@ export default class NumberInput extends React.Component {
             <View style={
                         [styles.container
                         ,styles.input
-                        ,styles.flexDirectionRow
+                        ,styles.rowSpaceBetween
                         ,styles.borderBottom
-                        ,styles.lblWidth,]
+                        ,styles.lblWidth
+                        ,this.props.style]
                       }>
                 <Text>{this.props.pretext}</Text>
-                <TextInput
-                keyboardType = 'numeric'
-                onChangeText = {(text) => this.onChangeText(text)}
-                value = {this.state.myNumber.toString()}
-                />
 
-                <View>
+                <View style={styles.flexRow}>
+                    <TextInput
+                        style={{width: 40}}
+                        keyboardType = 'numeric'
+                        onChangeText = {(text) => this.onChangeText(text)}
+                        value = {this.state.myNumber.toString()}
+                    />
+
                     <Text>{this.props.postfix}</Text>
                 </View>
             </View>
@@ -66,7 +69,7 @@ const styles = StyleSheet.create({
     container: {
         paddingTop: globalStyles.PADDING,
     },
-    flexDirectionRow: {
+    rowSpaceBetween: {
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
@@ -77,6 +80,9 @@ const styles = StyleSheet.create({
     },
     lblWidth: {
         width: 285,
+    },
+    flexRow:{
+        flexDirection: 'row',
     },
     input: {
         backgroundColor: '#EEEEEE',

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
 import IncNumberInput from '../../components/NumberInput/IncNumberInput';
 import NumberInput from '../../components/NumberInput/NumberInput';
 import globalStyles from '../../styles/globalStyles';
@@ -31,7 +31,7 @@ export default class HouseType extends Component {
 
                     <View style={styles.sectionContainer}>
                         <View style={styles.rowSpaceBetween}>
-                            <IncNumberInput piper={'antal piper: '} />
+                            <IncNumberInput piper={'Antal piper: '} />
 
                             <NumberInput
                                 pretext={'Höjd över tak (H2)'}
@@ -47,7 +47,39 @@ export default class HouseType extends Component {
                             <NumberInput pretext={'Takvinkel (V)'} postfix={'grader'} />
                         </View>
                     </View>
-                    <Text>Hustyp</Text>
+                    <View style={styles.sectionContainer}>
+                        <Text style={globalStyles.h3}>Beräkna total höjd (H1) och (H2)</Text>
+
+                        <View style={styles.rowSpaceBetween}>
+                            <NumberInput
+                                pretext={'Total Höjd (H4)'}
+                                postfix={this.state.postfix}
+                            />
+
+                            <NumberInput
+                                pretext={'Avstand från mone (A2)'}
+                                postfix={this.state.postfix}
+                            />
+                        </View>
+
+                        <View style={[styles.lblWidth,styles.rowSpaceBetween]}>
+                            <TouchableOpacity
+                                style={styles.button}
+                                onPress={this.onPress}>
+                                <Text>Button</Text>
+                            </TouchableOpacity>
+                            <View style={{paddingTop: globalStyles.PADDING * 0.65}}>
+                                <View style={styles.columnCenter}>
+                                    <Text style={globalStyles.h2}>=</Text>
+                                </View>
+                            </View>
+                            <NumberInput
+                                style={{width: 140,}}
+                                pretext={''}
+                                postfix={this.state.postfix}
+                            />
+                        </View>
+                    </View>
                 </View>
             </View>
         );
@@ -62,9 +94,26 @@ const styles = StyleSheet.create({
     sectionContainer: {
         paddingVertical: globalStyles.PADDING,
     },
-    rowSpaceBetween:{
+    rowSpaceBetween: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+    },
+    columnCenter: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+    },
+    lblWidth: {
+        width: 285,
+    },
+    button: {
+        borderRadius: 5,
+        borderWidth: 2,
+        borderColor: '#333333',
+        backgroundColor: '#F9CE3C',
+        marginTop: globalStyles.PADDING * 0.5,
+        width: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     image: {
         flex: 1,

@@ -5,6 +5,7 @@ import {
     Text,
     TextInput,
     TouchableOpacity,
+    Image,
 } from 'react-native';
 
 import globalStyles from '../../styles/globalStyles';
@@ -16,7 +17,7 @@ export default class IncNumberInput extends React.Component {
         this.increment = this.increment.bind(this);
         this.decrement = this.decrement.bind(this);
         this.state ={
-            myNumber: ''
+            myNumber: '0'
         }
     }
 
@@ -69,22 +70,28 @@ export default class IncNumberInput extends React.Component {
                         ,styles.lblWidth,]
                       }>
                 <Text>{this.props.piper}</Text>
-                <TextInput
-                keyboardType = 'numeric'
-                onChangeText = {(text) => this.onChangeText(text)}
-                value = {this.state.myNumber.toString()}
-                />
 
-                <View>
-                    <TouchableOpacity
-                    onPress={() => this.increment(this.state.myNumber)}>
-                        <Text>Inc</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                    onPress={() => this.decrement(this.state.myNumber)}
-                    >
-                        <Text>Dec</Text>
-                    </TouchableOpacity>
+                <View style={styles.flexRow}>
+                    <TextInput
+                    style={{width: 40}}
+                    keyboardType = 'numeric'
+                    onChangeText = {(text) => this.onChangeText(text)}
+                    value = {this.state.myNumber.toString()}
+                    />
+                    <View>
+                        <TouchableOpacity
+                            onPress={() => this.increment(this.state.myNumber)}>
+                            <Image style={styles.icon}
+                                source={require('../../views/Products/img/arrow_opened.png')}
+                            />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => this.decrement(this.state.myNumber)}>
+                            <Image style={styles.icon}
+                                source={require('../../views/Products/img/arrow.png')}
+                            />
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         );
@@ -107,7 +114,15 @@ const styles = StyleSheet.create({
     lblWidth: {
         width: 285,
     },
+    flexRow:{
+        flexDirection: 'row',
+    },
     input: {
         backgroundColor: '#EEEEEE',
-    }
+    },
+    icon: {
+        alignSelf: 'flex-end',
+        height: 10,
+        width: 10,
+    },
 });
