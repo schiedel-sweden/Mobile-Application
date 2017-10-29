@@ -6,16 +6,31 @@ import {
     TouchableOpacity,
     View,
     Text,
+    AsyncStorage,
 } from 'react-native';
 import globalStyles from '../../styles/globalStyles';
 
 export default class ButtonSwitchUser extends React.Component {
     state = {
       modalVisible: false,
+      userType: '',
+    }
+
+    componentDidMount() {
+      AsyncStorage.getItem('userType').then((value) =>
+      this.setState({ userType : value }));
     }
 
     setModalVisible(visible) {
       this.setState({modalVisible: visible});
+    }
+
+    /**
+    * @param String
+    */
+    setUserType(value) {
+      AsyncStorage.setItem('userType', value);
+      this.setState({ userType : value });
     }
 
     render() {
@@ -44,6 +59,7 @@ export default class ButtonSwitchUser extends React.Component {
                             </View>
                             <TouchableOpacity style={styles.buttonSelectUser}
                                 onPress={() => {
+                                 this.setUserType("retailer")
                                  this.setModalVisible(!this.state.modalVisible)
                             }}>
                                 <Text style={styles.buttonText}>
@@ -52,6 +68,7 @@ export default class ButtonSwitchUser extends React.Component {
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.buttonSelectUser}
                                 onPress={() => {
+                                 this.setUserType("constructor")
                                  this.setModalVisible(!this.state.modalVisible)
                             }}>
                                 <Text style={styles.buttonText}>
@@ -60,6 +77,7 @@ export default class ButtonSwitchUser extends React.Component {
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.buttonSelectUser}
                                 onPress={() => {
+                                 this.setUserType("individual")
                                  this.setModalVisible(!this.state.modalVisible)
                             }}>
                                 <Text style={styles.buttonText}>
