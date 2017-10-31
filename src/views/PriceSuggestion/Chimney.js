@@ -22,11 +22,18 @@ export default class Chimney extends Component {
         }
         this.listChimneyTypeCheckbox = this.listChimneyTypeCheckbox.bind(this);
         this.overRoofCallback = this.overRoofCallback.bind(this);
+        this.optionsCallback = this.optionsCallback.bind(this);
     }
     componentWillMount = () => {
         this.setState({
             overRoof: this.props.propState.overRoof,
             options: this.props.propState.options,
+        });
+    }
+    componentWillReceiveProps = (newprops) => {
+        this.setState({
+            overRoof: newprops.propState.overRoof,
+            options: newprops.propState.options,
         });
     }
 
@@ -48,10 +55,28 @@ export default class Chimney extends Component {
 
 
     async overRoofCallback(response){
-        await this.setState({
-            overRoof: response,
-        });
-        this.callback();
+        try {
+            await this.setState({
+                overRoof: response,
+            });
+            this.callback();
+        }
+        catch(error) {
+            console.log(error);
+        }
+
+    }
+    async optionsCallback(response){
+        try {
+            await this.setState({
+                options: response,
+            });
+            this.callback();
+        }
+        catch(error) {
+            console.log(error);
+        }
+
     }
 
     render() {
@@ -70,7 +95,9 @@ export default class Chimney extends Component {
                 </View>
                 <View style={styles.sectionContainer}>
                     <Text style={globalStyles.h3}>Tillval</Text>
-                    <Options />
+                    <Options
+                        propState={this.state.options}
+                        parentCallback={this.optionsCallback}/>
                 </View>
             </View>
         );

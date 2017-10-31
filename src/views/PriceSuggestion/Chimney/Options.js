@@ -16,6 +16,45 @@ export default class Options extends Component {
             wireset: false,
             lokk: false,
         }
+        this.toggleWireset = this.toggleWireset.bind(this);
+        this.toggleLokk = this.toggleLokk.bind(this);
+    }
+    componentWillMount = () => {
+        this.setState({
+            wireset: this.props.propState.wireset,
+            lokk: this.props.propState.lokk,
+        });
+    }
+    componentWillReceiveProps = (newprops) => {
+        this.setState({
+            wireset: newprops.propState.wireset,
+            lokk: newprops.propState.lokk,
+        });
+    }
+    callback = () => {
+        this.props.parentCallback(this.state);
+    }
+    async toggleWireset() {
+        try {
+            await this.setState({
+                wireset: !this.state.wireset,
+            });
+            this.callback();
+        }
+        catch(error) {
+            console.log(error + " here");
+        }
+    }
+    async toggleLokk() {
+        try {
+            await this.setState({
+                lokk: !this.state.lokk,
+            });
+            this.callback();
+        }
+        catch(error) {
+            console.log(error);
+        }
     }
 
     render() {
@@ -26,25 +65,16 @@ export default class Options extends Component {
                         <Checkbox
                         label="Wireset for heising/montering"
                         checked={this.state.wireset}
-                        checkboxStyle={this.state.wireset
-                          ?{backgroundColor: "#F9CE3C",}
-                          :{backgroundColor: "#FFFFFF"}
-                        }
-                        onChange={() => this.setState({
-                          wireset: !this.state.wireset,
-                        })} />
+                        checkboxStyle={this.state.wireset ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
+                        onChange={() => this.toggleWireset()} />
                     </View>
                     <Checkbox
                     label="Lokk til tilluftsaddapter"
                     checked={this.state.lokk}
-                    checkboxStyle={this.state.lokk
-                      ?{backgroundColor: "#F9CE3C",}
-                      :{backgroundColor: "#FFFFFF"}
-                    }
-                    onChange={() => this.setState({
-                      lokk: !this.state.lokk,
-                    })} />
+                    checkboxStyle={this.state.lokk ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
+                    onChange={() => this.toggleLokk()} />
                 </View>
+                {/* TODO: Make it so you can edit numbers that are now currently hardcoded as "00" below */}
                 <View style={[styles.flexDirectionRowSpaceBetween, styles.container]}>
                     <View style={
                                 [styles.flexDirectionRowSpaceBetween
