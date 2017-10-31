@@ -44,6 +44,23 @@ export default class PriceSuggestion extends Component {
             },
             chimneyState: {
                 listChimneyTypeLbl: ["Alternative 1", "Alternative 2"],
+                overRoof: {
+                    pusset: false,
+                    firkantBeslag: false,
+                    feieluke: false,
+                    flexiroll: false,
+                    wakaflex: false,
+
+                    tegelforblendet: false,
+                    topavdekning: false,
+                    undertakTetting: false,
+                    feieplatform: false,
+                },
+                options: {
+                    wireset: false,
+                    lokk: false,
+                }
+
             },
             customerDetailState: {
                 // "top" form
@@ -141,7 +158,9 @@ export default class PriceSuggestion extends Component {
     }
     chimney = () => {
         this.setState({
-            activeTab: <Chimney />,
+            activeTab: <Chimney
+                            propState={this.state.chimneyState}
+                            parentCallback={this.chimneyCallback}/>,
             currentTab: 'chimney',
         });
     }

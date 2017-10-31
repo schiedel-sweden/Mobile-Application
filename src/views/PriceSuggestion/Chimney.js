@@ -16,8 +16,18 @@ export default class Chimney extends Component {
         super(props);
         this.state = {
             listChimneyTypeLbl: ["Alternative 1", "Alternative 2"],
+            overRoof: this.props.propState.overRoof,
+            options: this.props.propState.options,
+
         }
         this.listChimneyTypeCheckbox = this.listChimneyTypeCheckbox.bind(this);
+        this.overRoofCallback = this.overRoofCallback.bind(this);
+    }
+    componentWillMount = () => {
+        this.setState({
+            overRoof: this.props.propState.overRoof,
+            options: this.props.propState.options,
+        });
     }
 
     /**
@@ -32,6 +42,17 @@ export default class Chimney extends Component {
         );
         return listChimneyTypeCheckbox;
     }
+    callback = () => {
+        this.props.parentCallback(this.state);
+    }
+
+
+    async overRoofCallback(response){
+        await this.setState({
+            overRoof: response,
+        });
+        this.callback();
+    }
 
     render() {
         return (
@@ -43,7 +64,9 @@ export default class Chimney extends Component {
 
                 <View style={styles.sectionContainer}>
                     <Text style={globalStyles.h3}>Över tak</Text>
-                    <OfRoof />
+                    <OfRoof
+                        propState={this.state.overRoof}
+                        parentCallback={this.overRoofCallback}/>
                 </View>
                 <View style={styles.sectionContainer}>
                     <Text style={globalStyles.h3}>Tillval</Text>
