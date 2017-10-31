@@ -9,10 +9,24 @@ export default class ChimneyType extends Component {
             choice: '',
             options: ['permeter', 'solid vent', 'etesjepipe', 'rondo'],
         };
-
         this.touchMethod = this.touchMethod.bind(this);
     }
-    touchMethod(i) {
+
+    componentWillMount = () => {
+        this.setState({
+            choice: this.props.propState.choice,
+            options: this.props.propState.options,
+        });
+    }
+
+    componentWillReceiveProps = (newprops) => {
+        this.setState({
+            choice: newprops.propState.choice,
+            options: newprops.propState.options,
+        });
+    }
+
+    stateSetter = (i) => {
         if (i == 0) {
             this.setState({ choice: 'permeter' });
         }
@@ -27,6 +41,23 @@ export default class ChimneyType extends Component {
         }
     }
 
+    async touchMethod(i) {
+        try {
+            await this.stateSetter(i);
+        }
+        catch(error) {
+            console.log(error);
+        }
+        this.callback();
+
+
+    }
+
+    callback = () => {
+        this.props.parentCallback(this.state);
+    }
+
+
     render() {
         return (
             <View>
@@ -35,11 +66,10 @@ export default class ChimneyType extends Component {
                         return (
                             <TouchableOpacity
                                 onPress={function() {
-                                    this.touchMethod(i);
+                                    this.touchMethod(i)
                                 }.bind(this)}
                                 style={styles.items}
-                                key={i}
-                            >
+                                key={i} >
                                 <Text>{item}</Text>
                                 <View>
                                     {i == 0 ? (

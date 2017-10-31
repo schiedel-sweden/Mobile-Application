@@ -13,12 +13,32 @@ export default class HouseType extends Component {
         this.state = {
             postfix: 'mm',
             myNumber: '',
+            totalHeight: null,
+            heightAboveRoof: null,
+            roofAngle: null,
         };
     }
 
+    parentCallback = () => {
+        this.props.parentCallback(this.state);
+    }
+
+
+    componentWillReceiveProps = (newprops) => {
+        this.setState({
+            postfix: newprops.propState.postfix,
+            myNumber: newprops.propState.myNumber,
+            totalHeight: newprops.propState.totalHeight,
+            heightAboveRoof: newprops.propstate.heightAboveRoof,
+            roofAngle: newprops.propState.roofAngle,
+        })
+    }
+
+
+
     render() {
         return (
-            <View>                
+            <View>
                 <View>
                     {/* prop passed in PriceSuggestion */}
                     <Text>Offertnummer: {this.props.quotNum}</Text>
@@ -32,19 +52,28 @@ export default class HouseType extends Component {
                 </View>
 
                 <View>
-                    <IncNumberInput piper={'antal piper: '} />
+                    <IncNumberInput
+                        piper={'antal piper: '}
+                     />
 
                     <NumberInput
                         pretext={'Höjd över tak (H2)'}
-                        postfix={this.state.postfix}
+                        postfix={'mm'}
+                        parentCallback={this.heightAboveRoofCallback}
+
                     />
 
                     <NumberInput
                         pretext={'Total Höjd (H1)'}
-                        postfix={this.state.postfix}
+                        postfix={'mm'}
+                        parentCallback={this.totalHeightCallback}
                     />
 
-                    <NumberInput pretext={'Takvinkel (V)'} postfix={'grader'} />
+                    <NumberInput
+                        pretext={'Takvinkel (V)'}
+                        postfix={'grader'}
+                        parentCallback={this.roofAngleCallback}
+                    />
                 </View>
 
                 <View />
@@ -52,6 +81,9 @@ export default class HouseType extends Component {
             </View>
         );
     }
+}
+export function returnState() {
+    return this.state;
 }
 
 const styles = StyleSheet.create({

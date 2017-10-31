@@ -19,6 +19,10 @@ export default class NumberInput extends React.Component {
         }
     }
 
+    callMe = () => {
+        this.props.parentCallback(this.state.myNumber);
+    }
+
     onChangeText(text) {
         let newText = '';
         let numbers = '1234567890';
@@ -32,6 +36,7 @@ export default class NumberInput extends React.Component {
                 alert("please enter numbers only!");
             }
             this.setState({myNumber: newText})
+            this.callMe();
         }
     }
 
