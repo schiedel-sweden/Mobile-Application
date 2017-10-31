@@ -42,7 +42,7 @@ export default class HouseType extends Component {
         this.setState({
             pipeNumber: newprops.propState.pipeNumber,
             totalHeight: newprops.propState.totalHeight,
-            heightAboveRoof: newprops.propstate.heightAboveRoof,
+            heightAboveRoof: newprops.propState.heightAboveRoof,
             roofAngle: newprops.propState.roofAngle,
         })
     }
