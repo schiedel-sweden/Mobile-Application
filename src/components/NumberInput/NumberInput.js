@@ -15,7 +15,7 @@ export default class NumberInput extends React.Component {
         super(props);
 
         this.state ={
-            myNumber: ''
+            myNumber: this.props.myNumber,
         }
     }
 
@@ -27,17 +27,25 @@ export default class NumberInput extends React.Component {
         let newText = '';
         let numbers = '1234567890';
 
-        for(let i = 0; i < text.length; i++) {
-            if (numbers.indexOf(text[i]) > -1 || text[i] == '') {
-                newText = newText + text[i];
+        if (text != '') {
+            for(let i = 0; i < text.length; i++) {
+                if (numbers.indexOf(text[i]) > -1) {
+                    newText = newText + text[i];
+                }
+                else {
+                    // not a number
+                    alert("please enter numbers only!");
+                }
+                await this.setState({myNumber: newText});
+
             }
-            else {
-                // not a number
-                alert("please enter numbers only!");
-            }
-            await this.setState({myNumber: newText});
-            this.callMe();
         }
+        else {
+            await this.setState({myNumber: ''});
+        }
+        this.callMe();
+
+
     }
 
 
@@ -50,7 +58,7 @@ export default class NumberInput extends React.Component {
                 <TextInput
                 keyboardType = 'numeric'
                 onChangeText = {(text) => this.onChangeText(text)}
-                value = {this.state.myNumber.toString()}
+                value = {this.state.myNumber}
                 />
 
                 <View>

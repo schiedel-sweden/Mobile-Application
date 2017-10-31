@@ -25,13 +25,7 @@ import ButtonNav from './ButtonNav';
 export default class PriceSuggestion extends Component {
     constructor(props) {
         super(props);
-        // bind all functions
-        this.chimneytype     = this.chimneytype.bind(this);
-        this.housetype       = this.housetype.bind(this);
-        this.chimney         = this.chimney.bind(this);
-        this.customerdetails = this.customerdetails.bind(this);
-        this.pricepage       = this.pricepage.bind(this);
-        this.order           = this.order.bind(this);
+
         // set initial state
         this.state = {
             activeTab: null,
@@ -43,12 +37,53 @@ export default class PriceSuggestion extends Component {
             },
             houseTypeState: {
                 myNumber: '',
+                pipeNumber: null,
                 totalHeight: null,
                 heightAboveRoof: null,
                 roofAngle: null,
             },
-            chimneyState: null,
-            customerDetailState: null,
+            chimneyState: {
+                listChimneyTypeLbl: ["Alternative 1", "Alternative 2"],
+            },
+            customerDetailState: {
+                // "top" form
+                company: {
+                    company: '',
+                },
+                name: {
+                    name: '',
+                    surname: '',
+                },
+                adress: {
+                    adress: '',
+                    postnumber: null,
+                },
+                city: {
+                    city: '',
+                    country: '',
+                },
+                contact: {
+                    phone: null,
+                    email: '',
+                },
+
+                // "bottom" form
+                receiver: {
+                    receiver: '',
+                },
+                receiverAdress: {
+                    adress: '',
+                    postnumber: null,
+                },
+                receiverCity: {
+                    city: '',
+                    country: '',
+                },
+
+                checked: false,
+
+            },
+            // might not be needed as the state is set in the component from HouseType.js, testing has to be done
             prisePageState: null,
             orderState: null,
 
@@ -86,7 +121,7 @@ export default class PriceSuggestion extends Component {
 
 
     // functions to set active tab to set tab file
-    chimneytype() {
+    chimneytype = () => {
         this.setState({
             activeTab: <ChimneyType
                             propState={this.state.chimneyTypeState}
@@ -95,7 +130,7 @@ export default class PriceSuggestion extends Component {
         });
     }
     // pass offertnummer as the prop "offNum"
-    housetype() {
+    housetype = () => {
         this.setState({
             activeTab: <HouseType
                             quotNum={ QUOT_NUMBER }
@@ -104,25 +139,25 @@ export default class PriceSuggestion extends Component {
             currentTab: 'housetype',
         });
     }
-    chimney() {
+    chimney = () => {
         this.setState({
             activeTab: <Chimney />,
             currentTab: 'chimney',
         });
     }
-    customerdetails() {
+    customerdetails = () => {
         this.setState({
             activeTab: <CustomerDetails />,
             currentTab: 'customerdetails',
         });
     }
-    pricepage() {
+    pricepage = () => {
         this.setState({
             activeTab: <PricePage />,
             currentTab: 'pricepage',
         });
     }
-    order() {
+    order = () => {
         this.setState({
             activeTab: <Order />,
             currentTab: 'order',
@@ -136,7 +171,7 @@ export default class PriceSuggestion extends Component {
     // 4: KUNDUPGIFTER
     // 5: PRISFÖRSLAG
     // 6: BESTÄLLNING
-    render() {
+    render = () => {
         return (
             <View style={styles.container}>
                 <Header />

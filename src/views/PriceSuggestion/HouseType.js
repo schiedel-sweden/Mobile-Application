@@ -11,12 +11,16 @@ export default class HouseType extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            postfix: 'mm',
-            myNumber: '',
+            pipeNumber: '',
             totalHeight: null,
             heightAboveRoof: null,
             roofAngle: null,
         };
+        this.numberPipeCallback = this.numberPipeCallback.bind(this);
+        this.heightAboveRoofCallback = this.heightAboveRoofCallback.bind(this);
+        this.totalHeightCallback = this.totalHeightCallback.bind(this);
+        this.roofAngleCallback = this.roofAngleCallback.bind(this);
+
     }
 
     parentCallback = () => {
@@ -24,16 +28,50 @@ export default class HouseType extends Component {
     }
 
 
+    componentWillMount = () => {
+
+        this.setState({
+            pipeNumber: this.props.propState.pipeNumber,
+            totalHeight: this.props.propState.totalHeight,
+            heightAboveRoof: this.props.propState.heightAboveRoof,
+            roofAngle: this.props.propState.roofAngle,
+        })
+    }
+
     componentWillReceiveProps = (newprops) => {
         this.setState({
-            postfix: newprops.propState.postfix,
-            myNumber: newprops.propState.myNumber,
+            pipeNumber: newprops.propState.pipeNumber,
             totalHeight: newprops.propState.totalHeight,
             heightAboveRoof: newprops.propstate.heightAboveRoof,
             roofAngle: newprops.propState.roofAngle,
         })
     }
+    /* callback that sends state to PriceSuggestion */
+    callback = () => {
+        this.props.parentCallback(this.state);
+    }
 
+    async numberPipeCallback(response){
+        try {
+            await this.setState({pipeNumber: response});
+        }
+        catch (error) {
+            console.log(error);
+        }
+        this.callback();
+    }
+    async heightAboveRoofCallback(response) {
+        await this.setState({heightAboveRoof: response});
+        this.callback();
+    }
+    async totalHeightCallback(response) {
+        await this.setState({totalHeight: response});
+        this.callback();
+    }
+    async roofAngleCallback(response) {
+        await this.setState({roofAngle: response});
+        this.callback();
+    }
 
 
     render() {
@@ -54,12 +92,15 @@ export default class HouseType extends Component {
                 <View>
                     <IncNumberInput
                         piper={'antal piper: '}
+                        parentCallback={this.numberPipeCallback}
+                        myNumber={this.state.pipeNumber}
                      />
 
                     <NumberInput
                         pretext={'Höjd över tak (H2)'}
                         postfix={'mm'}
                         parentCallback={this.heightAboveRoofCallback}
+                        myNumber={this.state.heightAboveRoof}
 
                     />
 
@@ -67,12 +108,14 @@ export default class HouseType extends Component {
                         pretext={'Total Höjd (H1)'}
                         postfix={'mm'}
                         parentCallback={this.totalHeightCallback}
+                        myNumber={this.state.totalHeight}
                     />
 
                     <NumberInput
                         pretext={'Takvinkel (V)'}
                         postfix={'grader'}
                         parentCallback={this.roofAngleCallback}
+                        myNumber={this.state.roofAngle}
                     />
                 </View>
 
