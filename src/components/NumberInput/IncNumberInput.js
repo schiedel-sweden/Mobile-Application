@@ -28,7 +28,7 @@ export default class IncNumberInput extends React.Component {
         let newText = '';
         let numbers = '1234567890';
 
-        if (text != '') {
+        if (text !== '') {
             for(let i = 0; i < text.length; i++) {
                 if (numbers.indexOf(text[i]) > -1) {
                     newText = newText + text[i];

@@ -27,16 +27,16 @@ export default class ChimneyType extends Component {
     }
 
     stateSetter = (i) => {
-        if (i == 0) {
+        if (i === 0) {
             this.setState({ choice: 'permeter' });
         }
-        if (i == 1) {
+        if (i ==0 1) {
             this.setState({ choice: 'solid vent' });
         }
-        if (i == 2) {
+        if (i === 2) {
             this.setState({ choice: 'etesjepipe' });
         }
-        if (i == 3) {
+        if (i === 3) {
             this.setState({ choice: 'rondo' });
         }
     }

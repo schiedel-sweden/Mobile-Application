@@ -91,29 +91,29 @@ export default class HouseType extends Component {
 
                 <View>
                     <IncNumberInput
-                        piper={'antal piper: '}
+                        piper="antal piper: "
                         parentCallback={this.numberPipeCallback}
                         myNumber={this.state.pipeNumber}
                      />
 
                     <NumberInput
-                        pretext={'Höjd över tak (H2)'}
-                        postfix={'mm'}
+                        pretext="Höjd över tak (H2)"
+                        postfix="mm"
                         parentCallback={this.heightAboveRoofCallback}
                         myNumber={this.state.heightAboveRoof}
 
                     />
 
                     <NumberInput
-                        pretext={'Total Höjd (H1)'}
-                        postfix={'mm'}
+                        pretext="Total Höjd (H1)"
+                        postfix="mm"
                         parentCallback={this.totalHeightCallback}
                         myNumber={this.state.totalHeight}
                     />
 
                     <NumberInput
-                        pretext={'Takvinkel (V)'}
-                        postfix={'grader'}
+                        pretext="Takvinkel (V)"
+                        postfix="grader"
                         parentCallback={this.roofAngleCallback}
                         myNumber={this.state.roofAngle}
                     />
