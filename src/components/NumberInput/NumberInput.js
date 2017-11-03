@@ -15,12 +15,12 @@ export default class NumberInput extends React.Component {
         super(props);
 
         this.state ={
-            myNumber: '0'
+            myNumber: ''
         }
     }
 
     onChangeText(text) {
-        let newText = '0';
+        let newText = '';
         let numbers = '1234567890';
 
         for(let i = 0; i < text.length; i++) {
@@ -55,6 +55,7 @@ export default class NumberInput extends React.Component {
                         style={{width: 40}}
                         keyboardType = 'numeric'
                         onChangeText = {(text) => this.onChangeText(text)}
+                        placeholder='0'
                         value = {this.state.myNumber.toString()}
                     />
 
