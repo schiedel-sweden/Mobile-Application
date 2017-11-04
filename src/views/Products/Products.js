@@ -6,6 +6,7 @@ import {
     Text,
     ScrollView,
     RefreshControl,
+    Image,
 } from 'react-native';
 import TouchableBlock from './TouchableBlock';
 import MaterialDetail from './MaterialDetail';
@@ -128,6 +129,15 @@ export default class Products extends Component {
     render() {
         return (
             <View style={styles.container}>
+                {this.state.isMaterialDetailViewActived &&
+                <TouchableOpacity style={styles.imageContainer}
+                                  onPress={this.setActiveMaterialDetailView}>
+                    <Image style={styles.img}
+                        source={
+                            require('./img/arrow_opened.png')
+                        }
+                    />
+                </TouchableOpacity>}
                 <Header />
                 <ScrollView
                     refreshControl={
@@ -151,5 +161,19 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#EEEEEE',
+    },
+    imageContainer: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: 40,
+      position: 'absolute',
+      left: 10,
+      top: 40,
+      width: 40,
+      zIndex: 1,
+    },
+    img: {
+        height: 30,
+        width: 30,
     },
 });
