@@ -17,45 +17,62 @@ export default class IncNumberInput extends React.Component {
         this.increment = this.increment.bind(this);
         this.decrement = this.decrement.bind(this);
         this.state ={
-            myNumber: '0'
+
+            myNumber: this.props.myNumber,
+
         }
     }
 
-    onChangeText(text) {
+    callMe = () => {
+        this.props.parentCallback(this.state.myNumber);
+    }
+
+    async onChangeText(text) {
         let newText = '';
         let numbers = '1234567890';
 
-        for(let i = 0; i < text.length; i++) {
-            if (numbers.indexOf(text[i]) > -1) {
-                newText = newText + text[i];
+        if (text !== '') {
+            for(let i = 0; i < text.length; i++) {
+                if (numbers.indexOf(text[i]) > -1) {
+                    newText = newText + text[i];
+                }
+                else {
+                    // not a number
+                    alert("please enter numbers only!");
+                }
+                await this.setState({myNumber: newText});
+
             }
-            else {
-                // not a number
-                alert("please enter numbers only!");
-            }
-            this.setState({myNumber: newText})
         }
+        else {
+            await this.setState({myNumber: ''});
+        }
+        this.callMe();
+
+
     }
 
-    increment(text) {
+    async increment(text) {
         let num = parseInt(this.state.myNumber);
 
         num = num + 1;
 
         strNum = num.toString();
-        this.setState({
+        await this.setState({
             myNumber: strNum
-        })
+        });
+        this.callMe();
 
     }
 
-    decrement(text) {
+    async decrement(text) {
         let num = parseInt(this.state.myNumber);
         num = num - 1;
         strNum = num.toString();
-        this.setState({
+        await this.setState({
             myNumber: strNum
-        })
+        });
+        this.callMe();
 
     }
 
@@ -70,6 +87,12 @@ export default class IncNumberInput extends React.Component {
                         ,styles.lblWidth,]
                       }>
                 <Text>{this.props.piper}</Text>
+
+                <TextInput
+                keyboardType = 'numeric'
+                onChangeText = {(text) => this.onChangeText(text)}
+                value = {this.state.myNumber}
+                />
 
                 <View style={styles.flexRow}>
                     <TextInput

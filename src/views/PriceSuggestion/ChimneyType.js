@@ -9,23 +9,54 @@ export default class ChimneyType extends Component {
             choice: '',
             options: ['permeter', 'solid vent', 'etesjepipe', 'rondo'],
         };
-
         this.touchMethod = this.touchMethod.bind(this);
     }
-    touchMethod(i) {
-        if (i == 0) {
+
+    componentWillMount = () => {
+        this.setState({
+            choice: this.props.propState.choice,
+            options: this.props.propState.options,
+        });
+    }
+
+    componentWillReceiveProps = (newprops) => {
+        this.setState({
+            choice: newprops.propState.choice,
+            options: newprops.propState.options,
+        });
+    }
+
+    stateSetter = (i) => {
+        if (i === 0) {
             this.setState({ choice: 'permeter' });
         }
-        if (i == 1) {
+        if (i === 1) {
             this.setState({ choice: 'solid vent' });
         }
-        if (i == 2) {
+        if (i === 2) {
             this.setState({ choice: 'etesjepipe' });
         }
-        if (i == 3) {
+        if (i === 3) {
             this.setState({ choice: 'rondo' });
         }
     }
+
+    async touchMethod(i) {
+        try {
+            await this.stateSetter(i);
+        }
+        catch(error) {
+            console.log(error);
+        }
+        this.callback();
+
+
+    }
+
+    callback = () => {
+        this.props.parentCallback(this.state);
+    }
+
 
     render() {
         return (
@@ -35,11 +66,10 @@ export default class ChimneyType extends Component {
                         return (
                             <TouchableOpacity
                                 onPress={function() {
-                                    this.touchMethod(i);
+                                    this.touchMethod(i)
                                 }.bind(this)}
                                 style={styles.items}
-                                key={i}
-                            >
+                                key={i} >
                                 <Text>{item}</Text>
                                 <View>
                                     {i == 0 ? (

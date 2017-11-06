@@ -4,14 +4,75 @@ import IncNumberInput from '../../components/NumberInput/IncNumberInput';
 import NumberInput from '../../components/NumberInput/NumberInput';
 import globalStyles from '../../styles/globalStyles';
 
+import { changeNumber } from '../../components/redux-items/actions.js';
+
+
 export default class HouseType extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            postfix: 'mm',
-            myNumber: '',
+            pipeNumber: '',
+            totalHeight: null,
+            heightAboveRoof: null,
+            roofAngle: null,
         };
+        this.numberPipeCallback = this.numberPipeCallback.bind(this);
+        this.heightAboveRoofCallback = this.heightAboveRoofCallback.bind(this);
+        this.totalHeightCallback = this.totalHeightCallback.bind(this);
+        this.roofAngleCallback = this.roofAngleCallback.bind(this);
+
     }
+
+    parentCallback = () => {
+        this.props.parentCallback(this.state);
+    }
+
+
+    componentWillMount = () => {
+
+        this.setState({
+            pipeNumber: this.props.propState.pipeNumber,
+            totalHeight: this.props.propState.totalHeight,
+            heightAboveRoof: this.props.propState.heightAboveRoof,
+            roofAngle: this.props.propState.roofAngle,
+        })
+    }
+
+    componentWillReceiveProps = (newprops) => {
+        this.setState({
+            pipeNumber: newprops.propState.pipeNumber,
+            totalHeight: newprops.propState.totalHeight,
+            heightAboveRoof: newprops.propState.heightAboveRoof,
+            roofAngle: newprops.propState.roofAngle,
+        })
+    }
+    /* callback that sends state to PriceSuggestion */
+    callback = () => {
+        this.props.parentCallback(this.state);
+    }
+
+    async numberPipeCallback(response){
+        try {
+            await this.setState({pipeNumber: response});
+        }
+        catch (error) {
+            console.log(error);
+        }
+        this.callback();
+    }
+    async heightAboveRoofCallback(response) {
+        await this.setState({heightAboveRoof: response});
+        this.callback();
+    }
+    async totalHeightCallback(response) {
+        await this.setState({totalHeight: response});
+        this.callback();
+    }
+    async roofAngleCallback(response) {
+        await this.setState({roofAngle: response});
+        this.callback();
+    }
+
 
     render() {
         return (
@@ -29,32 +90,37 @@ export default class HouseType extends Component {
                         />
                     </View>
 
-                    <View style={styles.sectionContainer}>
-                        <View style={styles.rowSpaceBetween}>
-                            <IncNumberInput piper={'Antal piper: '} />
 
-                            <NumberInput
-                                pretext={'Höjd över tak (H2)'}
-                                postfix={this.state.postfix}
-                            />
-                        </View>
-                        <View style={styles.rowSpaceBetween}>
-                            <NumberInput
-                                pretext={'Total Höjd (H1)'}
-                                postfix={this.state.postfix}
-                            />
+                <View>
+                    <IncNumberInput
+                        piper="antal piper: "
+                        parentCallback={this.numberPipeCallback}
+                        myNumber={this.state.pipeNumber}
+                     />
 
-                            <NumberInput pretext={'Takvinkel (V)'} postfix={'grader'} />
-                        </View>
-                    </View>
-                    <View style={styles.sectionContainer}>
-                        <Text style={globalStyles.h3}>Beräkna total höjd (H1) och (H2)</Text>
+                    <NumberInput
+                        pretext="Höjd över tak (H2)"
+                        postfix="mm"
+                        parentCallback={this.heightAboveRoofCallback}
+                        myNumber={this.state.heightAboveRoof}
 
-                        <View style={styles.rowSpaceBetween}>
-                            <NumberInput
-                                pretext={'Total Höjd (H4)'}
-                                postfix={this.state.postfix}
-                            />
+                    />
+
+                    <NumberInput
+                        pretext="Total Höjd (H1)"
+                        postfix="mm"
+                        parentCallback={this.totalHeightCallback}
+                        myNumber={this.state.totalHeight}
+                    />
+
+                    <NumberInput
+                        pretext="Takvinkel (V)"
+                        postfix="grader"
+                        parentCallback={this.roofAngleCallback}
+                        myNumber={this.state.roofAngle}
+                    />
+                </View>
+
 
                             <NumberInput
                                 pretext={'Avstand från mone (A2)'}
@@ -84,6 +150,9 @@ export default class HouseType extends Component {
             </View>
         );
     }
+}
+export function returnState() {
+    return this.state;
 }
 
 const styles = StyleSheet.create({

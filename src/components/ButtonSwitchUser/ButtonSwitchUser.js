@@ -6,16 +6,49 @@ import {
     TouchableOpacity,
     View,
     Text,
+    AsyncStorage,
 } from 'react-native';
 import globalStyles from '../../styles/globalStyles';
 
 export default class ButtonSwitchUser extends React.Component {
     state = {
       modalVisible: false,
+      userType: '',
+    }
+
+    /**
+    * @return object userType
+    */
+    componentWillMount() {
+        this.fetchUserType();
+    }
+
+    /**
+    * @return object userType
+    */
+    fetchUserType = async () => {
+      await AsyncStorage.getItem('userType')
+          .then((value) =>
+              this.setState({ userType : value }))
+          .catch(error => {
+              console.log(error);
+          });
     }
 
     setModalVisible(visible) {
       this.setState({modalVisible: visible});
+    }
+
+    /**
+    * @param String
+    */
+    async setUserType(value) {
+      try {
+        await AsyncStorage.setItem('userType', value);
+        this.setState({ userType : value });
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     render() {
@@ -44,6 +77,7 @@ export default class ButtonSwitchUser extends React.Component {
                             </View>
                             <TouchableOpacity style={styles.buttonSelectUser}
                                 onPress={() => {
+                                 this.setUserType('retailer')
                                  this.setModalVisible(!this.state.modalVisible)
                             }}>
                                 <Text style={styles.buttonText}>
@@ -52,6 +86,7 @@ export default class ButtonSwitchUser extends React.Component {
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.buttonSelectUser}
                                 onPress={() => {
+                                 this.setUserType('constructor')
                                  this.setModalVisible(!this.state.modalVisible)
                             }}>
                                 <Text style={styles.buttonText}>
@@ -60,6 +95,7 @@ export default class ButtonSwitchUser extends React.Component {
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.buttonSelectUser}
                                 onPress={() => {
+                                 this.setUserType('individual')
                                  this.setModalVisible(!this.state.modalVisible)
                             }}>
                                 <Text style={styles.buttonText}>
