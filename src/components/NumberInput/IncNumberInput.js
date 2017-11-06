@@ -99,7 +99,7 @@ export default class IncNumberInput extends React.Component {
                     style={{width: 40}}
                     keyboardType = 'numeric'
                     onChangeText = {(text) => this.onChangeText(text)}
-                    value = {this.state.myNumber.toString()}
+                    value = {this.state.myNumber}
                     />
                     <View>
                         <TouchableOpacity

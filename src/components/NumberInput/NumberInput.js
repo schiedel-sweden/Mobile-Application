@@ -75,7 +75,7 @@ export default class NumberInput extends React.Component {
                         keyboardType = 'numeric'
                         onChangeText = {(text) => this.onChangeText(text)}
                         placeholder='0'
-                        value = {this.state.myNumber.toString()}
+                        value = {this.state.myNumber}
                     />
 
                     <Text>{this.props.postfix}</Text>
