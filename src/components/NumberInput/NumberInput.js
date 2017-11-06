@@ -53,15 +53,31 @@ export default class NumberInput extends React.Component {
 
     render() {
         return (
-            <View style={styles.input}>
+            <View style={
+                        [styles.container
+                        ,styles.input
+                        ,styles.rowSpaceBetween
+                        ,styles.borderBottom
+                        ,styles.lblWidth
+                        ,this.props.style]
+                      }>
                 <Text>{this.props.pretext}</Text>
+
                 <TextInput
                 keyboardType = 'numeric'
                 onChangeText = {(text) => this.onChangeText(text)}
                 value = {this.state.myNumber}
                 />
 
-                <View>
+                <View style={styles.flexRow}>
+                    <TextInput
+                        style={{width: 40}}
+                        keyboardType = 'numeric'
+                        onChangeText = {(text) => this.onChangeText(text)}
+                        placeholder='0'
+                        value = {this.state.myNumber.toString()}
+                    />
+
                     <Text>{this.props.postfix}</Text>
                 </View>
             </View>
@@ -70,6 +86,24 @@ export default class NumberInput extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        paddingTop: globalStyles.PADDING,
+    },
+    rowSpaceBetween: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    borderBottom: {
+        borderRadius: 1,
+        borderBottomWidth: 1,
+        borderColor: '#B9B9B9',
+    },
+    lblWidth: {
+        width: 285,
+    },
+    flexRow:{
+        flexDirection: 'row',
+    },
     input: {
         backgroundColor: '#EEEEEE',
     }

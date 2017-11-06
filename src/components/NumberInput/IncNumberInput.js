@@ -5,6 +5,7 @@ import {
     Text,
     TextInput,
     TouchableOpacity,
+    Image,
 } from 'react-native';
 
 import globalStyles from '../../styles/globalStyles';
@@ -16,7 +17,9 @@ export default class IncNumberInput extends React.Component {
         this.increment = this.increment.bind(this);
         this.decrement = this.decrement.bind(this);
         this.state ={
+
             myNumber: this.props.myNumber,
+
         }
     }
 
@@ -76,24 +79,42 @@ export default class IncNumberInput extends React.Component {
 
     render() {
         return (
-            <View style={styles.input}>
+            <View style={
+                        [styles.container
+                        ,styles.input
+                        ,styles.rowSpaceBetween
+                        ,styles.borderBottom
+                        ,styles.lblWidth,]
+                      }>
                 <Text>{this.props.piper}</Text>
+
                 <TextInput
                 keyboardType = 'numeric'
                 onChangeText = {(text) => this.onChangeText(text)}
                 value = {this.state.myNumber}
                 />
 
-                <View>
-                    <TouchableOpacity
-                    onPress={() => this.increment(this.state.myNumber)}>
-                        <Text>Inc</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                    onPress={() => this.decrement(this.state.myNumber)}
-                    >
-                        <Text>Dec</Text>
-                    </TouchableOpacity>
+                <View style={styles.flexRow}>
+                    <TextInput
+                    style={{width: 40}}
+                    keyboardType = 'numeric'
+                    onChangeText = {(text) => this.onChangeText(text)}
+                    value = {this.state.myNumber.toString()}
+                    />
+                    <View>
+                        <TouchableOpacity
+                            onPress={() => this.increment(this.state.myNumber)}>
+                            <Image style={styles.icon}
+                                source={require('../../views/Products/img/arrow_opened.png')}
+                            />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => this.decrement(this.state.myNumber)}>
+                            <Image style={styles.icon}
+                                source={require('../../views/Products/img/arrow.png')}
+                            />
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         );
@@ -101,7 +122,30 @@ export default class IncNumberInput extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        paddingTop: globalStyles.PADDING,
+    },
+    rowSpaceBetween: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    borderBottom: {
+        borderRadius: 1,
+        borderBottomWidth: 1,
+        borderColor: '#B9B9B9',
+    },
+    lblWidth: {
+        width: 285,
+    },
+    flexRow:{
+        flexDirection: 'row',
+    },
     input: {
         backgroundColor: '#EEEEEE',
-    }
+    },
+    icon: {
+        alignSelf: 'flex-end',
+        height: 10,
+        width: 10,
+    },
 });
