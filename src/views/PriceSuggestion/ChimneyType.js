@@ -30,7 +30,7 @@ export default class ChimneyType extends Component {
         if (i === 0) {
             this.setState({ choice: 'permeter' });
         }
-        if (i ==0 1) {
+        if (i === 1) {
             this.setState({ choice: 'solid vent' });
         }
         if (i === 2) {
