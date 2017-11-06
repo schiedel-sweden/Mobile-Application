@@ -25,53 +25,158 @@ import ButtonNav from './ButtonNav';
 export default class PriceSuggestion extends Component {
     constructor(props) {
         super(props);
-        // bind all functions
-        this.chimneytype     = this.chimneytype.bind(this);
-        this.housetype       = this.housetype.bind(this);
-        this.chimney         = this.chimney.bind(this);
-        this.customerdetails = this.customerdetails.bind(this);
-        this.pricepage       = this.pricepage.bind(this);
-        this.order           = this.order.bind(this);
+
         // set initial state
         this.state = {
-            activeTab: <ChimneyType />,
-            currentTab: 'chimneytype',
+            activeTab: null,
+            currentTab: '',
+
+            chimneyTypeState: {
+                choice: '',
+                options: ['permeter', 'solid vent', 'etesjepipe', 'rondo'],
+            },
+            houseTypeState: {
+                myNumber: '',
+                pipeNumber: null,
+                totalHeight: null,
+                heightAboveRoof: null,
+                roofAngle: null,
+            },
+            chimneyState: {
+                listChimneyTypeLbl: ["Alternative 1", "Alternative 2"],
+                overRoof: {
+                    pusset: false,
+                    firkantBeslag: false,
+                    feieluke: false,
+                    flexiroll: false,
+                    wakaflex: false,
+
+                    tegelforblendet: false,
+                    topavdekning: false,
+                    undertakTetting: false,
+                    feieplatform: false,
+                },
+                options: {
+                    wireset: false,
+                    lokk: false,
+                }
+
+            },
+            customerDetailState: {
+                // "top" form
+                company: {
+                    company: '',
+                },
+                name: {
+                    name: '',
+                    surname: '',
+                },
+                adress: {
+                    adress: '',
+                    postnumber: null,
+                },
+                city: {
+                    city: '',
+                    country: '',
+                },
+                contact: {
+                    phone: null,
+                    email: '',
+                },
+
+                // "bottom" form
+                receiver: {
+                    receiver: '',
+                },
+                receiverAdress: {
+                    adress: '',
+                    postnumber: null,
+                },
+                receiverCity: {
+                    city: '',
+                    country: '',
+                },
+
+                checked: false,
+
+            },
+            // might not be needed as the state is set in the component from HouseType.js, testing has to be done
+            prisePageState: null,
+            orderState: null,
+
         };
     }
 
-    // functions to set active tab to set tab file
-    chimneytype() {
+    componentWillMount = () => {
         this.setState({
-            activeTab: <ChimneyType />,
+            activeTab: <ChimneyType
+                            propState={this.state.chimneyTypeState}
+                            parentCallback={this.chimneyTypeCallback} />,
+            currentTab: 'chimneytype',
+        });
+    }
+
+
+    chimneyTypeCallback = (state) => {
+        this.setState({chimneyTypeState: state});
+    }
+    houseTypeCallback = (state) => {
+        this.setState({houseTypeState: state});
+    }
+    chimneyCallback = (state) => {
+        this.setState({chimneyState: state});
+    }
+    customerDetailCallback = (state) => {
+        this.setState({customerDetailState: state});
+    }
+    pricePageCallback = (state) => {
+        this.setState({pricePageState: state});
+    }
+    orderCallback = (state) => {
+        this.setState({orderState: state});
+    }
+
+
+    // functions to set active tab to set tab file
+    chimneytype = () => {
+        this.setState({
+            activeTab: <ChimneyType
+                            propState={this.state.chimneyTypeState}
+                            parentCallback={this.chimneyTypeCallback} />,
             currentTab: 'chimneytype',
         });
     }
     // pass offertnummer as the prop "offNum"
-    housetype() {
+    housetype = () => {
         this.setState({
-            activeTab: <HouseType quotNum={ QUOT_NUMBER } />,
+            activeTab: <HouseType
+                            quotNum={ QUOT_NUMBER }
+                            propState={this.state.houseTypeState}
+                            parentCallback={this.houseTypeCallback}/>,
             currentTab: 'housetype',
         });
     }
-    chimney() {
+    chimney = () => {
         this.setState({
-            activeTab: <Chimney />,
+            activeTab: <Chimney
+                            propState={this.state.chimneyState}
+                            parentCallback={this.chimneyCallback}/>,
             currentTab: 'chimney',
         });
     }
-    customerdetails() {
+    customerdetails = () => {
         this.setState({
             activeTab: <CustomerDetails />,
             currentTab: 'customerdetails',
         });
     }
-    pricepage() {
+    pricepage = () => {
         this.setState({
             activeTab: <PricePage />,
             currentTab: 'pricepage',
         });
     }
-    order() {
+    order = () => {
         this.setState({
             activeTab: <Order />,
             currentTab: 'order',
@@ -85,7 +190,7 @@ export default class PriceSuggestion extends Component {
     // 4: KUNDUPGIFTER
     // 5: PRISFÖRSLAG
     // 6: BESTÄLLNING
-    render() {
+    render = () => {
         return (
             <View style={styles.container}>
                 <Header />

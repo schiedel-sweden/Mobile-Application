@@ -16,8 +16,25 @@ export default class Chimney extends Component {
         super(props);
         this.state = {
             listChimneyTypeLbl: ["Alternative 1", "Alternative 2"],
+            overRoof: this.props.propState.overRoof,
+            options: this.props.propState.options,
+
         }
         this.listChimneyTypeCheckbox = this.listChimneyTypeCheckbox.bind(this);
+        this.overRoofCallback = this.overRoofCallback.bind(this);
+        this.optionsCallback = this.optionsCallback.bind(this);
+    }
+    componentWillMount = () => {
+        this.setState({
+            overRoof: this.props.propState.overRoof,
+            options: this.props.propState.options,
+        });
+    }
+    componentWillReceiveProps = (newprops) => {
+        this.setState({
+            overRoof: newprops.propState.overRoof,
+            options: newprops.propState.options,
+        });
     }
 
     /**
@@ -32,6 +49,35 @@ export default class Chimney extends Component {
         );
         return listChimneyTypeCheckbox;
     }
+    callback = () => {
+        this.props.parentCallback(this.state);
+    }
+
+
+    async overRoofCallback(response){
+        try {
+            await this.setState({
+                overRoof: response,
+            });
+            this.callback();
+        }
+        catch(error) {
+            console.log(error);
+        }
+
+    }
+    async optionsCallback(response){
+        try {
+            await this.setState({
+                options: response,
+            });
+            this.callback();
+        }
+        catch(error) {
+            console.log(error);
+        }
+
+    }
 
     render() {
         return (
@@ -43,11 +89,15 @@ export default class Chimney extends Component {
 
                 <View style={styles.sectionContainer}>
                     <Text style={globalStyles.h3}>Över tak</Text>
-                    <OfRoof />
+                    <OfRoof
+                        propState={this.state.overRoof}
+                        parentCallback={this.overRoofCallback}/>
                 </View>
                 <View style={styles.sectionContainer}>
                     <Text style={globalStyles.h3}>Tillval</Text>
-                    <Options />
+                    <Options
+                        propState={this.state.options}
+                        parentCallback={this.optionsCallback}/>
                 </View>
             </View>
         );
