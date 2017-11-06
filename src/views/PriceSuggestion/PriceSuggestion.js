@@ -166,7 +166,9 @@ export default class PriceSuggestion extends Component {
     }
     customerdetails = () => {
         this.setState({
-            activeTab: <CustomerDetails />,
+            activeTab: <CustomerDetails
+                            propState={this.state.customerDetailState}
+                            parentCallback={this.customerDetailCallback}/>,
             currentTab: 'customerdetails',
         });
     }

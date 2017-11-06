@@ -171,91 +171,185 @@ export default class CustomerDetails extends Component {
         // as the top form
         this.changeStates = this.changeStates.bind(this);
     }
+    componentWillMount = () => {
+        this.setState({
+            company: this.props.propState.company,
+            name: this.props.propState.name,
+            adress: this.props.propState.adress,
+            city: this.props.propState.city,
+            contact: this.props.propState.contact,
 
-    updateCompany(value) {
-        if(this.state.checked) {
-            this.setState({
-                receiver:{
-                    receiver: value.company,
-                },
+            receiver: this.props.propState.receiver,
+            receiverAdress: this.props.propState.receiverAdress,
+            receiverCity: this.props.propState.receiverCity,
+            checked: this.props.propState.checked,
+        });
+    }
+    componentWillReceiveProps = (newprops) => {
+        this.setState({
+            company: newprops.propState.company,
+            name: newprops.propState.name,
+            adress: newprops.propState.adress,
+            city: newprops.propState.city,
+            contact: newprops.propState.contact,
+
+            receiver: newprops.propState.receiver,
+            receiverAdress: newprops.propState.receiverAdress,
+            receiverCity: newprops.propState.receiverCity,
+            checked: newprops.propState.checked,
+        });
+    }
+
+    callback = () => {
+        this.props.parentCallback(this.state);
+    }
+
+    async updateCompany(value) {
+        try {
+            if(this.state.checked) {
+                await this.setState({
+                    receiver:{
+                        receiver: value.company,
+                    },
+                });
+            }
+            await this.setState({
+                company: value,
             });
+            this.callback();
+        }
+        catch (error) {
+            console.log(error);
         }
 
-        this.setState({
-            company: value,
-        });
+
 
     }
-    updateName(value) {
-        this.setState({
-            name: value,
-        });
+    async updateName(value) {
+        try {
+            await this.setState({
+                name: value,
+            });
+            this.callback();
+        }
+        catch (error) {
+            console.log(error);
+        }
+
 
     }
-    updateAdress(value) {
-        if(this.state.checked) {
-            this.setState({
+    async updateAdress(value) {
+        try {
+            if(this.state.checked) {
+                await this.setState({
+                    receiverAdress: value,
+                });
+            }
+            await this.setState({
+                adress: value,
+            });
+            this.callback();
+        }
+        catch (error) {
+            console.log(error);
+        }
+
+    }
+    async updateCity(value) {
+        try {
+            if(this.state.checked) {
+                await this.setState({
+                    receiverCity: value,
+                });
+            }
+            await this.setState({
+                city: value,
+            });
+            this.callback();
+        }
+        catch (error) {
+            console.log(error);
+        }
+
+    }
+    async updateContact(value) {
+        try {
+            await this.setState({
+                contact: value,
+            });
+            this.callback();
+        }
+        catch (error) {
+            console.log(error);
+        }
+
+    }
+
+    async updateReceiver(value) {
+        try {
+            await this.setState({
+                receiver: value,
+            });
+            this.callback();
+        }
+        catch(error) {
+            console.log(error);
+        }
+
+    }
+    async updateReceiverAdress(value) {
+        try {
+            await this.setState({
                 receiverAdress: value,
             });
+            this.callback();
         }
-        this.setState({
-            adress: value,
-        });
+        catch (error) {
+            console.log(error);
+        }
+
     }
-    updateCity(value) {
-        if(this.state.checked) {
-            this.setState({
+    async updateReceiverCity(value) {
+        try {
+            await this.setState({
                 receiverCity: value,
             });
+            this.callback();
         }
-        this.setState({
-            city: value,
-        });
-    }
-    updateContact(value) {
-        this.setState({
-            contact: value,
-        });
-    }
+        catch (error) {
+            console.log(error);
+        }
 
-    updateReceiver(value) {
-        this.setState({
-            receiver: value,
-        });
-    }
-    updateReceiverAdress(value) {
-        this.setState({
-            receiverAdress: value,
-        });
-    }
-    updateReceiverCity(value) {
-        this.setState({
-            receiverCity: value,
-        });
     }
 
 
-    changeStates(checked) {
+    async changeStates(checked) {
 
+        try {
+            if (!checked) {
+                await this.setState({
+                    receiver: { receiver: this.state.company.company},
+                    receiverAdress: this.state.adress,
+                    receiverCity: this.state.city,
+                });
+            }
+            else {
+                await this.setState({
+                    receiver: {receiver: '',},
+                    receiverAdress: {adress: '', postnumber: null},
+                    receiverCity: {city: '', country: ''},
+                });
+            }
 
-        if (!checked) {
-            this.setState({
-                receiver: { receiver: this.state.company.company},
-                receiverAdress: this.state.adress,
-                receiverCity: this.state.city,
+            await this.setState({
+                checked: !this.state.checked,
             });
-        }
-        else {
-            this.setState({
-                receiver: {receiver: '',},
-                receiverAdress: {adress: '', postnumber: null},
-                receiverCity: {city: '', country: ''},
-            });
-        }
+            this.callback();
 
-        this.setState({
-            checked: !this.state.checked,
-        });
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
 
 
