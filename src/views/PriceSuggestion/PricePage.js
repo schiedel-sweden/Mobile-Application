@@ -5,10 +5,14 @@ import {
     StyleSheet,
     Text,
 } from 'react-native';
+import GridBox from '../../components/GridBoxes/GridBox';
+import GridBoxInc from '../../components/GridBoxes/GridBoxInc';
 
 import { QUOT_NUMBER } from '../../components/redux-items/actions.js';
 
 import { returnState } from './HouseType.js';
+
+
 
 
 export default class PricePage extends Component {
@@ -77,6 +81,15 @@ export default class PricePage extends Component {
                     <View>
                         <Text>Forningsrør: </Text>
                         {/* Dont know where this info comes from */}
+                    </View>
+                    <View>
+                        <GridBox
+                        text='test box, please ignore'/>
+                    </View>
+                    <View>
+                        <GridBoxInc
+                            number={0}
+                        />
                     </View>
                 </View>
 
