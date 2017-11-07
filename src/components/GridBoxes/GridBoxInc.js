@@ -48,6 +48,7 @@ export default class GridBoxInc extends Component {
                 </TouchableOpacity>
 
                 <TextInput
+                    style={styles.textinput}
                     editable={false}
                     value={this.state.number.toString()} />
 
@@ -75,8 +76,20 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         paddingRight: 10,
         paddingLeft: 10,
-        alignItems: 'center',
         justifyContent: 'space-between',
     },
+    textinput: {
+        flex: 1,
+        justifyContent: 'space-between',
+    },
+    decrement: {
+        flex: 1,
+        justifyContent: 'space-between',
+    },
+    increment: {
+        flex: 1,
+        justifyContent: 'space-between',
+    },
+
 
 });
