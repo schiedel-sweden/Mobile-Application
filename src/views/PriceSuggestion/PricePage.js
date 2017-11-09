@@ -3,8 +3,12 @@ import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
+    TextInput,
     Text,
+    Image,
 } from 'react-native';
+import Checkbox from 'react-native-checkbox';
+
 import GridBox from '../../components/GridBoxes/GridBox';
 import GridBoxInc from '../../components/GridBoxes/GridBoxInc';
 
@@ -23,6 +27,15 @@ export default class PricePage extends Component {
             totalHeight: returnState.totalHeight,
             heightAboveRoof: returnState.heightAboveRoof,
             roofAngle: returnState.roofAngle,
+
+            rebateText: 'Rabatt på totalsumma (%)',
+            shippingText: 'Frakt (kr)',
+
+            tillbud: false,
+            ordrebekreftelse: false,
+            totalsum: false,
+
+            beskjed: '',
 
         };
     }
@@ -82,18 +95,209 @@ export default class PricePage extends Component {
                         <Text>Forningsrør: </Text>
                         {/* Dont know where this info comes from */}
                     </View>
+
                     <View>
+                        <Text>Andre: </Text>
+                    </View>
+
+                    <View style={{flex:1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <Text>NOBBNUMMER</Text>
+
+                        <Text>BESKRIVELSE</Text>
+
+                        <Text>ANTALL</Text>
+
+                        <Text>PRIS</Text>
+
+                        <Text>SUM</Text>
+
+                        <Text>RABATT (%)</Text>
+                    </View>
+
+                    {/* need one of these views for each unique item picked */}
+                    {/* might have to make each row one component to simplify some logic, but this is a starting point*/}
+                    <View style={{flex:1, flexDirection: 'row', justifyContent: 'space-between'}}>
+
+                        {/* text should come from the serial number of the chosen item*/}
                         <GridBox
-                        text='test box, please ignore'/>
-                    </View>
-                    <View>
+                            text='12345678' />
+                        {/* description of item*/}
+                        <GridBox
+                            text='Beskrivelse' />
+
+                        {/* number should come from how many of that item were chosen*/}
                         <GridBoxInc
-                            number={0}
-                        />
+                            number={1} />
+
+                        {/* price should come from somewhere, no idea*/}
+                        <GridBox
+                            text='10.00' />
+
+                        {/* sum should be number multiplied with the price, pretty obvious*/}
+                        <GridBox
+                            text='10.00' />
+
+                        {/* rabatt should only be able to be modified by one type of user I assume*/}
+                        <GridBoxInc
+                            number={0} />
                     </View>
+                    <View style={{flex:1, flexDirection: 'row', justifyContent: 'space-between'}}>
+
+                        {/* text should come from the serial number of the chosen item*/}
+                        <GridBox
+                            text='12345678' />
+                        {/* description of item*/}
+                        <GridBox
+                            text='Beskrivelse' />
+
+                        {/* number should come from how many of that item were chosen*/}
+                        <GridBoxInc
+                            number={1} />
+
+                        {/* price should come from somewhere, no idea*/}
+                        <GridBox
+                            text='10.00' />
+
+                        {/* sum should be number multiplied with the price, pretty obvious*/}
+                        <GridBox
+                            text='10.00' />
+
+                        {/* rabatt should only be able to be modified by one type of user I assume*/}
+                        <GridBoxInc
+                            number={0} />
+                    </View>
+
+                    <View style={{flex:1, flexDirection: 'row', justifyContent: 'space-between'}}>
+
+                        {/* text should come from the serial number of the chosen item*/}
+                        <GridBox
+                            text='12345678' />
+                        {/* description of item*/}
+                        <GridBox
+                            text='Beskrivelse' />
+
+                        {/* number should come from how many of that item were chosen*/}
+                        <GridBoxInc
+                            number={1} />
+
+                        {/* price should come from somewhere, no idea*/}
+                        <GridBox
+                            text='10.00' />
+
+                        {/* sum should be number multiplied with the price, pretty obvious*/}
+                        <GridBox
+                            text='10.00' />
+
+                        {/* rabatt should only be able to be modified by one type of user I assume*/}
+                        <GridBoxInc
+                            number={0} />
+                    </View>
+
+                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+
+                        <TextInput
+                            style={{flex: 1, backgroundColor: "#d3d3d3"}}
+                            onChangeText={(text) => this.setState({rebateText: text})}
+                            value={this.state.rebateText}
+                            />
+
+                        <TextInput
+                            style={{flex: 1, backgroundColor: "#d3d3d3"}}
+                            onChangeText={(text) => this.setState({shippingText: text})}
+                            value={this.state.shippingText}
+                            />
+                    </View>
+
+                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                            <Text>NETTO</Text>
+                            {/* total sum of all above */}
+                            <Text>netto sum or smth</Text>
+                        </View>
+
+                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                            <Text>MOMS (25%)</Text>
+                            {/* 25% of the total sum */}
+                            <Text>25% av netto</Text>
+                        </View>
+                    </View>
+
+                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                            <Text>SUM</Text>
+                            {/* total sum of all above */}
+                            <Text>netto plus moms</Text>
+                        </View>
+
+                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+
+                        </View>
+                    </View>
+
+                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <Checkbox
+                            label="Tillbud"
+                            checked={this.state.tillbud}
+                            checkboxStyle={this.state.tillbud ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
+                            onChange={() => this.setState({tillbud: !this.state.tillbud})} />
+
+                        <Checkbox
+                            label="Ordrebekreftelse"
+                            checked={this.state.ordrebekreftelse}
+                            checkboxStyle={this.state.ordrebekreftelse ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
+                            onChange={() => this.setState({ordrebekreftelse: !this.state.ordrebekreftelse})} />
+
+                        <Checkbox
+                            label="Vis kun totalsum"
+                            checked={this.state.totalsum}
+                            checkboxStyle={this.state.totalsum ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
+                            onChange={() => this.setState({totalsum: !this.state.totalsum})} />
+
+                    </View>
+
+                    <View>
+                        <Text>BESKJED</Text>
+
+                        <TextInput
+                            style={{flex: 1, backgroundColor: "#d3d3d3"}}
+                            onChangeText={(text) => this.setState({beskjed: text})}
+                            value={this.state.beskjed}
+                            />
+                    </View>
+
+
+                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+
+                        <View>
+                            <Image
+                                style={{height: 250, width: 250, backgroundColor: '#F9CE3C', borderRadius: 10, borderColor: '#000', borderWidth: 5,}}
+                                source={require('../../images/save.png')} />
+                        </View>
+
+                        <View>
+                            <Image
+                                style={{height: 250, width: 250, backgroundColor: '#F9CE3C', borderRadius: 10, borderColor: '#000', borderWidth: 5,}}
+                                source={require('../../images/printer.png')} />
+                        </View>
+
+
+                    </View>
+
+                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', }}>
+
+                        <View style={{backgroundColor: '#F9CE3C', borderRadius: 10, borderColor: '#000', borderWidth: 5, }}>
+                            <Text style={{fontSize: 24}}>Lagre som PDF</Text>
+                        </View>
+
+                        <View style={{backgroundColor: '#F9CE3C', borderRadius: 10, borderColor: '#000', borderWidth: 5, }}>
+                            <Text style={{fontSize: 24}}>Send PDF med e-post</Text>
+                        </View>
+
+
+                    </View>
+
                 </View>
 
-                <Text>Prisforslag</Text>
             </View>
 
         );

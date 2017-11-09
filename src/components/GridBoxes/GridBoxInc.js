@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'row',
-        maxWidth: 200,
+        maxWidth: 90,
         backgroundColor: '#F9CE3C',
         borderRadius: 10,
         borderColor: '#000',
@@ -76,20 +76,12 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         paddingRight: 10,
         paddingLeft: 10,
-        justifyContent: 'space-between',
+        justifyContent: 'center',
     },
     textinput: {
         flex: 1,
-        justifyContent: 'space-between',
     },
-    decrement: {
-        flex: 1,
-        justifyContent: 'space-between',
-    },
-    increment: {
-        flex: 1,
-        justifyContent: 'space-between',
-    },
+
 
 
 });
