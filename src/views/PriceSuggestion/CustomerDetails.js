@@ -8,6 +8,7 @@ import {
     Image,
 } from 'react-native';
 
+import globalStyles from '../../styles/globalStyles';
 import Checkbox from 'react-native-checkbox';
 
 const t = require('tcomb-form-native');
@@ -16,10 +17,15 @@ const Form = t.form.Form;
 const _ = require('lodash');
 
 const stylesheet = _.cloneDeep(t.form.Form.stylesheet);
+const stylesheetRow = _.cloneDeep(t.form.Form.stylesheet);
 
-stylesheet.fieldset = {
-    flexDirection: 'row'
+stylesheetRow.fieldset = {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
 };
+
+stylesheetRow.formGroup.normal.flex = 0.48;
+stylesheetRow.formGroup.error.flex = 1;
 
 stylesheet.formGroup.normal.flex = 1;
 stylesheet.formGroup.error.flex = 1;
@@ -65,16 +71,10 @@ const Receiver = t.struct({
 // city, same as above!
 
 
-
-
-const options={
+const optionsRow={
     auto: 'none',
-    stylesheet: stylesheet,
+    stylesheet: stylesheetRow,
     fields: {
-        company: {
-            placeholder: 'Företag',
-            error: 'Obligatoriskt!',
-        },
         name: {
             placeholder: 'Förnamn',
             error: 'Obligatoriskt!',
@@ -107,13 +107,22 @@ const options={
             placeholder: 'E-post',
             error: 'Obligatoriskt!',
         },
+    }
+};
+
+const options={
+    auto: 'none',
+    stylesheet: stylesheet,
+    fields: {
+        company: {
+            placeholder: 'Företag',
+            error: 'Obligatoriskt!',
+        },
         receiver: {
             placeholder: 'Mottagare',
             error: 'Obligatoriskt!',
         },
-
     }
-
 };
 export default class CustomerDetails extends Component {
 
@@ -356,8 +365,8 @@ export default class CustomerDetails extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <View>
-                    <Text>Faktureringsadress</Text>
+                <View style={styles.sectionContainer}>
+                    <Text style={globalStyles.h3}>Faktureringsadress</Text>
                     <Form
                     ref='company'
                     value={this.state.company}
@@ -371,7 +380,7 @@ export default class CustomerDetails extends Component {
                     value={this.state.name}
                     onChange={this.updateName}
                     type={Name}
-                    options={options}
+                    options={optionsRow}
                     />
 
                     <Form
@@ -379,7 +388,7 @@ export default class CustomerDetails extends Component {
                     value={this.state.adress}
                     onChange={this.updateAdress}
                     type={Adress}
-                    options={options}
+                    options={optionsRow}
                     />
 
                     <Form
@@ -387,7 +396,7 @@ export default class CustomerDetails extends Component {
                     value={this.state.city}
                     onChange={this.updateCity}
                     type={City}
-                    options={options}
+                    options={optionsRow}
                     />
 
                     <Form
@@ -395,54 +404,54 @@ export default class CustomerDetails extends Component {
                     value={this.state.contact}
                     onChange={this.updateContact}
                     type={Contact}
-                    options={options}
+                    options={optionsRow}
                     />
 
+                    <TouchableOpacity
+                    style={styles.button}
+                    onPress={this.testFunction}>
 
+                        <Text>Submit</Text>
+                    </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity
-                style={styles.button}
-                onPress={this.testFunction}>
+                <View style={styles.sectionContainer}>
+                    <View style={styles.row}>
+                        <View style={{paddingRight: 80}}>
+                            <Text style={globalStyles.h3}>Leveransadress</Text>
+                        </View>
 
-                    <Text>Submit</Text>
-                </TouchableOpacity>
+                        <Checkbox
+                        label="Samma som faktureringsadress"
+                        checked={this.state.checked}
+                        checkboxStyle={this.state.checked ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
+                        onChange={() => this.changeStates(this.state.checked)}/>
 
-                <View>
-                    <Text>Leveransadress</Text>
+                    </View>
+                    <View>
+                        <Form
+                        ref='receiver'
+                        value={this.state.receiver}
+                        onChange={this.updateReceiver}
+                        type={Receiver}
+                        options={options}
+                        />
 
-
-                    <Checkbox
-                    label="Samma som faktureringsadress"
-                    checked={this.state.checked}
-                    checkboxStyle={this.state.checked ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                    onChange={() => this.changeStates(this.state.checked)}/>
-
-                </View>
-                <View>
-                    <Form
-                    ref='receiver'
-                    value={this.state.receiver}
-                    onChange={this.updateReceiver}
-                    type={Receiver}
-                    options={options}
-                    />
-
-                    <Form
-                    ref='receiverAdress'
-                    value={this.state.receiverAdress}
-                    onChange={this.updateReceiverAdress}
-                    type={Adress}
-                    options={options}
-                    />
-                    <Form
-                    ref='receiverCity'
-                    value={this.state.receiverCity}
-                    onChange={this.updateReceiverCity}
-                    type={City}
-                    options={options}
-                    />
-
+                        <Form
+                        ref='receiverAdress'
+                        value={this.state.receiverAdress}
+                        onChange={this.updateReceiverAdress}
+                        type={Adress}
+                        options={optionsRow}
+                        />
+                        <Form
+                        ref='receiverCity'
+                        value={this.state.receiverCity}
+                        onChange={this.updateReceiverCity}
+                        type={City}
+                        options={optionsRow}
+                        />
+                    </View>
                 </View>
             </View>
 
@@ -451,7 +460,15 @@ export default class CustomerDetails extends Component {
 }
 const styles = StyleSheet.create({
     container: {
+        padding: globalStyles.PADDING,
         alignSelf: 'stretch',
+    },
+    sectionContainer: {
+        paddingHorizontal: globalStyles.PADDING,
+        paddingBottom: globalStyles.PADDING,
+    },
+    row: {
+        flexDirection: 'row',
     },
     button: {
         borderRadius: 5,
