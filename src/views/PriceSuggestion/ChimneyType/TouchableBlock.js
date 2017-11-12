@@ -47,10 +47,10 @@ export default class TouchableBlock extends Component {
     */
     getArrowIcon(){
         const arrowIcon = this.state.visible
-            ? <Image style={[navStyles.icon,styles.img]}
+            ? <Image style={navStyles.icon}
                      source={require('../img/arrow_opened.png')}
               />
-            : <Image style={[navStyles.icon,styles.img]}
+            : <Image style={navStyles.icon}
                      source={require('../img/arrow.png')}
               />;
         return arrowIcon;
@@ -74,7 +74,15 @@ export default class TouchableBlock extends Component {
                                 {this.props.chimneyType.ingress}
                             </Text>
                         </View>
-                        {this.getArrowIcon()}
+                        <View style={[{flexDirection: 'row'},styles.img]}>
+                            <TouchableOpacity
+                                /*onPress={function}*/>
+                                <Image style={[navStyles.icon,{marginRight: 50}]}
+                                       source={require('../img/add.png')}
+                                />
+                            </TouchableOpacity>
+                            {this.getArrowIcon()}
+                        </View>
                     </View>
                 </TouchableOpacity>
                 {this.state.visible &&
