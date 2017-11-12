@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
     View,
+    TouchableOpacity,
     StyleSheet,
     Text,
 } from 'react-native';
@@ -21,9 +22,16 @@ export default class Detail extends Component {
     render() {
         return (
           <View style={styles.containerLightBackground}>
-              <Text style={[globalStyles.p, styles.text]}>
-                  djshaf adskjfna fd askfj asd dsjf dsfjh dsaf jidsf öasfdhkhk
-              </Text>
+              <View style={styles.content}>
+                  <Text style={globalStyles.p}>
+                      djshaf adskjfna fd askfj asd dsjf dsfjh dsaf jidsf öasfdhkhk
+                  </Text>
+                  <TouchableOpacity
+                      style={styles.button}
+                      onPress={this.onPress}>
+                      <Text>Velg Permeter</Text>
+                  </TouchableOpacity>
+              </View>
           </View>
         );
     }
@@ -37,9 +45,19 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#B9B9B9',
     },
-    text: {
+    button: {
+        borderRadius: 5,
+        borderWidth: 2,
+        borderColor: '#333333',
+        backgroundColor: '#F9CE3C',
+        marginTop: globalStyles.PADDING,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    content: {
         paddingHorizontal: globalStyles.PADDING,
-        paddingBottom: globalStyles.PADDING,
-        textAlign: 'left',
+        alignItems: 'center',
     },
 });

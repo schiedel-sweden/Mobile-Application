@@ -76,8 +76,8 @@ export default class TouchableBlock extends Component {
                         </View>
                         <View style={[{flexDirection: 'row'},styles.img]}>
                             <TouchableOpacity
-                                /*onPress={function}*/>
-                                <Image style={[navStyles.icon,{marginRight: 50}]}
+                                onPress={this.onPress}>
+                                <Image style={[navStyles.icon,{marginRight: 40}]}
                                        source={require('../img/add.png')}
                                 />
                             </TouchableOpacity>
