@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import TouchableBlock from './ChimneyType/TouchableBlock';
 
 export default class ChimneyType extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            chimneyType: [{id: 0, tagline: "PERMETER", ingress: "permeter"},
+                         {id: 1, tagline: "SOLID VENT", ingress: "solid vent"},
+                         {id: 2, tagline: "ETESJEPIPE", ingress: "etesjepipe"},
+                         {id: 3, tagline: "RONDO", ingress: "rondo"}],
             choice: '',
             options: ['permeter', 'solid vent', 'etesjepipe', 'rondo'],
         };
         this.touchMethod = this.touchMethod.bind(this);
+        this.listTouchableBlock = this.listTouchableBlock.bind(this);
     }
 
     componentWillMount = () => {
@@ -57,36 +63,24 @@ export default class ChimneyType extends Component {
         this.props.parentCallback(this.state);
     }
 
+    /**
+    * @return TouchableBlock[...]
+    */
+    listTouchableBlock() {
+        const listTouchableBlock = this.state.chimneyType.map((topic, i) =>
+            <TouchableBlock key = {i} chimneyType={topic}
+            visible={this.state.visible1}
+            order={i}
+            touchMethod={this.touchMethod} />
+        );
+        return listTouchableBlock;
+    }
 
     render() {
         return (
             <View>
                 <View>
-                    {this.state.options.map(function(item, i) {
-                        return (
-                            <TouchableOpacity
-                                onPress={function() {
-                                    this.touchMethod(i)
-                                }.bind(this)}
-                                style={styles.items}
-                                key={i} >
-                                <Text>{item}</Text>
-                                <View>
-                                    {i == 0 ? (
-                                        <Text>PERMETER</Text>
-                                    ) : i == 1 ? (
-                                        <Text>SOLID VENT</Text>
-                                    ) : i == 2 ? (
-                                        <Text>ETESJEPIPE</Text>
-                                    ) : i == 3 ? (
-                                        <Text>RONDO</Text>
-                                    ) : (
-                                        <Text>FINNS IKKE</Text>
-                                    )}
-                                </View>
-                            </TouchableOpacity>
-                        );
-                    }, this)}
+                    {this.listTouchableBlock()}
                 </View>
                 <View style={styles.center}>
                     <Text>SKORSTENSTYP</Text>
