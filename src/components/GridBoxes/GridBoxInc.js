@@ -25,17 +25,29 @@ export default class GridBoxInc extends Component {
         }
 
     }
-    increment = () => {
-        this.setState({
+
+    increment = async () => {
+        await this.setState({
             number: this.state.number +1,
         });
+        await this.callMe();
+        this.props.onChange();
+
     }
 
-    decrement = () => {
-        this.setState({
+    decrement = async () => {
+        await this.setState({
             number: this.state.number - 1,
         });
+        await this.callMe();
+        this.props.onChange();
     }
+
+    callMe = () => {
+        this.props.parentCallback(this.state.number);
+    }
+
+
 
 
     render() {

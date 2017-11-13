@@ -18,12 +18,30 @@ export default class GridBox extends Component {
     */
     constructor(props) {
         super(props);
+        this.state = {
+            text: this.props.text,
+        }
     }
+
+    updateState = (newtext) => {
+        this.setState({
+            text: newtext,
+        });
+    }
+
+    componentWillReceiveProps = (newprops) => {
+        this.setState({
+            text: newprops.text,
+        });
+    }
+
+
 
     render() {
         return (
             <View style={styles.border}>
-                <Text>{this.props.text}</Text>
+
+                <Text>{this.state.text}</Text>
 
             </View>
         );
