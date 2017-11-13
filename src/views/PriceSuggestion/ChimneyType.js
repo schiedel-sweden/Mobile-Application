@@ -70,7 +70,8 @@ export default class ChimneyType extends Component {
         const listTouchableBlock = this.state.chimneyType.map((topic, i) =>
             <TouchableBlock key = {i} chimneyType={topic}
             visible={this.state.visible1}
-            order={i}/>
+            order={i}
+            touchMethod={this.touchMethod} />
         );
         return listTouchableBlock;
     }
@@ -80,31 +81,6 @@ export default class ChimneyType extends Component {
             <View>
                 <View>
                     {this.listTouchableBlock()}
-                    {this.state.options.map(function(item, i) {
-                        return (
-                            <TouchableOpacity
-                                onPress={function() {
-                                    this.touchMethod(i)
-                                }.bind(this)}
-                                style={styles.items}
-                                key={i} >
-                                <Text>{item}</Text>
-                                <View>
-                                    {i == 0 ? (
-                                        <Text>PERMETER</Text>
-                                    ) : i == 1 ? (
-                                        <Text>SOLID VENT</Text>
-                                    ) : i == 2 ? (
-                                        <Text>ETESJEPIPE</Text>
-                                    ) : i == 3 ? (
-                                        <Text>RONDO</Text>
-                                    ) : (
-                                        <Text>FINNS IKKE</Text>
-                                    )}
-                                </View>
-                            </TouchableOpacity>
-                        );
-                    }, this)}
                 </View>
                 <View style={styles.center}>
                     <Text>SKORSTENSTYP</Text>

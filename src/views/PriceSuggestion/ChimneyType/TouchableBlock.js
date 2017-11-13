@@ -76,7 +76,9 @@ export default class TouchableBlock extends Component {
                         </View>
                         <View style={[{flexDirection: 'row'},styles.img]}>
                             <TouchableOpacity
-                                onPress={this.onPress}>
+                                onPress={function() {
+                                    this.props.touchMethod(this.props.order)
+                                }.bind(this)}>
                                 <Image style={[navStyles.icon,{marginRight: 40}]}
                                        source={require('../img/add.png')}
                                 />
@@ -86,7 +88,9 @@ export default class TouchableBlock extends Component {
                     </View>
                 </TouchableOpacity>
                 {this.state.visible &&
-                  <Detail />}
+                  <Detail order={this.props.order}
+                          touchMethod={this.props.touchMethod}
+                  />}
             </View>
         );
     }

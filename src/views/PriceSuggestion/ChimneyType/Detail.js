@@ -28,7 +28,9 @@ export default class Detail extends Component {
                   </Text>
                   <TouchableOpacity
                       style={styles.button}
-                      onPress={this.onPress}>
+                      onPress={function() {
+                          this.props.touchMethod(this.props.order)
+                      }.bind(this)}>
                       <Text>Velg Permeter</Text>
                   </TouchableOpacity>
               </View>
