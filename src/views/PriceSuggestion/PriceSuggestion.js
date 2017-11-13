@@ -101,7 +101,9 @@ export default class PriceSuggestion extends Component {
 
             },
             // might not be needed as the state is set in the component from HouseType.js, testing has to be done
-            prisePageState: null,
+            prisePageState: {
+                pipe: null
+            },
             orderState: null,
 
         };
@@ -113,12 +115,21 @@ export default class PriceSuggestion extends Component {
                             propState={this.state.chimneyTypeState}
                             parentCallback={this.chimneyTypeCallback} />,
             currentTab: 'chimneytype',
+            prisePageState: {
+                pipe: this.state.chimneyTypeState.choice,
+            }
         });
     }
 
 
     chimneyTypeCallback = (state) => {
-        this.setState({chimneyTypeState: state});
+        this.setState({
+            chimneyTypeState: state,
+            prisePageState: {
+                pipe: state.choice,
+            },
+        });
+
     }
     houseTypeCallback = (state) => {
         this.setState({houseTypeState: state});
@@ -174,7 +185,8 @@ export default class PriceSuggestion extends Component {
     }
     pricepage = () => {
         this.setState({
-            activeTab: <PricePage />,
+            activeTab: <PricePage
+                            propState={this.state.prisePageState}/>,
             currentTab: 'pricepage',
         });
     }

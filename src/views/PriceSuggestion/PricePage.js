@@ -38,9 +38,24 @@ export default class PricePage extends Component {
 
             beskjed: '',
 
+            pipe: null,
+
         };
     }
 
+    componentWillMount = () => {
+        this.setState({
+            pipe: this.props.propState.pipe,
+
+        });
+    }
+
+    componentWillReceiveProps = (newprops) => {
+        this.setState({
+            pipeNumber: newprops.propState.pipeNumber,
+
+        })
+    }
 
     render() {
         return (
@@ -53,7 +68,7 @@ export default class PricePage extends Component {
             {/* chosen chimney */}
                 <View>
                     <Text>Din pipe</Text>
-                    <Text>*insert logic for chosen pipe here*</Text>
+                    <Text>{this.state.pipe}</Text>
                 </View>
             {/* information from hustyp page */}
                 <View>
