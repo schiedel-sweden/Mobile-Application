@@ -25,41 +25,48 @@ export default class BoxRow extends Component {
             sum: this.props.sum,
             rabatt: this.props.rabatt,
         }
+        this.calcSum = this.calcSum.bind(this);
 
     }
 
     componentWillMount = () => {
+        this.callMe();
 
     }
 
     componentWillReceiveProps = async (newprops) => {
         await this.setState({
-            number: this.newprops.number,
-            beskrivelse: this.newprops.number,
-            antal: this.newprops.antal,
-            pris: this.newprops.pris,
-            sum: this.props.sum,
-            rabatt: this.props.rabatt,
+            number: newprops.number,
+            beskrivelse: newprops.beskrivelse,
+            antal: newprops.antal,
+            pris: newprops.pris,
+            sum: newprops.sum,
+            rabatt: newprops.rabatt,
         });
-        calcSum();
     }
 
-    calcSum = async () => {
+    async calcSum() {
         let number = this.state.antal;
         let price = this.state.pris;
 
-        let sum = number * price;
+        let totsum = number * price;
         await this.setState({
-            sum: sum,
+            sum: totsum,
         });
+        this.callMe();
+
+
     }
+
 
     callback = async (state) => {
         await this.setState({
             antal: state
         });
-        this.calcSum();
+    }
 
+    callMe = () => {
+        this.props.parentCallback(this.state.sum);
     }
 
 
