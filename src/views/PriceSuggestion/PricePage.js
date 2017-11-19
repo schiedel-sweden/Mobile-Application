@@ -11,6 +11,7 @@ import Checkbox from 'react-native-checkbox';
 
 import GridBox from '../../components/GridBoxes/GridBox';
 import GridBoxInc from '../../components/GridBoxes/GridBoxInc';
+import BoxRow from '../../components/GridBoxes/BoxRow';
 
 import { QUOT_NUMBER } from '../../components/redux-items/actions.js';
 
@@ -37,9 +38,77 @@ export default class PricePage extends Component {
 
             beskjed: '',
 
+            pipe: null,
+
+            sum1: 0,
+            sum2: 0,
+            sum3: 0,
+
+            nettoSum: 0,
+            moms: 0,
+            totalSum: 0,
+
+
         };
     }
 
+    componentWillMount = () => {
+        this.setState({
+            pipe: this.props.propState.pipe,
+
+        });
+    }
+
+    componentWillReceiveProps = (newprops) => {
+        this.setState({
+            pipeNumber: newprops.propState.pipeNumber,
+
+        })
+    }
+
+    parentCallbackOne = async (sum) => {
+        await this.setState({
+            sum1: sum,
+        });
+        this.setTotalSum();
+    }
+    parentCallbackTwo = async (sum) => {
+        await this.setState({
+            sum2: sum,
+        });
+        this.setTotalSum();
+    }
+    parentCallbackThree = async (sum) => {
+        await this.setState({
+            sum3: sum,
+        });
+        this.setTotalSum();
+    }
+
+    setTotalSum = () => {
+        let sum1 = this.state.sum1;
+        let sum2 = this.state.sum2;
+        let sum3 = this.state.sum3;
+
+        let netto = sum1 + sum2 + sum3;
+        let moms = netto / 4;
+        // if moms is NaN, make it 0
+        // should only be needed to be done when first browsing the page
+        moms = moms ? moms : 0;
+
+        let total = netto + moms;
+        // if total is NaN, make it 0
+        // should only be needed to be done when first browsing the page
+        total = total ? total : 0;
+
+        this.setState({
+            nettoSum: netto,
+            totalSum: total,
+            moms: moms,
+        });
+
+
+    }
 
     render() {
         return (
@@ -52,7 +121,7 @@ export default class PricePage extends Component {
             {/* chosen chimney */}
                 <View>
                     <Text>Din pipe</Text>
-                    <Text>*insert logic for chosen pipe here*</Text>
+                    <Text>{this.state.pipe}</Text>
                 </View>
             {/* information from hustyp page */}
                 <View>
@@ -116,82 +185,36 @@ export default class PricePage extends Component {
 
                     {/* need one of these views for each unique item picked */}
                     {/* might have to make each row one component to simplify some logic, but this is a starting point*/}
-                    <View style={{flex:1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                    <BoxRow
+                        number='12312312'
+                        beskrivelse='beskrivelsetext'
+                        antal={0}
+                        pris={10}
+                        sum={this.state.sum1}
+                        rabatt={0}
+                        parentCallback={this.parentCallbackOne}
+                     />
 
-                        {/* text should come from the serial number of the chosen item*/}
-                        <GridBox
-                            text='12345678' />
-                        {/* description of item*/}
-                        <GridBox
-                            text='Beskrivelse' />
+                     <BoxRow
+                         number='12312312'
+                         beskrivelse='beskrivelsetext'
+                         antal={0}
+                         pris={15}
+                         sum={this.state.sum2}
+                         rabatt={0}
+                         parentCallback={this.parentCallbackTwo}
+                      />
 
-                        {/* number should come from how many of that item were chosen*/}
-                        <GridBoxInc
-                            number={1} />
+                      <BoxRow
+                          number='12312312'
+                          beskrivelse='beskrivelsetext'
+                          antal={0}
+                          pris={10}
+                          sum={this.state.sum3}
+                          rabatt={0}
+                          parentCallback={this.parentCallbackThree}
+                       />
 
-                        {/* price should come from somewhere, no idea*/}
-                        <GridBox
-                            text='10.00' />
-
-                        {/* sum should be number multiplied with the price, pretty obvious*/}
-                        <GridBox
-                            text='10.00' />
-
-                        {/* rabatt should only be able to be modified by one type of user I assume*/}
-                        <GridBoxInc
-                            number={0} />
-                    </View>
-                    <View style={{flex:1, flexDirection: 'row', justifyContent: 'space-between'}}>
-
-                        {/* text should come from the serial number of the chosen item*/}
-                        <GridBox
-                            text='12345678' />
-                        {/* description of item*/}
-                        <GridBox
-                            text='Beskrivelse' />
-
-                        {/* number should come from how many of that item were chosen*/}
-                        <GridBoxInc
-                            number={1} />
-
-                        {/* price should come from somewhere, no idea*/}
-                        <GridBox
-                            text='10.00' />
-
-                        {/* sum should be number multiplied with the price, pretty obvious*/}
-                        <GridBox
-                            text='10.00' />
-
-                        {/* rabatt should only be able to be modified by one type of user I assume*/}
-                        <GridBoxInc
-                            number={0} />
-                    </View>
-
-                    <View style={{flex:1, flexDirection: 'row', justifyContent: 'space-between'}}>
-
-                        {/* text should come from the serial number of the chosen item*/}
-                        <GridBox
-                            text='12345678' />
-                        {/* description of item*/}
-                        <GridBox
-                            text='Beskrivelse' />
-
-                        {/* number should come from how many of that item were chosen*/}
-                        <GridBoxInc
-                            number={1} />
-
-                        {/* price should come from somewhere, no idea*/}
-                        <GridBox
-                            text='10.00' />
-
-                        {/* sum should be number multiplied with the price, pretty obvious*/}
-                        <GridBox
-                            text='10.00' />
-
-                        {/* rabatt should only be able to be modified by one type of user I assume*/}
-                        <GridBoxInc
-                            number={0} />
-                    </View>
 
                     <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
 
@@ -212,13 +235,13 @@ export default class PricePage extends Component {
                         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
                             <Text>NETTO</Text>
                             {/* total sum of all above */}
-                            <Text>netto sum or smth</Text>
+                            <Text>{this.state.nettoSum}</Text>
                         </View>
 
                         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
                             <Text>MOMS (25%)</Text>
                             {/* 25% of the total sum */}
-                            <Text>25% av netto</Text>
+                            <Text>{this.state.moms}</Text>
                         </View>
                     </View>
 
@@ -226,7 +249,7 @@ export default class PricePage extends Component {
                         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
                             <Text>SUM</Text>
                             {/* total sum of all above */}
-                            <Text>netto plus moms</Text>
+                            <Text>{this.state.totalSum}</Text>
                         </View>
 
                         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
