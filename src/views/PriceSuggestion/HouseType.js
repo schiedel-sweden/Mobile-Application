@@ -90,60 +90,68 @@ export default class HouseType extends Component {
                         />
                     </View>
 
+                    <View style={styles.sectionContainer}>
+                        <View style={styles.rowSpaceBetween}>
+                            <IncNumberInput
+                                piper="antal piper: "
+                                parentCallback={this.numberPipeCallback}
+                                myNumber={this.state.pipeNumber}
+                            />
 
-                    <View>
-                        <IncNumberInput
-                            piper="antal piper: "
-                            parentCallback={this.numberPipeCallback}
-                            myNumber={this.state.pipeNumber}
-                        />
+                            <NumberInput
+                                pretext="Höjd över tak (H2)"
+                                postfix="mm"
+                                parentCallback={this.heightAboveRoofCallback}
+                                myNumber={this.state.heightAboveRoof}
 
-                        <NumberInput
-                            pretext="Höjd över tak (H2)"
-                            postfix="mm"
-                            parentCallback={this.heightAboveRoofCallback}
-                            myNumber={this.state.heightAboveRoof}
+                            />
+                        </View>
+                        <View style={styles.rowSpaceBetween}>
+                            <NumberInput
+                                pretext="Total Höjd (H1)"
+                                postfix="mm"
+                                parentCallback={this.totalHeightCallback}
+                                myNumber={this.state.totalHeight}
+                            />
 
-                        />
-
-                        <NumberInput
-                            pretext="Total Höjd (H1)"
-                            postfix="mm"
-                            parentCallback={this.totalHeightCallback}
-                            myNumber={this.state.totalHeight}
-                        />
-
-                        <NumberInput
-                            pretext="Takvinkel (V)"
-                            postfix="grader"
-                            parentCallback={this.roofAngleCallback}
-                            myNumber={this.state.roofAngle}
-                        />
-                    </View>
-
-
-                    <NumberInput
-                        pretext={'Avstand från mone (A2)'}
-                        postfix={this.state.postfix}
-                    />
-                </View>
-
-                <View style={[styles.lblWidth,styles.rowSpaceBetween]}>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={this.onPress}>
-                        <Text>Button</Text>
-                    </TouchableOpacity>
-                    <View style={{paddingTop: globalStyles.PADDING * 0.65}}>
-                        <View style={styles.columnCenter}>
-                            <Text style={globalStyles.h2}>=</Text>
+                            <NumberInput
+                                pretext="Takvinkel (V)"
+                                postfix="grader"
+                                parentCallback={this.roofAngleCallback}
+                                myNumber={this.state.roofAngle}
+                            />
                         </View>
                     </View>
-                    <NumberInput
-                        style={{width: 140,}}
-                        pretext={''}
-                        postfix={this.state.postfix}
-                    />
+                    <View style={styles.sectionContainer}>
+                        <Text style={globalStyles.h3}>Beräkna total höjd (H1) och höjd over taket (H2)</Text>
+                        <View style={styles.rowSpaceBetween}>
+                            <NumberInput
+                                pretext={'Höjd till mone (A4)'}
+                                postfix="mm"
+                            />
+                            <NumberInput
+                                pretext={'Avstand från mone (A2)'}
+                                postfix="mm"
+                            />
+                        </View>
+                        <View style={[styles.lblWidth,styles.rowSpaceBetween]}>
+                            <TouchableOpacity
+                                style={styles.button}
+                                onPress={this.onPress}>
+                                <Text>Button</Text>
+                            </TouchableOpacity>
+                            <View style={{paddingTop: globalStyles.PADDING * 0.65}}>
+                                <View style={styles.columnCenter}>
+                                    <Text style={globalStyles.h2}>=</Text>
+                                </View>
+                            </View>
+                            <NumberInput
+                                style={{width: 140,}}
+                                pretext={''}
+                                postfix='mm'
+                            />
+                        </View>
+                    </View>
                 </View>
             </View>
 
