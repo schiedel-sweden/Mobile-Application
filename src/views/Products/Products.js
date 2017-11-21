@@ -11,6 +11,7 @@ import {
 import TouchableBlock from './TouchableBlock';
 import MaterialDetail from './MaterialDetail';
 import Header from '../../components/Header/Header';
+import { API_URL_NO } from '../../../env.js';
 
 export default class Products extends Component {
     /**
@@ -70,7 +71,7 @@ export default class Products extends Component {
     * @return object data
     */
     fetchData = async () => {
-        fetch('https://jeremydanner.com/api/excel/30')
+        fetch(`${API_URL_NO}/excel/30`)
             .then(response => response.json())
             .then(responseData => {
                 this.setState({ data: responseData });
