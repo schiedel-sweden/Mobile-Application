@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import Header from '../../components/Header/Header';
 import globalStyles from '../../styles/globalStyles';
+import tcombFormStyle from '../../styles/tcombFormStyle';
 
 import Communications from 'react-native-communications';
 
@@ -31,40 +32,9 @@ const Message = t.struct({
 
 
 // stylesheet overriding
-stylesheetMultiLine.textbox.normal.color = '#000000';
-stylesheetMultiLine.textbox.normal.backgroundColor = '#FFFFFF';
-stylesheetMultiLine.textbox.normal.borderColor = '#333333'
-stylesheetMultiLine.textbox.normal.borderWidth = 2;
-stylesheetMultiLine.textbox.normal.borderRadius = 5;
-stylesheetMultiLine.textbox.normal.marginVertical = 10;
-stylesheetMultiLine.textbox.normal.paddingVertical = 10;
-stylesheetMultiLine.textbox.normal.paddingHorizontal = 15;
 stylesheetMultiLine.textbox.normal.height = 300;
-stylesheetMultiLine.textbox.error.color = '#000000';
-stylesheetMultiLine.textbox.error.backgroundColor = '#FFFFFF';
-stylesheetMultiLine.textbox.error.borderWidth = 2;
-stylesheetMultiLine.textbox.error.borderRadius = 5;
-stylesheetMultiLine.textbox.error.marginVertical = 10;
-stylesheetMultiLine.textbox.error.paddingVertical = 10;
-stylesheetMultiLine.textbox.error.paddingHorizontal = 15;
 stylesheetMultiLine.textbox.error.height = 300;
 
-// stylesheet overriding
-stylesheet.textbox.normal.color = '#000000';
-stylesheet.textbox.normal.backgroundColor = '#FFFFFF';
-stylesheet.textbox.normal.borderColor = '#333333'
-stylesheet.textbox.normal.borderWidth = 2;
-stylesheet.textbox.normal.borderRadius = 5;
-stylesheet.textbox.normal.marginVertical = 10;
-stylesheet.textbox.normal.paddingVertical = 10;
-stylesheet.textbox.normal.paddingHorizontal = 15;
-stylesheet.textbox.error.color = '#000000';
-stylesheet.textbox.error.backgroundColor = '#FFFFFF';
-stylesheet.textbox.error.borderWidth = 2;
-stylesheet.textbox.error.borderRadius = 5;
-stylesheet.textbox.error.marginVertical = 10;
-stylesheet.textbox.error.paddingVertical = 10;
-stylesheet.textbox.error.paddingHorizontal = 15;
 
 
 // borderRadius: 5,
@@ -77,7 +47,6 @@ stylesheet.textbox.error.paddingHorizontal = 15;
 
 const options = {
     auto: 'none',
-    stylesheet: stylesheet,
     fields: {
         name: {
             placeholder: 'Ditt namn',

@@ -10,6 +10,7 @@ import {
 
 import globalStyles from '../../styles/globalStyles';
 import Checkbox from 'react-native-checkbox';
+import tcombFormStyle from '../../styles/tcombFormStyle';
 
 const t = require('tcomb-form-native');
 const Form = t.form.Form;
@@ -24,40 +25,10 @@ stylesheetRow.fieldset = {
     justifyContent: 'space-between',
 };
 
-stylesheetRow.textbox.normal.color = '#000000';
-stylesheetRow.textbox.normal.backgroundColor = '#FFFFFF';
-stylesheetRow.textbox.normal.borderColor = '#333333'
-stylesheetRow.textbox.normal.borderWidth = 2;
-stylesheetRow.textbox.normal.borderRadius = 5;
-stylesheetRow.textbox.normal.marginVertical = 10;
-stylesheetRow.textbox.normal.paddingVertical = 10;
-stylesheetRow.textbox.normal.paddingHorizontal = 15;
 stylesheetRow.formGroup.normal.flex = 0.48;
-stylesheetRow.textbox.error.color = '#000000';
-stylesheetRow.textbox.error.backgroundColor = '#FFFFFF';
-stylesheetRow.textbox.error.borderWidth = 2;
-stylesheetRow.textbox.error.borderRadius = 5;
-stylesheetRow.textbox.error.marginVertical = 10;
-stylesheetRow.textbox.error.paddingVertical = 10;
-stylesheetRow.textbox.error.paddingHorizontal = 15;
 stylesheetRow.formGroup.error.flex = 1;
 
-stylesheet.textbox.normal.color = '#000000';
-stylesheet.textbox.normal.backgroundColor = '#FFFFFF';
-stylesheet.textbox.normal.borderColor = '#333333'
-stylesheet.textbox.normal.borderWidth = 2;
-stylesheet.textbox.normal.borderRadius = 5;
-stylesheet.textbox.normal.marginVertical = 10;
-stylesheet.textbox.normal.paddingVertical = 10;
-stylesheet.textbox.normal.paddingHorizontal = 15;
 stylesheet.formGroup.normal.flex = 1;
-stylesheet.textbox.error.color = '#000000';
-stylesheet.textbox.error.backgroundColor = '#FFFFFF';
-stylesheet.textbox.error.borderWidth = 2;
-stylesheet.textbox.error.borderRadius = 5;
-stylesheet.textbox.error.marginVertical = 10;
-stylesheet.textbox.error.paddingVertical = 10;
-stylesheet.textbox.error.paddingHorizontal = 15;
 stylesheet.formGroup.error.flex = 1;
 
 // top forms
