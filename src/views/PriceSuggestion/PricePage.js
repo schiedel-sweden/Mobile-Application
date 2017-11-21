@@ -83,6 +83,9 @@ export default class PricePage extends Component {
                     pris: newprops.propState.rowThree.pris,
                     sum: newprops.propState.rowThree.sum,
                 },
+                tillbud: newprops.propState.tillbud,
+                ordrebekreftelse: newprops.propState.ordrebekreftelse,
+                totalsum: newprops.propState.totalsum,
             }
 
 
@@ -161,6 +164,24 @@ export default class PricePage extends Component {
 
     parentCallback = () => {
         this.props.parentCallback(this.state);
+    }
+
+    checkBoxCallback = async (type) => {
+        switch (type) {
+            case "totalsum":
+                await this.setState({totalsum: !this.state.totalsum});
+                this.parentCallback();
+                break;
+            case "ordrebekreftelse":
+                await this.setState({ordrebekreftelse: !this.state.ordrebekreftelse});
+                this.parentCallback();
+                break;
+            case "tillbud":
+                await this.setState({tillbud: !this.state.tillbud});
+                this.parentCallback();
+                break;
+
+        }
     }
 
 
@@ -327,34 +348,19 @@ export default class PricePage extends Component {
                             label="Tillbud"
                             checked={this.state.tillbud}
                             checkboxStyle={this.state.tillbud ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                            onChange={() => this.setState(previousState => {
-                                return {
-                                    tillbud: !this.state.tillbud
-                                }
-
-                            })} />
+                            onChange={() => this.checkBoxCallback("tillbud")} />
 
                         <Checkbox
                             label="Ordrebekreftelse"
                             checked={this.state.ordrebekreftelse}
                             checkboxStyle={this.state.ordrebekreftelse ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                            onChange={() => this.setState(previousState => {
-                                return {
-                                    ordrebekreftelse: !this.state.ordrebekreftelse
-                                }
-
-                            })} />
+                            onChange={() => this.checkBoxCallback("ordrebekreftelse")} />
 
                         <Checkbox
                             label="Vis kun totalsum"
                             checked={this.state.totalsum}
                             checkboxStyle={this.state.totalsum ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                            onChange={() => this.setState(previousState => {
-                                return {
-                                    totalsum: !this.state.totalsum
-                                }
-
-                            })} />
+                            onChange={() => this.checkBoxCallback("totalsum")} />
 
                     </View>
 

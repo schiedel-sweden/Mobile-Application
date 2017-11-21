@@ -118,6 +118,9 @@ export default class PriceSuggestion extends Component {
                     pris: 2000,
                     sum: 0,
                 },
+                tillbud: false,
+                ordrebekreftelse: false,
+                totalsum: false,
 
             },
 
