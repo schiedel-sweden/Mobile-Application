@@ -102,98 +102,164 @@ export default class PriceSuggestion extends Component {
             },
             // might not be needed as the state is set in the component from HouseType.js, testing has to be done
             prisePageState: {
-                pipe: null
+                pipe: null,
+                rowOne: {
+                    antal: 0,
+                    pris: 3000,
+                    sum: 0,
+                },
+                rowTwo: {
+                    antal: 0,
+                    pris: 1500,
+                    sum: 0,
+                },
+                rowThree: {
+                    antal: 0,
+                    pris: 2000,
+                    sum: 0,
+                },
+
             },
+
             orderState: null,
 
         };
     }
 
-    componentWillMount = () => {
-        this.setState({
-            activeTab: <ChimneyType
-                            propState={this.state.chimneyTypeState}
-                            parentCallback={this.chimneyTypeCallback} />,
-            currentTab: 'chimneytype',
-            prisePageState: {
-                pipe: this.state.chimneyTypeState.choice,
+    componentWillMount = async () => {
+
+        await this.setState(previousState => {
+            return {
+                activeTab: <ChimneyType
+                                propState={this.state.chimneyTypeState}
+                                parentCallback={this.chimneyTypeCallback} />,
+                currentTab: 'chimneytype',
+
             }
+
         });
     }
 
 
     chimneyTypeCallback = (state) => {
-        this.setState({
-            chimneyTypeState: state,
-            prisePageState: {
-                pipe: state.choice,
-            },
+        this.setState(previousState => {
+            return {
+                chimneyTypeState: state,
+                prisePageState: {
+                    pipe: state.choice,
+                },
+            }
+
         });
 
     }
     houseTypeCallback = (state) => {
-        this.setState({houseTypeState: state});
+        this.setState(previousState => {
+            return {
+                houseTypeState: state
+            }
+
+        });
     }
     chimneyCallback = (state) => {
-        this.setState({chimneyState: state});
+        this.setState(previousState => {
+            return {
+                chimneyState: state
+            }
+
+        });
     }
     customerDetailCallback = (state) => {
-        this.setState({customerDetailState: state});
+        this.setState(previousState => {
+            return {
+                customerDetailState: state
+            }
+
+        });
     }
-    pricePageCallback = (state) => {
-        this.setState({pricePageState: state});
+    prisePageCallback = (state) => {
+        this.setState(previousState => {
+            return {
+                prisePageState: state
+            }
+
+        });
     }
     orderCallback = (state) => {
-        this.setState({orderState: state});
+        this.setState(previousState => {
+            return {
+                orderState: state
+            }
+
+        });
     }
 
 
     // functions to set active tab to set tab file
     chimneytype = () => {
-        this.setState({
-            activeTab: <ChimneyType
-                            propState={this.state.chimneyTypeState}
-                            parentCallback={this.chimneyTypeCallback} />,
-            currentTab: 'chimneytype',
+        this.setState(previousState => {
+            return {
+                activeTab: <ChimneyType
+                                propState={this.state.chimneyTypeState}
+                                parentCallback={this.chimneyTypeCallback} />,
+                currentTab: 'chimneytype',
+            }
+
         });
     }
     // pass offertnummer as the prop "offNum"
     housetype = () => {
-        this.setState({
-            activeTab: <HouseType
-                            quotNum={ QUOT_NUMBER }
-                            propState={this.state.houseTypeState}
-                            parentCallback={this.houseTypeCallback}/>,
-            currentTab: 'housetype',
+        this.setState(previousState => {
+            return {
+                activeTab: <HouseType
+                                quotNum={ QUOT_NUMBER }
+                                propState={this.state.houseTypeState}
+                                parentCallback={this.houseTypeCallback}/>,
+                currentTab: 'housetype',
+            }
+
         });
     }
     chimney = () => {
-        this.setState({
-            activeTab: <Chimney
-                            propState={this.state.chimneyState}
-                            parentCallback={this.chimneyCallback}/>,
-            currentTab: 'chimney',
+        this.setState(previousState => {
+            return {
+                activeTab: <Chimney
+                                propState={this.state.chimneyState}
+                                parentCallback={this.chimneyCallback}/>,
+                currentTab: 'chimney',
+            }
+
         });
     }
     customerdetails = () => {
-        this.setState({
-            activeTab: <CustomerDetails
-                            propState={this.state.customerDetailState}
-                            parentCallback={this.customerDetailCallback}/>,
-            currentTab: 'customerdetails',
+        this.setState(previousState => {
+            return {
+                activeTab: <CustomerDetails
+                                propState={this.state.customerDetailState}
+                                parentCallback={this.customerDetailCallback}/>,
+                currentTab: 'customerdetails',
+            }
+
         });
     }
     pricepage = () => {
-        this.setState({
-            activeTab: <PricePage
-                            propState={this.state.prisePageState}/>,
-            currentTab: 'pricepage',
+        this.setState(previousState => {
+            return {
+                activeTab: <PricePage
+                                propState={this.state.prisePageState}
+                                parentCallback={this.prisePageCallback}/>,
+                currentTab: 'pricepage',
+            }
+
         });
     }
     order = () => {
-        this.setState({
-            activeTab: <Order />,
-            currentTab: 'order',
+        this.setState(previousState => {
+            return {
+                activeTab: <Order />,
+                currentTab: 'order',
+            }
+
         });
     }
     // 6 views!

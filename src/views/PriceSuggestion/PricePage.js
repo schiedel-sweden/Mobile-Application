@@ -24,7 +24,7 @@ export default class PricePage extends Component {
 
     constructor(props) {
         super(props);
-        this.state =  {
+        this.state = {
             totalHeight: returnState.totalHeight,
             heightAboveRoof: returnState.heightAboveRoof,
             roofAngle: returnState.roofAngle,
@@ -32,63 +32,108 @@ export default class PricePage extends Component {
             rebateText: 'Rabatt på totalsumma (%)',
             shippingText: 'Frakt (kr)',
 
-            tillbud: false,
-            ordrebekreftelse: false,
-            totalsum: false,
+            tillbud: props.propState.tillbud,
+            ordrebekreftelse: props.propState.ordrebekreftelse,
+            totalsum: props.propState.totalsum,
 
             beskjed: '',
 
-            pipe: null,
+            pipe: props.propState.pipe,
 
-            sum1: 0,
-            sum2: 0,
-            sum3: 0,
+            rowOne: {
+                antal: props.propState.rowOne.antal,
+                pris: props.propState.rowOne.pris,
+                sum: props.propState.rowOne.sum,
+            },
 
-            nettoSum: 0,
-            moms: 0,
-            totalSum: 0,
+            rowTwo: {
+                antal: props.propState.rowTwo.antal,
+                pris: props.propState.rowTwo.pris,
+                sum: props.propState.rowTwo.sum,
+            },
+            rowThree: {
+                antal: props.propState.rowThree.antal,
+                pris: props.propState.rowThree.pris,
+                sum: props.propState.rowThree.sum,
+            },
+            nettoSum: props.propState.nettoSum,
+            moms: props.propState.moms,
+            totalSum: props.propState.totalSum,
 
 
         };
     }
 
-    componentWillMount = () => {
-        this.setState({
-            pipe: this.props.propState.pipe,
+    componentWillReceiveProps = async (newprops) => {
+        await this.setState(previousState => {
+            return {
+                pipe: newprops.propState.pipe,
+                rowOne: {
+                    antal: newprops.propState.rowOne.antal,
+                    pris: newprops.propState.rowOne.pris,
+                    sum: newprops.propState.rowOne.sum,
+                },
+                rowTwo: {
+                    antal: newprops.propState.rowTwo.antal,
+                    pris: newprops.propState.rowTwo.pris,
+                    sum: newprops.propState.rowTwo.sum,
+                },
+                rowThree: {
+                    antal: newprops.propState.rowThree.antal,
+                    pris: newprops.propState.rowThree.pris,
+                    sum: newprops.propState.rowThree.sum,
+                },
+            }
+
 
         });
+
     }
 
-    componentWillReceiveProps = (newprops) => {
-        this.setState({
-            pipeNumber: newprops.propState.pipeNumber,
+    parentCallbackOne = async (sum, antal) => {
+        await this.setState(previousState => {
+            return {
+                rowOne: {
+                    antal: antal,
+                    pris: this.state.rowOne.pris,
+                    sum: sum,
+                },
+            }
 
-        })
-    }
-
-    parentCallbackOne = async (sum) => {
-        await this.setState({
-            sum1: sum,
         });
         this.setTotalSum();
     }
-    parentCallbackTwo = async (sum) => {
-        await this.setState({
-            sum2: sum,
+    parentCallbackTwo = async (sum, antal) => {
+        await this.setState(previousState => {
+            return {
+                rowTwo: {
+                    antal: antal,
+                    pris: this.state.rowTwo.pris,
+                    sum: sum,
+                },
+            }
+
         });
         this.setTotalSum();
     }
-    parentCallbackThree = async (sum) => {
-        await this.setState({
-            sum3: sum,
+    parentCallbackThree = async (sum, antal) => {
+        await this.setState(previousState => {
+            return {
+                rowThree: {
+                    antal: antal,
+                    pris: this.state.rowThree.pris,
+                    sum: sum,
+                },
+            }
+
         });
         this.setTotalSum();
     }
 
-    setTotalSum = () => {
-        let sum1 = this.state.sum1;
-        let sum2 = this.state.sum2;
-        let sum3 = this.state.sum3;
+    setTotalSum = async () => {
+        let sum1 = this.state.rowOne.sum;
+        let sum2 = this.state.rowTwo.sum;
+        let sum3 = this.state.rowThree.sum;
 
         let netto = sum1 + sum2 + sum3;
         let moms = netto / 4;
@@ -101,16 +146,26 @@ export default class PricePage extends Component {
         // should only be needed to be done when first browsing the page
         total = total ? total : 0;
 
-        this.setState({
-            nettoSum: netto,
-            totalSum: total,
-            moms: moms,
+        await this.setState(previousState => {
+            return {
+                nettoSum: netto,
+                totalSum: total,
+                moms: moms,
+            }
+
         });
+        this.parentCallback();
 
 
     }
 
-    render() {
+    parentCallback = () => {
+        this.props.parentCallback(this.state);
+    }
+
+
+    render () {
+        {/*this.testCall();*/}
         return (
             <View >
             {/* offertnummer */}
@@ -188,9 +243,9 @@ export default class PricePage extends Component {
                     <BoxRow
                         number='12312312'
                         beskrivelse='beskrivelsetext'
-                        antal={0}
-                        pris={10}
-                        sum={this.state.sum1}
+                        antal={this.state.rowOne.antal}
+                        pris={this.state.rowOne.pris}
+                        sum={this.state.rowOne.sum}
                         rabatt={0}
                         parentCallback={this.parentCallbackOne}
                      />
@@ -198,9 +253,9 @@ export default class PricePage extends Component {
                      <BoxRow
                          number='12312312'
                          beskrivelse='beskrivelsetext'
-                         antal={0}
-                         pris={15}
-                         sum={this.state.sum2}
+                         antal={this.state.rowTwo.antal}
+                         pris={this.state.rowTwo.pris}
+                         sum={this.state.rowTwo.sum}
                          rabatt={0}
                          parentCallback={this.parentCallbackTwo}
                       />
@@ -208,9 +263,9 @@ export default class PricePage extends Component {
                       <BoxRow
                           number='12312312'
                           beskrivelse='beskrivelsetext'
-                          antal={0}
-                          pris={10}
-                          sum={this.state.sum3}
+                          antal={this.state.rowThree.antal}
+                          pris={this.state.rowThree.pris}
+                          sum={this.state.rowThree.sum}
                           rabatt={0}
                           parentCallback={this.parentCallbackThree}
                        />
@@ -220,13 +275,23 @@ export default class PricePage extends Component {
 
                         <TextInput
                             style={{flex: 1, backgroundColor: "#d3d3d3"}}
-                            onChangeText={(text) => this.setState({rebateText: text})}
+                            onChangeText={(text) => this.setState(previousState => {
+                                return {
+                                    rebateText: text
+                                }
+
+                            })}
                             value={this.state.rebateText}
                             />
 
                         <TextInput
                             style={{flex: 1, backgroundColor: "#d3d3d3"}}
-                            onChangeText={(text) => this.setState({shippingText: text})}
+                            onChangeText={(text) => this.setState(previousState => {
+                                return {
+                                    shippingText: text
+                                }
+
+                            })}
                             value={this.state.shippingText}
                             />
                     </View>
@@ -262,19 +327,34 @@ export default class PricePage extends Component {
                             label="Tillbud"
                             checked={this.state.tillbud}
                             checkboxStyle={this.state.tillbud ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                            onChange={() => this.setState({tillbud: !this.state.tillbud})} />
+                            onChange={() => this.setState(previousState => {
+                                return {
+                                    tillbud: !this.state.tillbud
+                                }
+
+                            })} />
 
                         <Checkbox
                             label="Ordrebekreftelse"
                             checked={this.state.ordrebekreftelse}
                             checkboxStyle={this.state.ordrebekreftelse ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                            onChange={() => this.setState({ordrebekreftelse: !this.state.ordrebekreftelse})} />
+                            onChange={() => this.setState(previousState => {
+                                return {
+                                    ordrebekreftelse: !this.state.ordrebekreftelse
+                                }
+
+                            })} />
 
                         <Checkbox
                             label="Vis kun totalsum"
                             checked={this.state.totalsum}
                             checkboxStyle={this.state.totalsum ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                            onChange={() => this.setState({totalsum: !this.state.totalsum})} />
+                            onChange={() => this.setState(previousState => {
+                                return {
+                                    totalsum: !this.state.totalsum
+                                }
+
+                            })} />
 
                     </View>
 
@@ -283,7 +363,12 @@ export default class PricePage extends Component {
 
                         <TextInput
                             style={{flex: 1, backgroundColor: "#d3d3d3"}}
-                            onChangeText={(text) => this.setState({beskjed: text})}
+                            onChangeText={(text) => this.setState(previousState => {
+                                return {
+                                    beskjed: text
+                                }
+
+                            })}
                             value={this.state.beskjed}
                             />
                     </View>

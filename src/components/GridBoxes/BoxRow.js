@@ -66,7 +66,7 @@ export default class BoxRow extends Component {
     }
 
     callMe = () => {
-        this.props.parentCallback(this.state.sum);
+        this.props.parentCallback(this.state.sum, this.state.antal);
     }
 
 
