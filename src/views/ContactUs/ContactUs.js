@@ -102,7 +102,6 @@ export default class ContactUs extends React.Component {
 
     render() {
         const { navigate } = this.props.navigation;
-
         return (
             <View style={styles.container}>
                 <Header />
@@ -181,6 +180,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#B9B9B9',
+        opacity: 0.9,
     },
     body: {
         padding: globalStyles.PADDING*2,
