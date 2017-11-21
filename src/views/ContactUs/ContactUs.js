@@ -19,7 +19,6 @@ import Communications from 'react-native-communications';
 const t = require('tcomb-form-native');
 const Form = t.form.Form;
 const _ = require('lodash');
-const stylesheet = _.cloneDeep(t.form.Form.stylesheet);
 const stylesheetMultiLine = _.cloneDeep(t.form.Form.stylesheet);
 
 const ContactForm = t.struct({
