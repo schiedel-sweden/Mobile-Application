@@ -17,34 +17,54 @@ import Communications from 'react-native-communications';
 
 const t = require('tcomb-form-native');
 const Form = t.form.Form;
+const _ = require('lodash');
+const stylesheet = _.cloneDeep(t.form.Form.stylesheet);
+const stylesheetMultiLine = _.cloneDeep(t.form.Form.stylesheet);
 
 const ContactForm = t.struct({
     name: t.String,
-    email: t.String,
+    email: t.String
+});
+const Message = t.struct({
     message: t.String
 });
 
+
 // stylesheet overriding
-t.form.Form.stylesheet.textbox.normal.color = '#000000';
-t.form.Form.stylesheet.textbox.normal.backgroundColor = '#FFFFFF';
-t.form.Form.stylesheet.textbox.normal.borderColor = '#333333'
-t.form.Form.stylesheet.textbox.normal.borderWidth = 2;
+stylesheetMultiLine.textbox.normal.color = '#000000';
+stylesheetMultiLine.textbox.normal.backgroundColor = '#FFFFFF';
+stylesheetMultiLine.textbox.normal.borderColor = '#333333'
+stylesheetMultiLine.textbox.normal.borderWidth = 2;
+stylesheetMultiLine.textbox.normal.borderRadius = 5;
+stylesheetMultiLine.textbox.normal.marginVertical = 10;
+stylesheetMultiLine.textbox.normal.paddingVertical = 10;
+stylesheetMultiLine.textbox.normal.paddingHorizontal = 15;
+stylesheetMultiLine.textbox.normal.height = 300;
+stylesheetMultiLine.textbox.error.color = '#000000';
+stylesheetMultiLine.textbox.error.backgroundColor = '#FFFFFF';
+stylesheetMultiLine.textbox.error.borderWidth = 2;
+stylesheetMultiLine.textbox.error.borderRadius = 5;
+stylesheetMultiLine.textbox.error.marginVertical = 10;
+stylesheetMultiLine.textbox.error.paddingVertical = 10;
+stylesheetMultiLine.textbox.error.paddingHorizontal = 15;
+stylesheetMultiLine.textbox.error.height = 300;
 
-t.form.Form.stylesheet.textbox.normal.borderRadius = 5;
-
-t.form.Form.stylesheet.textbox.normal.marginVertical = 10;
-t.form.Form.stylesheet.textbox.normal.paddingVertical = 10;
-t.form.Form.stylesheet.textbox.normal.paddingHorizontal = 15;
-
-t.form.Form.stylesheet.textbox.error.color = '#000000';
-t.form.Form.stylesheet.textbox.error.backgroundColor = '#FFFFFF';
-t.form.Form.stylesheet.textbox.error.borderWidth = 2;
-
-t.form.Form.stylesheet.textbox.error.borderRadius = 5;
-
-t.form.Form.stylesheet.textbox.error.marginVertical = 10;
-t.form.Form.stylesheet.textbox.error.paddingVertical = 10;
-t.form.Form.stylesheet.textbox.error.paddingHorizontal = 15;
+// stylesheet overriding
+stylesheet.textbox.normal.color = '#000000';
+stylesheet.textbox.normal.backgroundColor = '#FFFFFF';
+stylesheet.textbox.normal.borderColor = '#333333'
+stylesheet.textbox.normal.borderWidth = 2;
+stylesheet.textbox.normal.borderRadius = 5;
+stylesheet.textbox.normal.marginVertical = 10;
+stylesheet.textbox.normal.paddingVertical = 10;
+stylesheet.textbox.normal.paddingHorizontal = 15;
+stylesheet.textbox.error.color = '#000000';
+stylesheet.textbox.error.backgroundColor = '#FFFFFF';
+stylesheet.textbox.error.borderWidth = 2;
+stylesheet.textbox.error.borderRadius = 5;
+stylesheet.textbox.error.marginVertical = 10;
+stylesheet.textbox.error.paddingVertical = 10;
+stylesheet.textbox.error.paddingHorizontal = 15;
 
 
 // borderRadius: 5,
@@ -55,9 +75,9 @@ t.form.Form.stylesheet.textbox.error.paddingHorizontal = 15;
 // backgroundColor: '#ffffff',
 // marginVertical: 10,
 
-
 const options = {
     auto: 'none',
+    stylesheet: stylesheet,
     fields: {
         name: {
             placeholder: 'Ditt namn',
@@ -67,8 +87,16 @@ const options = {
         email: {
             placeholder: 'Din e-mail',
             error: 'obligatoriskt!'
-        },
+        }
+    }
+};
+const optionsMultiline = {
+    auto: 'none',
+    stylesheet: stylesheetMultiLine,
+    fields: {
         message: {
+            multiline: true,
+            numberOfLines: 10,
             placeholder: 'Ditt meddelande',
             error: 'obligatoriskt!'
         }
@@ -103,7 +131,6 @@ export default class ContactUs extends React.Component {
         }
     }
 
-
     render() {
         const { navigate } = this.props.navigation;
 
@@ -128,7 +155,13 @@ export default class ContactUs extends React.Component {
                     onChange={this.checkName}
                     type={ContactForm}
                     options={options}
-
+                    />
+                    <Form
+                    ref="message"
+                    style={styles.input}
+                    onChange={this.checkName}
+                    type={Message}
+                    options={optionsMultiline}
                     />
                     <View style={styles.buttonWrapper}>
                         <TouchableOpacity
@@ -181,7 +214,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#B9B9B9',
     },
     body: {
-        padding: globalStyles.PADDING,
+        padding: globalStyles.PADDING*2,
     },
     headerContainer: {
         flexDirection: 'column',
