@@ -12,8 +12,7 @@ export default class ChimneyTypeCheckbox extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            toggle1: true,
-            toggle2: false,
+            toggle: true,
         }
     }
 
@@ -23,11 +22,10 @@ export default class ChimneyTypeCheckbox extends Component {
                 <View style={styles.containerCheckbox}>
                     <Checkbox
                       label={this.props.chimneyTypeLbl}
-                      checked={this.state.toggle1}
-                      checkboxStyle={this.state.toggle1 ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
+                      checked={this.state.toggle}
+                      checkboxStyle={this.state.toggle ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
                       onChange={() => this.setState({
-                        toggle1: !this.state.toggle1,
-                        toggle2: !this.state.toggle2,
+                        toggle: !this.state.toggle,
                     })} />
                 </View>
             </View>

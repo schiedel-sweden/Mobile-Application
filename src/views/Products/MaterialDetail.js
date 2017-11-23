@@ -18,8 +18,8 @@ export default class MaterialDetail extends Component {
         super(props);
         this.state = {
             visible: false,
-            listMatInfo: ["Bruksområde", "Brenseltyper", "Funksjoner/Fordeler", "HUSK"],
-            listMatTecSpec: ["Streamningmotstand", "Varmeresisten",
+            materialInfoList: ["Bruksområde", "Brenseltyper", "Funksjoner/Fordeler", "HUSK"],
+            materialTechnicalSpecsList: ["Streamningmotstand", "Varmeresisten",
               "Trykkfasthet ytterelement", "TrykkFasthet innerror",
               "Byggehoyde", "Feietest", "Frosttest"],
         }
@@ -31,25 +31,25 @@ export default class MaterialDetail extends Component {
     * @return MaterialInformationTouchableBlock[...]
     */
     listMaterialInformation() {
-        const listMatInfoTabB=  this.state.listMatInfo.map((matInfo, i) =>
+        const materialInfoListTabB=  this.state.materialInfoList.map((matInfo, i) =>
           <MaterialInformationTouchableBlock
               key={i}
               matInfo={matInfo}
           />
         );
-        return listMatInfoTabB;
+        return materialInfoListTabB;
     }
     /**
     * @return MaterialTechnicalSpecification[...]
     */
     listMaterialTechnicalSpecification() {
-        const listMatTecSpecViews=  this.state.listMatTecSpec.map((matTecSpec, i) =>
+        const materialTechnicalSpecsListViews=  this.state.materialTechnicalSpecsList.map((matTecSpec, i) =>
           <MaterialTechnicalSpecification
               key={i}
               matTecSpec={matTecSpec}
           />
         );
-        return listMatTecSpecViews;
+        return materialTechnicalSpecsListViews;
     }
 
     /**
