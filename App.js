@@ -4,8 +4,10 @@ import {
     Modal,
     Text,
     TouchableHighlight,
-    View
+    View,
+    StyleSheet
 } from 'react-native';
+import globalStyles from './src/styles/globalStyles';
 import Navigation from './src/components/Navigation/Navigation';
 
 export default class App extends React.Component {
@@ -49,25 +51,43 @@ export default class App extends React.Component {
             return <Navigation />;
         } else {
             return (
-                <View style={{ marginTop: 22 }}>
+                <View style={styles.container}>
                     <Modal
                         animationType="slide"
                         transparent={false}
                         visible={this.state.modalVisible}
                         animationType="slide"
                     >
-                        <View style={{ marginTop: 50 }}>
-                            <Text>Välj marknad / Velg marked</Text>
-                            <View>
+                        <View style={styles.modalContainer}>
+                            <View style={styles.buttonsContainer}>
+                                <View style={styles.pos}>
+                                    <Text style={globalStyles.h2}>
+                                        Velg marked / Välj marknad
+                                    </Text>
+                                </View>
                                 <TouchableHighlight
+                                    style={styles.buttonSelectUser}
                                     onPress={() => {
                                         this.setLanguage(
                                             !this.state.modalVisible,
-                                            'Norska'
+                                            'norwegian'
                                         );
                                     }}
                                 >
-                                    <Text>Norska</Text>
+                                    <Text style={styles.buttonText}>Norge</Text>
+                                </TouchableHighlight>
+                                <TouchableHighlight
+                                    style={styles.buttonSelectUser}
+                                    onPress={() => {
+                                        this.setLanguage(
+                                            !this.state.modalVisible,
+                                            'swedish'
+                                        );
+                                    }}
+                                >
+                                    <Text style={styles.buttonText}>
+                                        Sverige
+                                    </Text>
                                 </TouchableHighlight>
                             </View>
                         </View>
@@ -77,3 +97,45 @@ export default class App extends React.Component {
         }
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        flex: 1,
+        height: 40,
+        justifyContent: 'center',
+        position: 'absolute',
+        right: 5,
+        top: 25,
+        width: 40,
+        zIndex: 2
+    },
+    modalContainer: {
+        alignSelf: 'stretch',
+        backgroundColor: '#B9B9B9',
+        flex: 1
+    },
+    buttonsContainer: {
+        alignItems: 'center',
+        flex: 1,
+        justifyContent: 'center',
+        marginTop: 50
+    },
+    pos: {
+        marginBottom: 60
+    },
+    buttonSelectUser: {
+        backgroundColor: '#F9CE3C',
+        borderColor: '#333333',
+        borderRadius: 5,
+        borderWidth: 3,
+        marginBottom: 20,
+        marginTop: 20,
+        padding: 30,
+        width: 300
+    },
+    buttonText: {
+        fontSize: 26,
+        textAlign: 'center'
+    }
+});
