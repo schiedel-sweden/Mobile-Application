@@ -14,16 +14,16 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            language: false,
+            region: false,
             modalVisible: false
         };
     }
 
-    checkLanguage = async () => {
+    checkRegion = async () => {
         try {
-            await AsyncStorage.getItem('language').then(language => {
-                if (language) {
-                    return language;
+            await AsyncStorage.getItem('region').then(region => {
+                if (region) {
+                    return region;
                 }
             });
         } catch (e) {
@@ -32,22 +32,22 @@ export default class App extends React.Component {
     };
 
     componentWillMount = async () => {
-        const stateLanguage = await this.state.language;
-        const language = await this.checkLanguage().then(language => {
-            if (language && !stateLanguage) {
-                return this.setState({ language });
+        const stateRegion = await this.state.region;
+        const region = await this.checkRegion().then(region => {
+            if (region && !stateRegion) {
+                return this.setState({ region });
             } else {
                 return this.setState({ modalVisible: true });
             }
         });
     };
 
-    setLanguage(visible, language) {
-        this.setState({ modalVisible: visible, language });
+    setRegion(visible, region) {
+        this.setState({ modalVisible: visible, region });
     }
 
     render() {
-        if (this.state.language) {
+        if (this.state.region) {
             return <Navigation />;
         } else {
             return (
@@ -68,25 +68,27 @@ export default class App extends React.Component {
                                 <TouchableHighlight
                                     style={styles.buttonSelectUser}
                                     onPress={() => {
-                                        this.setLanguage(
+                                        this.setRegion(
                                             !this.state.modalVisible,
-                                            'norwegian'
-                                        );
-                                    }}
-                                >
-                                    <Text style={styles.buttonText}>Norge</Text>
-                                </TouchableHighlight>
-                                <TouchableHighlight
-                                    style={styles.buttonSelectUser}
-                                    onPress={() => {
-                                        this.setLanguage(
-                                            !this.state.modalVisible,
-                                            'swedish'
+                                            'norway'
                                         );
                                     }}
                                 >
                                     <Text style={styles.buttonText}>
-                                        Sverige
+                                        Norsk marked
+                                    </Text>
+                                </TouchableHighlight>
+                                <TouchableHighlight
+                                    style={styles.buttonSelectUser}
+                                    onPress={() => {
+                                        this.setRegion(
+                                            !this.state.modalVisible,
+                                            'sweden'
+                                        );
+                                    }}
+                                >
+                                    <Text style={styles.buttonText}>
+                                        Svenska Marknaden
                                     </Text>
                                 </TouchableHighlight>
                             </View>
@@ -132,7 +134,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         marginTop: 20,
         padding: 30,
-        width: 300
+        width: 350
     },
     buttonText: {
         fontSize: 26,
