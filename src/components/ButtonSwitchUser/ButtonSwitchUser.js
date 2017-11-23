@@ -6,49 +6,60 @@ import {
     TouchableOpacity,
     View,
     Text,
-    AsyncStorage,
+    AsyncStorage
 } from 'react-native';
 import globalStyles from '../../styles/globalStyles';
 
 export default class ButtonSwitchUser extends React.Component {
     state = {
-      modalVisible: false,
-      userType: '',
-    }
+        modalVisible: false,
+        userType: '',
+        region: ''
+    };
 
     /**
-    * @return object userType
-    */
+     * @return object userType
+     */
     componentWillMount() {
         this.fetchUserType();
+        this.fetchRegion();
     }
 
     /**
-    * @return object userType
-    */
+     * @return object userType
+     */
     fetchUserType = async () => {
-      await AsyncStorage.getItem('userType')
-          .then((value) =>
-              this.setState({ userType : value }))
-          .catch(error => {
-              console.log(error);
-          });
-    }
+        await AsyncStorage.getItem('userType')
+            .then(value => this.setState({ userType: value }))
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
+    fetchRegion = async () => {
+        try {
+            await AsyncStorage.getItem('region').then(value => {
+                this.setState({ region: value });
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    };
 
     setModalVisible(visible) {
-      this.setState({modalVisible: visible});
+        this.setState({ modalVisible: visible });
     }
 
     /**
-    * @param String
-    */
+     * @param String
+     */
     async setUserType(value) {
-      try {
-        await AsyncStorage.setItem('userType', value);
-        this.setState({ userType : value });
-      } catch (error) {
-        console.log(error);
-      }
+        try {
+            await AsyncStorage.setItem('userType', value);
+            this.setState({ userType: value });
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     render() {
@@ -61,58 +72,92 @@ export default class ButtonSwitchUser extends React.Component {
                     onRequestClose={() => {}}
                 >
                     <View style={styles.modalContainer}>
-                        <TouchableOpacity style={styles.hideModalButton}
+                        <TouchableOpacity
+                            style={styles.hideModalButton}
                             onPress={() => {
-                             this.setModalVisible(!this.state.modalVisible)
-                        }}>
-                        <Image style={styles.img}
-                            source={
-                                require('../../images/icons/cross.png')
-                            } />
+                                this.setModalVisible(!this.state.modalVisible);
+                            }}
+                        >
+                            <Image
+                                style={styles.img}
+                                source={require('../../images/icons/cross.png')}
+                            />
                         </TouchableOpacity>
 
                         <View style={styles.buttonsContainer}>
                             <View style={styles.pos}>
-                                <Text style={globalStyles.h2}>Växla användare</Text>
+                                <Text style={globalStyles.h2}>
+                                    Växla användare
+                                </Text>
                             </View>
-                            <TouchableOpacity style={styles.buttonSelectUser}
+                            <TouchableOpacity
+                                style={styles.buttonSelectUser}
                                 onPress={() => {
-                                 this.setUserType('retailer')
-                                 this.setModalVisible(!this.state.modalVisible)
-                            }}>
+                                    this.setUserType('retailer');
+                                    this.setModalVisible(
+                                        !this.state.modalVisible
+                                    );
+                                }}
+                            >
                                 <Text style={styles.buttonText}>
                                     Återförsäljare
                                 </Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttonSelectUser}
+                            <TouchableOpacity
+                                style={styles.buttonSelectUser}
                                 onPress={() => {
-                                 this.setUserType('constructor')
-                                 this.setModalVisible(!this.state.modalVisible)
-                            }}>
-                                <Text style={styles.buttonText}>
-                                    Montör
-                                </Text>
+                                    this.setUserType('constructor');
+                                    this.setModalVisible(
+                                        !this.state.modalVisible
+                                    );
+                                }}
+                            >
+                                <Text style={styles.buttonText}>Montör</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttonSelectUser}
+                            <TouchableOpacity
+                                style={styles.buttonSelectUser}
                                 onPress={() => {
-                                 this.setUserType('individual')
-                                 this.setModalVisible(!this.state.modalVisible)
-                            }}>
+                                    this.setUserType('individual');
+                                    this.setModalVisible(
+                                        !this.state.modalVisible
+                                    );
+                                }}
+                            >
                                 <Text style={styles.buttonText}>
                                     Privatperson
+                                </Text>
+                            </TouchableOpacity>
+
+                            {/* This button will show region */}
+                            <TouchableOpacity
+                                style={styles.buttonSelectUser}
+                                onPress={() => {
+                                    this.setUserType('individual');
+                                    this.setModalVisible(
+                                        !this.state.modalVisible
+                                    );
+                                }}
+                            >
+                                <Text style={styles.buttonText}>
+                                    {this.state.region === 'norway'
+                                        ? 'Svenska Marknaden'
+                                        : 'Norsk marked'}
                                 </Text>
                             </TouchableOpacity>
                         </View>
                     </View>
                 </Modal>
 
-                <TouchableOpacity style={styles.showModalButton} onPress={() => {
-                        this.setModalVisible(!this.state.modalVisible)
-                }}>
-                    <Image style={styles.img}
-                        source={
-                            require('../../images/icons/switch_user.png')
-                        } />
+                <TouchableOpacity
+                    style={styles.showModalButton}
+                    onPress={() => {
+                        this.setModalVisible(!this.state.modalVisible);
+                    }}
+                >
+                    <Image
+                        style={styles.img}
+                        source={require('../../images/icons/switch_user.png')}
+                    />
                 </TouchableOpacity>
             </View>
         );
@@ -129,13 +174,13 @@ const styles = StyleSheet.create({
         right: 5,
         top: 25,
         width: 40,
-        zIndex: 2,
+        zIndex: 2
     },
     modalContainer: {
         alignSelf: 'stretch',
         backgroundColor: '#B9B9B9',
         flex: 1,
-        opacity: 0.8,
+        opacity: 0.8
     },
     hideModalButton: {
         alignItems: 'center',
@@ -146,7 +191,7 @@ const styles = StyleSheet.create({
         right: 5,
         top: 25,
         width: 50,
-        zIndex: 2,
+        zIndex: 2
     },
     showModalButton: {
         alignItems: 'center',
@@ -157,16 +202,16 @@ const styles = StyleSheet.create({
         right: 0,
         top: 0,
         width: 50,
-        zIndex: 1,
+        zIndex: 1
     },
     buttonsContainer: {
         alignItems: 'center',
         flex: 1,
         justifyContent: 'center',
-        marginTop: 50,
+        marginTop: 50
     },
     pos: {
-        marginBottom: 60,
+        marginBottom: 60
     },
     buttonSelectUser: {
         backgroundColor: '#F9CE3C',
@@ -176,14 +221,14 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         marginTop: 20,
         padding: 30,
-        width: 300,
+        width: 300
     },
     buttonText: {
         fontSize: 26,
-        textAlign: 'center',
+        textAlign: 'center'
     },
     img: {
         height: 30,
-        width: 30,
-    },
+        width: 30
+    }
 });

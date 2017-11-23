@@ -42,9 +42,18 @@ export default class App extends React.Component {
         });
     };
 
-    setRegion(visible, region) {
-        this.setState({ modalVisible: visible, region });
+    saveRegionToStorage(region) {
+        try {
+            AsyncStorage.setItem('region', region);
+        } catch (e) {
+            console.log(e);
+        }
     }
+
+    setRegion = async region => {
+        const saveRegionToStorage = await this.saveRegionToStorage(region);
+        const setRegion = await this.setState({ modalVisible: false, region });
+    };
 
     render() {
         if (this.state.region) {
@@ -68,10 +77,7 @@ export default class App extends React.Component {
                                 <TouchableHighlight
                                     style={styles.buttonSelectUser}
                                     onPress={() => {
-                                        this.setRegion(
-                                            !this.state.modalVisible,
-                                            'norway'
-                                        );
+                                        this.setRegion('norway');
                                     }}
                                 >
                                     <Text style={styles.buttonText}>
@@ -81,10 +87,7 @@ export default class App extends React.Component {
                                 <TouchableHighlight
                                     style={styles.buttonSelectUser}
                                     onPress={() => {
-                                        this.setRegion(
-                                            !this.state.modalVisible,
-                                            'sweden'
-                                        );
+                                        this.setRegion('sweden');
                                     }}
                                 >
                                     <Text style={styles.buttonText}>
