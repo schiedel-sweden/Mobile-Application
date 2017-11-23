@@ -46,6 +46,21 @@ export default class ButtonSwitchUser extends React.Component {
         }
     };
 
+    changeRegion = async () => {
+        let region = await this.state.region;
+
+        if (region === 'norway') {
+            region = 'sweden';
+        } else {
+            region = 'norway';
+        }
+
+        await AsyncStorage.setItem('region', region);
+        const setRegionStat = await this.setState({ region });
+
+        const hideModal = await this.setModalVisible(!this.state.modalVisible);
+    };
+
     setModalVisible(visible) {
         this.setState({ modalVisible: visible });
     }
@@ -132,10 +147,7 @@ export default class ButtonSwitchUser extends React.Component {
                             <TouchableOpacity
                                 style={styles.buttonSelectUser}
                                 onPress={() => {
-                                    this.setUserType('individual');
-                                    this.setModalVisible(
-                                        !this.state.modalVisible
-                                    );
+                                    this.changeRegion();
                                 }}
                             >
                                 <Text style={styles.buttonText}>
