@@ -103,21 +103,31 @@ export default class PriceSuggestion extends Component {
             // might not be needed as the state is set in the component from HouseType.js, testing has to be done
             prisePageState: {
                 pipe: null,
-                rowOne: {
-                    antal: 0,
-                    pris: 3000,
-                    sum: 0,
-                },
-                rowTwo: {
-                    antal: 0,
-                    pris: 1500,
-                    sum: 0,
-                },
-                rowThree: {
-                    antal: 0,
-                    pris: 2000,
-                    sum: 0,
-                },
+                rowItems: [
+                    {
+                        number: 123,
+                        antal: 0,
+                        pris: 3000,
+                        sum: 0,
+                    },
+                    {
+                        number: 231,
+                        antal: 0,
+                        pris: 1500,
+                        sum: 0,
+                    },
+                    {
+                        number: 312,
+                        antal: 0,
+                        pris: 2000,
+                        sum: 0,
+                    },
+                ],
+
+                nettoSum: 0,
+                moms: 0,
+                totalSum:0,
+
                 tillbud: false,
                 ordrebekreftelse: false,
                 totalsum: false,
