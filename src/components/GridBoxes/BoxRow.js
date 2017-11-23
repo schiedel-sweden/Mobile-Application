@@ -19,7 +19,7 @@ export default class BoxRow extends Component {
 
         this.state = {
             number: this.props.number,
-            beskrivelse: this.props.beskrivelse,
+            description: this.props.description,
             antal: this.props.antal,
             pris: this.props.pris,
             sum: this.props.sum,
@@ -37,7 +37,7 @@ export default class BoxRow extends Component {
     componentWillReceiveProps = async (newprops) => {
         await this.setState({
             number: newprops.number,
-            beskrivelse: newprops.beskrivelse,
+            description: newprops.description,
             antal: newprops.antal,
             pris: newprops.pris,
             sum: newprops.sum,
@@ -81,7 +81,7 @@ export default class BoxRow extends Component {
                     text={this.state.number} />
                 {/* description of item*/}
                 <GridBox
-                    text={this.state.beskrivelse} />
+                    text={this.state.description} />
 
                 {/* number should come from how many of that item were chosen*/}
                 <GridBoxInc

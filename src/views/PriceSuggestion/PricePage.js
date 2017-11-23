@@ -22,6 +22,8 @@ import { returnState } from './HouseType.js';
 
 export default class PricePage extends Component {
 
+    // TODO: Change from norwegian to english when we start calculating with
+    // the data from client
     constructor(props) {
         super(props);
         this.state = {

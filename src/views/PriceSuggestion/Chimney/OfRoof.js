@@ -12,6 +12,8 @@ export default class OfRoof extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            // type of products
+            // therefore written in Norwegian
             pusset: false,
             firkantBeslag: false,
             feieluke: false,

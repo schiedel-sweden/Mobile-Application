@@ -13,6 +13,8 @@ export default class Options extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            // product options
+            // therefore norwegian
             wireset: false,
             lokk: false,
         }

@@ -7,12 +7,35 @@ export default class ChimneyType extends Component {
         super(props);
 
         this.state = {
-            chimneyType: [{id: 0, tagline: "PERMETER", ingress: "permeter"},
-                         {id: 1, tagline: "SOLID VENT", ingress: "solid vent"},
-                         {id: 2, tagline: "ETESJEPIPE", ingress: "etesjepipe"},
-                         {id: 3, tagline: "RONDO", ingress: "rondo"}],
+            chimneyType: [
+                {
+                    id: 0,
+                    tagline: "PERMETER",
+                    ingress: "permeter"
+                },
+                {
+                    id: 1,
+                    tagline: "SOLID VENT",
+                    ingress: "solid vent"
+                },
+                {
+                    id: 2,
+                    tagline: "ETESJEPIPE",
+                    ingress: "etesjepipe"
+                },
+                {
+                    id: 3,
+                    tagline: "RONDO",
+                    ingress: "rondo"
+                }
+            ],
             choice: '',
-            options: ['permeter', 'solid vent', 'etesjepipe', 'rondo'],
+            options: [
+                'permeter',
+                'solid vent',
+                'etesjepipe',
+                'rondo'
+            ],
         };
         this.touchMethod = this.touchMethod.bind(this);
         this.listTouchableBlock = this.listTouchableBlock.bind(this);

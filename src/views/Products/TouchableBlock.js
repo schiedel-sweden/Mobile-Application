@@ -42,7 +42,7 @@ export default class TouchableBlock extends Component {
         } else {
           isLightBackground = false;
         };
-        const listMaterial = this.props.mat.map((mat, i) =>
+        const listMaterial = this.props.material.map((mat, i) =>
                 <Material key={i}
                           mat={mat}
                           navigation={this.props.navigation}
@@ -87,12 +87,12 @@ export default class TouchableBlock extends Component {
                     <View style={[styles.container,this.bGSwitchingColor(this.props.order)]}>
                         <View style={styles.topic}>
                             <Text style={globalStyles.h1}>
-                                {this.props.matTopic.tagline}
+                                {this.props.materialTopic.tagline}
                             </Text>
                         </View>
                         <View>
                             <Text style={globalStyles.h3}>
-                                {this.props.matTopic.ingress}
+                                {this.props.materialTopic.ingress}
                             </Text>
                         </View>
                         {this.getArrowIcon()}

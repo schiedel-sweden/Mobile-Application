@@ -20,7 +20,7 @@ export default class GridBoxInc extends Component {
     */
     constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             number: this.props.number,
         }
 
