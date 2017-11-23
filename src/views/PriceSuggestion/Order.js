@@ -15,6 +15,8 @@ import Checkbox from 'react-native-checkbox';
 
 export default class Order extends Component {
 
+    // TODO: Loop out BoxRow, save sums in an object in an array in the state
+    // {product number: sum}  
     constructor(props) {
         super(props);
         this.state = {
