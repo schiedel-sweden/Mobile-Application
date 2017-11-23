@@ -13,6 +13,8 @@ import GridBox from '../../components/GridBoxes/GridBox';
 import GridBoxInc from '../../components/GridBoxes/GridBoxInc';
 import BoxRow from '../../components/GridBoxes/BoxRow';
 
+import ObjectSummarizer from '../../components/ObjectSummarizer/ObjectSummarizer'
+
 import { QUOT_NUMBER } from '../../components/redux-items/actions.js';
 
 import { returnState } from './HouseType.js';
@@ -74,16 +76,10 @@ export default class PricePage extends Component {
 
     }
 
-    // add callback functions
-    sendCallback = (sum, antal, number) => {
-        let stateMarker = this.state.rowItems;
-        for(let i = 0; i < this.state.rowItems.length; i++) {
-            if (number === this.state.rowItems[i].number) {
-                stateMarker[i].sum = sum;
-                stateMarker[i].antal = antal;
-                this.setState({stateMarker});
-            }
-        }
+    sendCallback = async (rowItems) => {
+        await this.setState({
+            rowItems: rowItems.rowItems
+        });
         this.setTotalSum();
     }
 
@@ -212,19 +208,10 @@ export default class PricePage extends Component {
 
                         <Text>RABATT (%)</Text>
                     </View>
-                    <View>
-                        {this.state.rowItems.map((item, index) => {
-                            return <BoxRow
-                                        key={index}
-                                        number={item.number}
-                                        beskrivelse='beskrivelsetext'
-                                        antal={item.antal}
-                                        pris={item.pris}
-                                        sum={item.sum}
-                                        rabatt={0}
-                                        parentCallback={this.sendCallback} />
-                        })}
-                    </View>
+                    <ObjectSummarizer
+                        propState={this.state}
+                        parentCallback={this.sendCallback}
+                    />
 
                     <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
 

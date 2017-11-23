@@ -134,7 +134,31 @@ export default class PriceSuggestion extends Component {
 
             },
 
-            orderState: null,
+            orderState: {
+                rowItems: [
+                    {
+                        number: 123,
+                        antal: 0,
+                        pris: 3000,
+                        sum: 0,
+                    },
+                    {
+                        number: 231,
+                        antal: 0,
+                        pris: 1500,
+                        sum: 0,
+                    },
+                    {
+                        number: 312,
+                        antal: 0,
+                        pris: 2000,
+                        sum: 0,
+                    },
+                ],
+                nettoSum: 0,
+                moms: 0,
+                totalSum:0,
+            },
 
         };
     }
@@ -193,7 +217,15 @@ export default class PriceSuggestion extends Component {
     prisePageCallback = (state) => {
         this.setState(previousState => {
             return {
-                prisePageState: state
+                prisePageState: state,
+                orderState: {
+                    rowItems: state.rowItems,
+
+                    nettoSum: state.nettoSum,
+                    moms: state.moms,
+                    totalSum: state.totalSum,
+
+                }
             }
 
         });
@@ -201,7 +233,16 @@ export default class PriceSuggestion extends Component {
     orderCallback = (state) => {
         this.setState(previousState => {
             return {
-                orderState: state
+                orderState: state,
+
+                prisePageState: {
+                    rowItems: state.rowItems,
+
+                    nettoSum: state.nettoSum,
+                    moms: state.moms,
+                    totalSum: state.totalSum,
+
+                }
             }
 
         });
@@ -269,7 +310,10 @@ export default class PriceSuggestion extends Component {
     order = () => {
         this.setState(previousState => {
             return {
-                activeTab: <Order />,
+                activeTab: <Order
+                                propState={this.state.orderState}
+                                parentCallback={this.orderCallback}
+                                />,
                 currentTab: 'order',
             }
 
