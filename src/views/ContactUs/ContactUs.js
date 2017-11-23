@@ -14,11 +14,10 @@ import globalStyles from '../../styles/globalStyles';
 import tcombFormStyle from '../../styles/tcombFormStyle';
 
 import Communications from 'react-native-communications';
+import t from 'tcomb-form-native';
+import _ from 'lodash';
 
-
-const t = require('tcomb-form-native');
 const Form = t.form.Form;
-const _ = require('lodash');
 const stylesheetMultiLine = _.cloneDeep(t.form.Form.stylesheet);
 
 const ContactForm = t.struct({

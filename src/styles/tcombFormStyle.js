@@ -3,7 +3,7 @@ import React from 'react-native';
 import {
     StyleSheet,
 } from 'react-native';
-const t = require('tcomb-form-native');
+import t from 'tcomb-form-native';
 
 // stylesheet overriding
 t.form.Form.stylesheet.textbox.normal.color = '#000000';

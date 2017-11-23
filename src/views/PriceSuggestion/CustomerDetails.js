@@ -11,12 +11,10 @@ import {
 import globalStyles from '../../styles/globalStyles';
 import Checkbox from 'react-native-checkbox';
 import tcombFormStyle from '../../styles/tcombFormStyle';
+import t from 'tcomb-form-native';
+import _ from 'lodash';
 
-const t = require('tcomb-form-native');
 const Form = t.form.Form;
-
-const _ = require('lodash');
-
 const stylesheet = _.cloneDeep(t.form.Form.stylesheet);
 const stylesheetRow = _.cloneDeep(t.form.Form.stylesheet);
 
