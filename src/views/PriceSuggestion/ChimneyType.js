@@ -27,6 +27,11 @@ export default class ChimneyType extends Component {
                     id: 3,
                     tagline: "RONDO",
                     ingress: "rondo"
+                },
+                {
+                    id: 4,
+                    tagline: "KING FIRE",
+                    ingress: "Peis og pipe i ett"
                 }
             ],
             choice: '',
@@ -34,7 +39,8 @@ export default class ChimneyType extends Component {
                 'permeter',
                 'solid vent',
                 'etesjepipe',
-                'rondo'
+                'rondo',
+                'king fire'
             ],
         };
         this.touchMethod = this.touchMethod.bind(this);
@@ -67,6 +73,9 @@ export default class ChimneyType extends Component {
         }
         if (i === 3) {
             this.setState({ choice: 'rondo' });
+        }
+        if (i === 4) {
+            this.setState({ choice: 'king fire' });
         }
     }
 
