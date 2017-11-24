@@ -13,6 +13,8 @@ import GridBox from '../../components/GridBoxes/GridBox';
 import GridBoxInc from '../../components/GridBoxes/GridBoxInc';
 import BoxRow from '../../components/GridBoxes/BoxRow';
 
+import ObjectSummarizer from '../../components/ObjectSummarizer/ObjectSummarizer'
+
 import { QUOT_NUMBER } from '../../components/redux-items/actions.js';
 
 import { returnState } from './HouseType.js';
@@ -42,22 +44,8 @@ export default class PricePage extends Component {
 
             pipe: props.propState.pipe,
 
-            rowOne: {
-                antal: props.propState.rowOne.antal,
-                pris: props.propState.rowOne.pris,
-                sum: props.propState.rowOne.sum,
-            },
+            rowItems: props.propState.rowItems,
 
-            rowTwo: {
-                antal: props.propState.rowTwo.antal,
-                pris: props.propState.rowTwo.pris,
-                sum: props.propState.rowTwo.sum,
-            },
-            rowThree: {
-                antal: props.propState.rowThree.antal,
-                pris: props.propState.rowThree.pris,
-                sum: props.propState.rowThree.sum,
-            },
             nettoSum: props.propState.nettoSum,
             moms: props.propState.moms,
             totalSum: props.propState.totalSum,
@@ -70,21 +58,14 @@ export default class PricePage extends Component {
         await this.setState(previousState => {
             return {
                 pipe: newprops.propState.pipe,
-                rowOne: {
-                    antal: newprops.propState.rowOne.antal,
-                    pris: newprops.propState.rowOne.pris,
-                    sum: newprops.propState.rowOne.sum,
-                },
-                rowTwo: {
-                    antal: newprops.propState.rowTwo.antal,
-                    pris: newprops.propState.rowTwo.pris,
-                    sum: newprops.propState.rowTwo.sum,
-                },
-                rowThree: {
-                    antal: newprops.propState.rowThree.antal,
-                    pris: newprops.propState.rowThree.pris,
-                    sum: newprops.propState.rowThree.sum,
-                },
+                rowItems: newprops.propState.rowItems,
+
+                nettoSum: newprops.propState.nettoSum,
+                moms: newprops.propState.moms,
+                totalSum: newprops.propState.totalSum,
+
+
+
                 tillbud: newprops.propState.tillbud,
                 ordrebekreftelse: newprops.propState.ordrebekreftelse,
                 totalsum: newprops.propState.totalsum,
@@ -95,52 +76,19 @@ export default class PricePage extends Component {
 
     }
 
-    parentCallbackOne = async (sum, antal) => {
-        await this.setState(previousState => {
-            return {
-                rowOne: {
-                    antal: antal,
-                    pris: this.state.rowOne.pris,
-                    sum: sum,
-                },
-            }
-
-        });
-        this.setTotalSum();
-    }
-    parentCallbackTwo = async (sum, antal) => {
-        await this.setState(previousState => {
-            return {
-                rowTwo: {
-                    antal: antal,
-                    pris: this.state.rowTwo.pris,
-                    sum: sum,
-                },
-            }
-
-        });
-        this.setTotalSum();
-    }
-    parentCallbackThree = async (sum, antal) => {
-        await this.setState(previousState => {
-            return {
-                rowThree: {
-                    antal: antal,
-                    pris: this.state.rowThree.pris,
-                    sum: sum,
-                },
-            }
-
+    sendCallback = async (rowItems) => {
+        await this.setState({
+            rowItems: rowItems.rowItems
         });
         this.setTotalSum();
     }
 
     setTotalSum = async () => {
-        let sum1 = this.state.rowOne.sum;
-        let sum2 = this.state.rowTwo.sum;
-        let sum3 = this.state.rowThree.sum;
-
-        let netto = sum1 + sum2 + sum3;
+        let netto = 0;
+        let rowItems = this.state.rowItems;
+        for(let i = 0; i < this.state.rowItems.length; i++) {
+            netto += rowItems[i].sum
+        }
         let moms = netto / 4;
         // if moms is NaN, make it 0
         // should only be needed to be done when first browsing the page
@@ -260,39 +208,10 @@ export default class PricePage extends Component {
 
                         <Text>RABATT (%)</Text>
                     </View>
-
-                    {/* need one of these views for each unique item picked */}
-                    {/* might have to make each row one component to simplify some logic, but this is a starting point*/}
-                    <BoxRow
-                        number='12312312'
-                        beskrivelse='beskrivelsetext'
-                        antal={this.state.rowOne.antal}
-                        pris={this.state.rowOne.pris}
-                        sum={this.state.rowOne.sum}
-                        rabatt={0}
-                        parentCallback={this.parentCallbackOne}
-                     />
-
-                     <BoxRow
-                         number='12312312'
-                         beskrivelse='beskrivelsetext'
-                         antal={this.state.rowTwo.antal}
-                         pris={this.state.rowTwo.pris}
-                         sum={this.state.rowTwo.sum}
-                         rabatt={0}
-                         parentCallback={this.parentCallbackTwo}
-                      />
-
-                      <BoxRow
-                          number='12312312'
-                          beskrivelse='beskrivelsetext'
-                          antal={this.state.rowThree.antal}
-                          pris={this.state.rowThree.pris}
-                          sum={this.state.rowThree.sum}
-                          rabatt={0}
-                          parentCallback={this.parentCallbackThree}
-                       />
-
+                    <ObjectSummarizer
+                        propState={this.state}
+                        parentCallback={this.sendCallback}
+                    />
 
                     <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
 

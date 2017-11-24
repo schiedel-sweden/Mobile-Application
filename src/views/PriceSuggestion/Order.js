@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import BoxRow from '../../components/GridBoxes/BoxRow';
+import ObjectSummarizer from '../../components/ObjectSummarizer/ObjectSummarizer';
 
 import Checkbox from 'react-native-checkbox';
 
@@ -16,7 +17,7 @@ import Checkbox from 'react-native-checkbox';
 export default class Order extends Component {
 
     // TODO: Loop out BoxRow, save sums in an object in an array in the state
-    // {product number: sum}  
+    // {product number: sum}
     constructor(props) {
         super(props);
         this.state = {
@@ -27,36 +28,27 @@ export default class Order extends Component {
             plukket: false,
             kjorer: false,
 
-            sum1: 0,
-            sum2: 0,
-            sum3: 0,
+            rowItems: props.propState.rowItems,
+
+            nettoSum: props.propState.nettoSum,
+            moms: props.propState.moms,
+            totalSum: props.propState.totalSum,
         }
     }
-    parentCallbackOne = async (sum) => {
+
+    sendCallback = async (rowItems) => {
         await this.setState({
-            sum1: sum,
-        });
-        this.setTotalSum();
-    }
-    parentCallbackTwo = async (sum) => {
-        await this.setState({
-            sum2: sum,
-        });
-        this.setTotalSum();
-    }
-    parentCallbackThree = async (sum) => {
-        await this.setState({
-            sum3: sum,
+            rowItems: rowItems.rowItems
         });
         this.setTotalSum();
     }
 
-    setTotalSum = () => {
-        let sum1 = this.state.sum1;
-        let sum2 = this.state.sum2;
-        let sum3 = this.state.sum3;
-
-        let netto = sum1 + sum2 + sum3;
+    setTotalSum = async () => {
+        let netto = 0;
+        let rowItems = this.state.rowItems;
+        for(let i = 0; i < this.state.rowItems.length; i++) {
+            netto += rowItems[i].sum
+        }
         let moms = netto / 4;
         // if moms is NaN, make it 0
         // should only be needed to be done when first browsing the page
@@ -67,14 +59,23 @@ export default class Order extends Component {
         // should only be needed to be done when first browsing the page
         total = total ? total : 0;
 
-        this.setState({
-            nettoSum: netto,
-            totalSum: total,
-            moms: moms,
+        await this.setState(previousState => {
+            return {
+                nettoSum: netto,
+                totalSum: total,
+                moms: moms,
+            }
+
         });
+        this.parentCallback();
 
 
     }
+    parentCallback = () => {
+        this.props.parentCallback(this.state);
+    }
+
+
 
     render() {
         return (
@@ -93,35 +94,9 @@ export default class Order extends Component {
                     <Text>RABATT (%)</Text>
                 </View>
 
-                <BoxRow
-                    number='12312312'
-                    beskrivelse='beskrivelsetext'
-                    antal={0}
-                    pris={10}
-                    sum={this.state.sum1}
-                    rabatt={0}
-                    parentCallback={this.parentCallbackOne}
-                 />
-
-                 <BoxRow
-                     number='12312312'
-                     beskrivelse='beskrivelsetext'
-                     antal={0}
-                     pris={15}
-                     sum={this.state.sum2}
-                     rabatt={0}
-                     parentCallback={this.parentCallbackTwo}
-                  />
-
-                  <BoxRow
-                      number='12312312'
-                      beskrivelse='beskrivelsetext'
-                      antal={0}
-                      pris={10}
-                      sum={this.state.sum3}
-                      rabatt={0}
-                      parentCallback={this.parentCallbackThree}
-                   />
+                <ObjectSummarizer
+                    propState={this.state}
+                    parentCallback={this.sendCallback} />
 
                 <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
 
