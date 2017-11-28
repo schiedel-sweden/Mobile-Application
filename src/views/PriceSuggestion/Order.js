@@ -24,9 +24,9 @@ export default class Order extends Component {
             rebateText: 'Rabatt på totapbeløp',
             shippingText: 'Frakt (kr)',
 
-            kranbil: false,
-            plukket: false,
-            kjorer: false,
+            kranbil: props.propState.kranbil,
+            plukket: props.propState.plukket,
+            kjorer: props.propState.kjorer,
 
             rowItems: props.propState.rowItems,
 
@@ -34,6 +34,22 @@ export default class Order extends Component {
             moms: props.propState.moms,
             totalSum: props.propState.totalSum,
         }
+    }
+
+
+    componentWillReceiveProps = (newprops) => {
+        this.setState({
+            rowItems: newprops.propState.rowItems,
+
+            kranbil: newprops.propState.kranbil,
+            plukket: newprops.propState.plukket,
+            kjorer: newprops.propState.kjorer,
+
+            nettoSum: newprops.propState.nettoSum,
+            moms: newprops.propState.moms,
+            totalSum: newprops.propState.totalSum,
+
+        })
     }
 
     sendCallback = async (rowItems) => {
@@ -73,6 +89,24 @@ export default class Order extends Component {
     }
     parentCallback = () => {
         this.props.parentCallback(this.state);
+    }
+
+    checkBoxCallback = async (type) => {
+        switch (type) {
+            case "kranbil":
+                await this.setState({kranbil: !this.state.kranbil});
+                this.parentCallback();
+                break;
+            case "plukket":
+                await this.setState({plukket: !this.state.plukket});
+                this.parentCallback();
+                break;
+            case "kjorer":
+                await this.setState({kjorer: !this.state.kjorer});
+                this.parentCallback();
+                break;
+
+        }
     }
 
 
@@ -143,19 +177,19 @@ export default class Order extends Component {
                         label="Leveres med kranbil"
                         checked={this.state.kranbil}
                         checkboxStyle={this.state.kranbil ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                        onChange={() => this.setState({kranbil: !this.state.kranbil})} />
+                        onChange={() => this.checkBoxCallback("kranbil")} />
 
                     <Checkbox
                         label="Plukket"
                         checked={this.state.plukket}
                         checkboxStyle={this.state.plukket ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                        onChange={() => this.setState({plukket: !this.state.plukket})} />
+                        onChange={() => this.checkBoxCallback("plukket")} />
 
                     <Checkbox
                         label="Kjører"
                         checked={this.state.kjorer}
                         checkboxStyle={this.state.kjorer ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                        onChange={() => this.setState({kjorer: !this.state.kjorer})} />
+                        onChange={() => this.checkBoxCallback("kjorer")} />
 
                 </View>
 
