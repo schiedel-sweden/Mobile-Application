@@ -155,6 +155,11 @@ export default class PriceSuggestion extends Component {
                         sum: 0,
                     },
                 ],
+
+                kranbil: false,
+                plukket: false,
+                kjorer: false,
+
                 nettoSum: 0,
                 moms: 0,
                 totalSum:0,
@@ -241,6 +246,10 @@ export default class PriceSuggestion extends Component {
                     nettoSum: state.nettoSum,
                     moms: state.moms,
                     totalSum: state.totalSum,
+
+                    kranbil: state.kranbil,
+                    plukket: state.plukket,
+                    kjorer: state.kjorer,
 
                 }
             }
