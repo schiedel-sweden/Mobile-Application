@@ -436,6 +436,8 @@ const styles = StyleSheet.create({
         borderBottomColor: '#333333',
     },
     currentTab: {
+        borderRightWidth: 2,
+        borderRightColor: '#333333',
         backgroundColor: '#EEEEEE',
         borderBottomWidth: 2,
         borderBottomColor: '#EEEEEE',
@@ -443,6 +445,8 @@ const styles = StyleSheet.create({
     tabLastChild: {
         borderBottomWidth: 2,
         borderBottomColor: '#333333',
+        borderRightWidth: 2,
+        borderRightColor: '#EEEEEE',
     },
     body: {
         backgroundColor: '#EEEEEE',
