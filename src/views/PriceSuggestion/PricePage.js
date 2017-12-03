@@ -7,6 +7,7 @@ import {
     Text,
     Image,
 } from 'react-native';
+import NumberInput from '../../components/NumberInput/NumberInput';
 import Checkbox from 'react-native-checkbox';
 
 import GridBox from '../../components/GridBoxes/GridBox';
@@ -18,6 +19,8 @@ import ObjectSummarizer from '../../components/ObjectSummarizer/ObjectSummarizer
 import { QUOT_NUMBER } from '../../components/redux-items/actions.js';
 
 import { returnState } from './HouseType.js';
+
+import globalStyles from '../../styles/globalStyles';
 
 
 
@@ -143,198 +146,233 @@ export default class PricePage extends Component {
                 <View>
                     <Text>Offertnummer: { QUOT_NUMBER }</Text>
                 </View>
-
-            {/* chosen chimney */}
-                <View>
-                    <Text>Din pipe</Text>
-                    <Text>{this.state.pipe}</Text>
-                </View>
-            {/* information from hustyp page */}
-                <View>
-                    <Text>Angitte mått:</Text>
-
-                    <View>
-                        <Text>Høyde gulv pipetopp</Text>
-                        <Text>xxxx mm</Text>
+                <View style={styles.container}>
+                {/* chosen chimney */}
+                    <View style={styles.sectionContainer}>
+                        <Text style={globalStyles.h3}>Din pipe</Text>
+                        <Text>{this.state.pipe}</Text>
                     </View>
+                {/* information from hustyp page */}
+                    <View style={styles.sectionContainer}>
+                        <Text style={globalStyles.h3}>Angitte mått:</Text>
 
-                    <View>
-                        <Text>Takvinkel: </Text>
-                        {/* insert info from HouseType*/}
-                        <Text>{this.state.roofAngle}</Text>
-                    </View>
-
-                    <View>
-                        <Text>Ytterelement: </Text>
-                        {/* Dont know where this info comes from */}
-                    </View>
-
-                    <View>
-                        <Text>Utsparningsmål: </Text>
-                        {/* Dont know where this info comes from */}
-                    </View>
-
-                    <View>
-                        <Text>Höjd över tak: </Text>
-                        {/* H2 from HouseType */}
-                        <Text>{this.state.heightAboveRoof}</Text>
-                    </View>
-
-                    <View>
-                        <Text>Total høyde: </Text>
-                        {/* h1 from HouseType */}
-                        <Text>{this.state.totalHeight}</Text>
-                    </View>
-
-                    <View>
-                        <Text>Forningsrør: </Text>
-                        {/* Dont know where this info comes from */}
-                    </View>
-
-                    <View>
-                        <Text>Andre: </Text>
-                    </View>
-
-                    <View style={{flex:1, flexDirection: 'row', justifyContent: 'space-between'}}>
-                        <Text>NOBBNUMMER</Text>
-
-                        <Text>BESKRIVELSE</Text>
-
-                        <Text>ANTALL</Text>
-
-                        <Text>PRIS</Text>
-
-                        <Text>SUM</Text>
-
-                        <Text>RABATT (%)</Text>
-                    </View>
-                    <ObjectSummarizer
-                        propState={this.state}
-                        parentCallback={this.sendCallback}
-                    />
-
-                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
-
-                        <TextInput
-                            style={{flex: 1, backgroundColor: "#d3d3d3"}}
-                            onChangeText={(text) => this.setState(previousState => {
-                                return {
-                                    rebateText: text
-                                }
-
-                            })}
-                            value={this.state.rebateText}
+                        <View style={styles.rowSpaceBetween}>
+                            <NumberInput
+                                pretext="Høyde gulv pipetopp:"
+                                postfix="mm"
                             />
-
-                        <TextInput
-                            style={{flex: 1, backgroundColor: "#d3d3d3"}}
-                            onChangeText={(text) => this.setState(previousState => {
-                                return {
-                                    shippingText: text
-                                }
-
-                            })}
-                            value={this.state.shippingText}
+                            <NumberInput
+                                pretext="Höjd över tak (H2):"
+                                postfix="mm"
+                                parentCallback={this.heightAboveRoofCallback}
+                                myNumber={this.state.heightAboveRoof}
                             />
-                    </View>
-
-                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
-                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
-                            <Text>NETTO</Text>
-                            {/* total sum of all above */}
-                            <Text>{this.state.nettoSum}</Text>
                         </View>
 
-                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
-                            <Text>MOMS (25%)</Text>
-                            {/* 25% of the total sum */}
-                            <Text>{this.state.moms}</Text>
+                        <View style={styles.rowSpaceBetween}>
+                            <NumberInput
+                                pretext="Takvinkel:"
+                                postfix="°"
+                                parentCallback={this.roofAngleCallback}
+                                myNumber={this.state.roofAngle}
+                            />
+                            <NumberInput
+                                pretext="Total høyde:"
+                                postfix="mm"
+                                parentCallback={this.totalHeightCallback}
+                                myNumber={this.state.totalHeight}
+                            />
                         </View>
-                    </View>
 
-                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
-                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <View style={styles.rowSpaceBetween}>
+                            {/* Dont know where this info comes from */}
+                            <NumberInput
+                                pretext="Ytterelement:"
+                                postfix="cm"
+                            />
+                            {/* Dont know where this info comes from */}
+                            <NumberInput
+                                pretext="Forningsrør:"
+                                postfix=""
+                            />
+                        </View>
+
+                        <View style={styles.rowSpaceBetween}>
+                            {/* Dont know where this info comes from */}
+                            <NumberInput
+                                pretext="Utsparningsmål:"
+                                postfix="cm"
+                            />
+                        </View>
+
+                        <View>
+                            <Text>Andre:</Text>
+                        </View>
+
+                        <View style={{flex:1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                            <Text>NOBBNUMMER</Text>
+
+                            <Text>BESKRIVELSE</Text>
+
+                            <Text>ANTALL</Text>
+
+                            <Text>PRIS</Text>
+
                             <Text>SUM</Text>
-                            {/* total sum of all above */}
-                            <Text>{this.state.totalSum}</Text>
+
+                            <Text>RABATT (%)</Text>
                         </View>
+                        <ObjectSummarizer
+                            propState={this.state}
+                            parentCallback={this.sendCallback}
+                        />
 
                         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
 
-                        </View>
-                    </View>
+                            <TextInput
+                                style={{flex: 1, backgroundColor: "#d3d3d3"}}
+                                onChangeText={(text) => this.setState(previousState => {
+                                    return {
+                                        rebateText: text
+                                    }
 
-                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
-                        <Checkbox
-                            label="Tillbud"
-                            checked={this.state.tillbud}
-                            checkboxStyle={this.state.tillbud ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                            onChange={() => this.checkBoxCallback("tillbud")} />
-
-                        <Checkbox
-                            label="Ordrebekreftelse"
-                            checked={this.state.ordrebekreftelse}
-                            checkboxStyle={this.state.ordrebekreftelse ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                            onChange={() => this.checkBoxCallback("ordrebekreftelse")} />
-
-                        <Checkbox
-                            label="Vis kun totalsum"
-                            checked={this.state.totalsum}
-                            checkboxStyle={this.state.totalsum ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
-                            onChange={() => this.checkBoxCallback("totalsum")} />
-
-                    </View>
-
-                    <View>
-                        <Text>BESKJED</Text>
-
-                        <TextInput
-                            style={{flex: 1, backgroundColor: "#d3d3d3"}}
-                            onChangeText={(text) => this.setState(previousState => {
-                                return {
-                                    beskjed: text
-                                }
-
-                            })}
-                            value={this.state.beskjed}
+                                })}
+                                value={this.state.rebateText}
                             />
-                    </View>
 
+                            <TextInput
+                                style={{flex: 1, backgroundColor: "#d3d3d3"}}
+                                onChangeText={(text) => this.setState(previousState => {
+                                    return {
+                                        shippingText: text
+                                    }
 
-                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                                })}
+                                value={this.state.shippingText}
+                            />
+                        </View>
 
-                        <View>
-                            <Image
-                                style={{height: 250, width: 250, backgroundColor: '#F9CE3C', borderRadius: 10, borderColor: '#000', borderWidth: 5,}}
-                                source={require('../../images/save.png')} />
+                        <View style={styles.rowSpaceBetween}>
+                            {/* total sum of all above */}
+                            {/*parentCallback={NO callback}
+                              myNumber={this.state.nettoSum} issues WARNING*/}
+                            <NumberInput
+                                pretext="NETTO"
+                                postfix="kr"
+                            />
+                            {/* 25% of the total sum */}
+                            {/*parentCallback={NO callback}
+                               myNumber={this.state.moms} issues WARNING*/}
+                            <NumberInput
+                                pretext="MOMS (25%)"
+                                postfix="kr"
+                            />
                         </View>
 
                         <View>
-                            <Image
-                                style={{height: 250, width: 250, backgroundColor: '#F9CE3C', borderRadius: 10, borderColor: '#000', borderWidth: 5,}}
-                                source={require('../../images/printer.png')} />
+                            {/*parentCallback={NO callback}
+                               myNumber={this.state.totalSum} issues WARNING*/}
+                            <NumberInput
+                                pretext="SUM"
+                                postfix="kr"
+                            />
+                        </View>
+
+                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                            <Checkbox
+                                label="Tillbud"
+                                checked={this.state.tillbud}
+                                checkboxStyle={this.state.tillbud ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
+                                onChange={() => this.checkBoxCallback("tillbud")} />
+
+                            <Checkbox
+                                label="Ordrebekreftelse"
+                                checked={this.state.ordrebekreftelse}
+                                checkboxStyle={this.state.ordrebekreftelse ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
+                                onChange={() => this.checkBoxCallback("ordrebekreftelse")} />
+
+                            <Checkbox
+                                label="Vis kun totalsum"
+                                checked={this.state.totalsum}
+                                checkboxStyle={this.state.totalsum ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
+                                onChange={() => this.checkBoxCallback("totalsum")} />
+
+                        </View>
+
+                        <View>
+                            <Text>BESKJED</Text>
+
+                            <TextInput
+                                style={{flex: 1, backgroundColor: "#d3d3d3"}}
+                                onChangeText={(text) => this.setState(previousState => {
+                                    return {
+                                        beskjed: text
+                                    }
+
+                                })}
+                                value={this.state.beskjed}
+                            />
                         </View>
 
 
-                    </View>
+                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
 
-                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', }}>
+                            <View>
+                                <Image
+                                    style={{height: 250, width: 250, backgroundColor: '#F9CE3C', borderRadius: 10, borderColor: '#000', borderWidth: 5,}}
+                                    source={require('../../images/save.png')} />
+                            </View>
 
-                        <View style={{backgroundColor: '#F9CE3C', borderRadius: 10, borderColor: '#000', borderWidth: 5, }}>
-                            <Text style={{fontSize: 24}}>Lagre som PDF</Text>
+                            <View>
+                                <Image
+                                    style={{height: 250, width: 250, backgroundColor: '#F9CE3C', borderRadius: 10, borderColor: '#000', borderWidth: 5,}}
+                                    source={require('../../images/printer.png')} />
+                            </View>
+
+
                         </View>
 
-                        <View style={{backgroundColor: '#F9CE3C', borderRadius: 10, borderColor: '#000', borderWidth: 5, }}>
-                            <Text style={{fontSize: 24}}>Send PDF med e-post</Text>
-                        </View>
+                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', }}>
 
+                            <View style={{backgroundColor: '#F9CE3C', borderRadius: 10, borderColor: '#000', borderWidth: 5, }}>
+                                <Text style={{fontSize: 24}}>Lagre som PDF</Text>
+                            </View>
+
+                            <View style={{backgroundColor: '#F9CE3C', borderRadius: 10, borderColor: '#000', borderWidth: 5, }}>
+                                <Text style={{fontSize: 24}}>Send PDF med e-post</Text>
+                            </View>
+
+                        </View>
 
                     </View>
 
                 </View>
 
             </View>
-
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        padding: globalStyles.PADDING,
+        paddingHorizontal: globalStyles.PADDING * 2,
+    },
+    sectionContainer: {
+        paddingVertical: globalStyles.PADDING,
+    },
+    rowSpaceBetween: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    button: {
+        borderRadius: 5,
+        borderWidth: 2,
+        borderColor: '#333333',
+        backgroundColor: '#F9CE3C',
+        marginTop: globalStyles.PADDING * 0.5,
+        width: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+});
