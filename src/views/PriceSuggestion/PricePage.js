@@ -150,7 +150,9 @@ export default class PricePage extends Component {
                 {/* chosen chimney */}
                     <View style={styles.sectionContainer}>
                         <Text style={globalStyles.h3}>Din pipe</Text>
-                        <Text>{this.state.pipe}</Text>
+                        <View style={styles.textDescription}>
+                            <Text>{this.state.pipe}</Text>
+                        </View>
                     </View>
                 {/* information from hustyp page */}
                     <View style={styles.sectionContainer}>
@@ -205,11 +207,11 @@ export default class PricePage extends Component {
                             />
                         </View>
 
-                        <View>
+                        <View style={styles.textDescription}>
                             <Text>Andre:</Text>
                         </View>
 
-                        <View style={{flex:1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <View style={[styles.borderBottom,{flex:1, flexDirection: 'row', justifyContent: 'space-between', paddingTop: globalStyles.PADDING}]}>
                             <Text>NOBBNUMMER</Text>
 
                             <Text>BESKRIVELSE</Text>
@@ -222,12 +224,14 @@ export default class PricePage extends Component {
 
                             <Text>RABATT (%)</Text>
                         </View>
-                        <ObjectSummarizer
-                            propState={this.state}
-                            parentCallback={this.sendCallback}
-                        />
+                        <View style={styles.borderBottom}>
+                            <ObjectSummarizer
+                                propState={this.state}
+                                parentCallback={this.sendCallback}
+                            />
+                        </View>
 
-                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingTop: globalStyles.PADDING}}>
 
                             <TextInput
                                 style={{flex: 1, backgroundColor: "#d3d3d3"}}
@@ -252,7 +256,7 @@ export default class PricePage extends Component {
                             />
                         </View>
 
-                        <View style={styles.rowSpaceBetween}>
+                        <View style={[styles.rowSpaceBetween,{paddingTop: globalStyles.PADDiNG}]}>
                             {/* total sum of all above */}
                             {/*parentCallback={NO callback}
                               myNumber={this.state.nettoSum} issues WARNING*/}
@@ -278,7 +282,7 @@ export default class PricePage extends Component {
                             />
                         </View>
 
-                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <View style={[styles.borderBottom,{flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingTop: globalStyles.PADDING*1.5}]}>
                             <Checkbox
                                 label="Tillbud"
                                 checked={this.state.tillbud}
@@ -296,11 +300,10 @@ export default class PricePage extends Component {
                                 checked={this.state.totalsum}
                                 checkboxStyle={this.state.totalsum ? {backgroundColor: "#F9CE3C",} : {backgroundColor: "#FFFFFF"}}
                                 onChange={() => this.checkBoxCallback("totalsum")} />
-
                         </View>
 
-                        <View>
-                            <Text>BESKJED</Text>
+                        <View style={styles.textDescription}>
+                            <Text>BESKJED:</Text>
 
                             <TextInput
                                 style={{flex: 1, backgroundColor: "#d3d3d3"}}
@@ -359,11 +362,24 @@ const styles = StyleSheet.create({
         paddingHorizontal: globalStyles.PADDING * 2,
     },
     sectionContainer: {
-        paddingVertical: globalStyles.PADDING,
+        paddingBottom: globalStyles.PADDING,
     },
     rowSpaceBetween: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+    },
+    borderBottom: {
+        borderRadius: 1,
+        borderBottomWidth: 1,
+        borderColor: '#B9B9B9',
+    },
+    textDescription: {
+        flex: 1,
+        flexDirection: 'row',
+        paddingTop: globalStyles.PADDING,
+        borderRadius: 1,
+        borderBottomWidth: 1,
+        borderColor: '#B9B9B9',
     },
     button: {
         borderRadius: 5,
