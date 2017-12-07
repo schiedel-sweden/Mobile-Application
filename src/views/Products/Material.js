@@ -54,16 +54,14 @@ const styles = StyleSheet.create({
     containerLightBackground: {
         backgroundColor: '#EEEEEE',
         padding: globalStyles.PADDING,
-        borderRadius: 1,
-        borderWidth: 1,
-        borderColor: '#B9B9B9',
+        borderTopWidth: 2,
+        borderTopColor: '#B9B9B9',
     },
     containerDarkBackground: {
         backgroundColor: '#B9B9B9',
         padding: globalStyles.PADDING,
-        borderRadius: 1,
-        borderWidth: 1,
-        borderColor: '#EEEEEE',
+        borderTopWidth: 2,
+        borderTopColor: '#EEEEEE',
     },
     text: {
         paddingHorizontal: globalStyles.PADDING,

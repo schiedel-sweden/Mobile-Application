@@ -105,9 +105,6 @@ const styles = StyleSheet.create({
     },
     lightBackground: {
         backgroundColor: '#EEEEEE',
-        borderRadius: 1,
-        borderWidth: 1,
-        borderColor: '#B9B9B9',
     },
     darkBackground: {
         backgroundColor: '#B9B9B9',
