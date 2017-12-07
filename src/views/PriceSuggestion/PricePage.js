@@ -21,9 +21,49 @@ import { QUOT_NUMBER } from '../../components/redux-items/actions.js';
 import { returnState } from './HouseType.js';
 
 import globalStyles from '../../styles/globalStyles';
+import tcombFormStyle from '../../styles/tcombFormStyle';
+import t from 'tcomb-form-native';
+import _ from 'lodash';
 
+const Form = t.form.Form;
+const stylesheetRow = _.cloneDeep(t.form.Form.stylesheet);
 
+stylesheetRow.fieldset = {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+};
 
+stylesheetRow.formGroup.normal.flex = 0.48;
+stylesheetRow.formGroup.error.flex = 1;
+
+const ShippingForm = t.struct({
+    rebateText: t.String,
+    shippingText: t.String,
+});
+
+// borderRadius: 5,
+// borderWidth: 2,
+// borderColor: '#333333',
+// paddingVertical: 10,
+// paddingHorizontal: 15,
+// backgroundColor: '#ffffff',
+// marginVertical: 10,
+
+const options = {
+    auto: 'none',
+    stylesheet: stylesheetRow,
+    fields: {
+        rebateText: {
+            placeholder: 'Rabatt på totalsumma (%)',
+            error: 'obligatoriskt!'
+
+        },
+        shippingText: {
+            placeholder: 'Frakt (kr)',
+            error: 'obligatoriskt!'
+        }
+    }
+};
 
 export default class PricePage extends Component {
 
@@ -35,14 +75,16 @@ export default class PricePage extends Component {
             totalHeight: returnState.totalHeight,
             heightAboveRoof: returnState.heightAboveRoof,
             roofAngle: returnState.roofAngle,
-
-            rebateText: 'Rabatt på totalsumma (%)',
-            shippingText: 'Frakt (kr)',
+            shipping: {
+                rebateText: '',
+                shippingText: '',
+            },
 
             tillbud: props.propState.tillbud,
             ordrebekreftelse: props.propState.ordrebekreftelse,
             totalsum: props.propState.totalsum,
 
+            andre: '',
             beskjed: '',
 
             pipe: props.propState.pipe,
@@ -52,9 +94,8 @@ export default class PricePage extends Component {
             nettoSum: props.propState.nettoSum,
             moms: props.propState.moms,
             totalSum: props.propState.totalSum,
-
-
-        };
+        }
+        this.updateShipping = this.updateShipping.bind(this);
     }
 
     componentWillReceiveProps = async (newprops) => {
@@ -79,6 +120,19 @@ export default class PricePage extends Component {
 
     }
 
+    async updateShipping(value) {
+        try {
+            await this.setState({
+                shipping: value,
+            });
+            this.callback();
+        }
+        catch (error) {
+            console.log(error);
+        }
+
+
+    }
     sendCallback = async (rowItems) => {
         await this.setState({
             rowItems: rowItems.rowItems
@@ -111,8 +165,6 @@ export default class PricePage extends Component {
 
         });
         this.parentCallback();
-
-
     }
 
     parentCallback = () => {
@@ -156,7 +208,7 @@ export default class PricePage extends Component {
                     </View>
                 {/* information from hustyp page */}
                     <View style={styles.sectionContainer}>
-                        <Text style={globalStyles.h3}>Angitte mått:</Text>
+                        <Text style={globalStyles.h3}>Angitte mått</Text>
 
                         <View style={styles.rowSpaceBetween}>
                             <NumberInput
@@ -209,64 +261,66 @@ export default class PricePage extends Component {
 
                         <View style={styles.textDescription}>
                             <Text>Andre:</Text>
-                        </View>
-
-                        <View style={[styles.borderBottom,{flex:1, flexDirection: 'row', justifyContent: 'space-between', paddingTop: globalStyles.PADDING}]}>
-                            <Text>NOBBNUMMER</Text>
-
-                            <Text>BESKRIVELSE</Text>
-
-                            <Text>ANTALL</Text>
-
-                            <Text>PRIS</Text>
-
-                            <Text>SUM</Text>
-
-                            <Text>RABATT (%)</Text>
-                        </View>
-                        <View style={styles.borderBottom}>
-                            <ObjectSummarizer
-                                propState={this.state}
-                                parentCallback={this.sendCallback}
-                            />
-                        </View>
-
-                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingTop: globalStyles.PADDING}}>
-
                             <TextInput
                                 style={{flex: 1, backgroundColor: "#d3d3d3"}}
                                 onChangeText={(text) => this.setState(previousState => {
                                     return {
-                                        rebateText: text
+                                        andre: text
                                     }
 
                                 })}
-                                value={this.state.rebateText}
-                            />
-
-                            <TextInput
-                                style={{flex: 1, backgroundColor: "#d3d3d3"}}
-                                onChangeText={(text) => this.setState(previousState => {
-                                    return {
-                                        shippingText: text
-                                    }
-
-                                })}
-                                value={this.state.shippingText}
+                                value={this.state.andre}
                             />
                         </View>
+
+                        <View style={[styles.borderBottom,{flex:1, flexDirection: 'row', justifyContent: 'space-between', paddingTop: globalStyles.PADDING, paddingBottom: globalStyles.PADDING * 0.5}]}>
+                            <View style={{flex: 0.18}}>
+                                <Text>NOBBNUMMER</Text>
+                            </View>
+                            <View style={{flex: 0.25}}>
+                                <Text>BESKRIVELSE</Text>
+                            </View>
+                            <View style={{flex: 0.13}}>
+                                <Text>ANTALL</Text>
+                            </View>
+                            <View style={{flex: 0.13}}>
+                                <Text>PRIS</Text>
+                            </View>
+                            <View style={{flex: 0.13}}>
+                                <Text>SUM</Text>
+                            </View>
+                            <View style={{flex: 0.13}}>
+                                <Text>RABATT (%)</Text>
+                            </View>
+                        </View>
+                        <View style={{paddingBottom: globalStyles.PADDING * 0.5}}>
+                            <View style={[styles.borderBottom,{paddingVertical: globalStyles.PADDING * 0.5}]}>
+                                <ObjectSummarizer
+                                    propState={this.state}
+                                    parentCallback={this.sendCallback}
+                                />
+                            </View>
+                        </View>
+
+                        <Form
+                        ref="shippingform"
+                        value={this.state.shipping}
+                        onChange={this.updateShipping}
+                        type={ShippingForm}
+                        options={options}
+                        />
 
                         <View style={[styles.rowSpaceBetween,{paddingTop: globalStyles.PADDiNG}]}>
                             {/* total sum of all above */}
                             {/*parentCallback={NO callback}
-                              myNumber={this.state.nettoSum} issues WARNING*/}
+                              myNumber={this.state.nettoSum.toString()} issues WARNING*/}
                             <NumberInput
                                 pretext="NETTO"
                                 postfix="kr"
                             />
                             {/* 25% of the total sum */}
                             {/*parentCallback={NO callback}
-                               myNumber={this.state.moms} issues WARNING*/}
+                               myNumber={this.state.moms.toString()} issues WARNING*/}
                             <NumberInput
                                 pretext="MOMS (25%)"
                                 postfix="kr"
@@ -275,7 +329,7 @@ export default class PricePage extends Component {
 
                         <View>
                             {/*parentCallback={NO callback}
-                               myNumber={this.state.totalSum} issues WARNING*/}
+                               myNumber={this.state.totalSum.toString()}*/}
                             <NumberInput
                                 pretext="SUM"
                                 postfix="kr"
@@ -307,6 +361,8 @@ export default class PricePage extends Component {
 
                             <TextInput
                                 style={{flex: 1, backgroundColor: "#d3d3d3"}}
+                                multiline = {true}
+                                numberOfLines = {4}
                                 onChangeText={(text) => this.setState(previousState => {
                                     return {
                                         beskjed: text
@@ -318,30 +374,37 @@ export default class PricePage extends Component {
                         </View>
 
 
-                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between',
+                                      paddingBottom: globalStyles.PADDING * 0.6, paddingTop: globalStyles.PADDING}}>
 
-                            <View>
+                            <View style={styles.receiptButton}>
                                 <Image
-                                    style={{height: 250, width: 250, backgroundColor: '#F9CE3C', borderRadius: 10, borderColor: '#000', borderWidth: 5,}}
+                                    style={{height: 50, width: 50}}
                                     source={require('../../images/save.png')} />
+                                <View style={{paddingTop: globalStyles.PADDING * 0.5}}>
+                                    <Text style={{fontSize: 24}}>Lagre tillbud</Text>
+                                </View>
                             </View>
 
-                            <View>
+                            <View style={styles.receiptButton}>
                                 <Image
-                                    style={{height: 250, width: 250, backgroundColor: '#F9CE3C', borderRadius: 10, borderColor: '#000', borderWidth: 5,}}
+                                    style={{height: 50, width: 50}}
                                     source={require('../../images/printer.png')} />
+                                <View style={{paddingTop: globalStyles.PADDING * 0.5}}>
+                                    <Text style={{fontSize: 24}}>Skriv ut</Text>
+                                </View>
                             </View>
 
 
                         </View>
 
-                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', }}>
+                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingBottom: globalStyles.PADDING,}}>
 
-                            <View style={{backgroundColor: '#F9CE3C', borderRadius: 10, borderColor: '#000', borderWidth: 5, }}>
+                            <View style={styles.receiptButton}>
                                 <Text style={{fontSize: 24}}>Lagre som PDF</Text>
                             </View>
 
-                            <View style={{backgroundColor: '#F9CE3C', borderRadius: 10, borderColor: '#000', borderWidth: 5, }}>
+                            <View style={styles.receiptButton}>
                                 <Text style={{fontSize: 24}}>Send PDF med e-post</Text>
                             </View>
 
@@ -390,5 +453,15 @@ const styles = StyleSheet.create({
         width: 100,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    receiptButton: {
+        flex: 0.48,
+        backgroundColor: '#F9CE3C',
+        borderRadius: 10,
+        borderColor: '#333333',
+        borderWidth: 4,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingVertical: globalStyles.PADDING * 0.5,
     }
 });

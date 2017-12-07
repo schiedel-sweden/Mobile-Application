@@ -61,12 +61,9 @@ export default class GridBoxInc extends Component {
                     onPress={this.decrement}>
                     <Text style={styles.minus}>-</Text>
                 </TouchableOpacity>
-
-                <TextInput
-                    style={styles.textinput}
-                    editable={false}
-                    value={this.state.number.toString()} />
-
+                <View style={{paddingHorizontal: 4}}>
+                    <Text>{this.state.number.toString()}</Text>
+                </View>
                 <TouchableOpacity
                     onPress={this.increment}>
                     <Text style={styles.plus}>+</Text>
@@ -85,18 +82,10 @@ const styles = StyleSheet.create({
         maxWidth: 90,
         backgroundColor: '#F9CE3C',
         borderRadius: 10,
-        borderColor: '#000',
-        borderWidth: 5,
-        paddingTop: 10,
-        paddingBottom: 10,
-        paddingRight: 10,
-        paddingLeft: 10,
+        borderColor: '#333333',
+        borderWidth: 4,
+        paddingVertical: globalStyles.PADDING * 0.25,
         justifyContent: 'center',
+        alignItems: 'center',
     },
-    textinput: {
-        flex: 1,
-    },
-
-
-
 });

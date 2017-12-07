@@ -51,14 +51,14 @@ export default class GridBox extends Component {
 
 const styles = StyleSheet.create({
     border: {
+        flex: 1,
         maxWidth: 200,
         backgroundColor: '#F9CE3C',
         borderRadius: 10,
-        borderColor: '#000',
-        borderWidth: 5,
-        paddingTop: 10,
-        paddingBottom: 10,
-        paddingRight: 10,
-        paddingLeft: 10,
-    },
+        borderColor: '#333333',
+        borderWidth: 4,
+        paddingVertical: globalStyles.PADDING * 0.25,
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
 });
