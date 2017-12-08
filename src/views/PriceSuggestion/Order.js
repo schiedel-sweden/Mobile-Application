@@ -53,7 +53,7 @@ export default class Order extends Component {
             totalSum: this.props.propState.totalSum,
 
             date: this.props.propState.date,
-            chosenDate: this.props.propState.date,
+            chosenDate: this.props.propState.chosenDate,
 
         });
         await this.setDate();
@@ -75,7 +75,7 @@ export default class Order extends Component {
             totalSum: newprops.propState.totalSum,
 
             date: newprops.propState.date,
-            chosenDate: newprops.propState.date,
+            chosenDate: newprops.propState.chosenDate,
 
         });
         await this.setDate();
@@ -93,9 +93,9 @@ export default class Order extends Component {
     // make function get date from API preferrably!
     getDate = () => {
         let today = new Date();
-        let dd = today.getDate();
-        let mm = today.getMonth() + 1;
-        let yyyy = today.getFullYear();
+        const dd = today.getDate();
+        const mm = today.getMonth() + 1;
+        const yyyy = today.getFullYear();
 
         if(dd<10) {
             dd = '0'+dd
