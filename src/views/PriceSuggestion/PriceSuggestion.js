@@ -133,7 +133,6 @@ export default class PriceSuggestion extends Component {
                 totalsum: false,
 
             },
-
             orderState: {
                 rowItems: [
                     {
@@ -163,6 +162,8 @@ export default class PriceSuggestion extends Component {
                 nettoSum: 0,
                 moms: 0,
                 totalSum:0,
+                date: null,
+                chosenDate: null,
             },
 
         };
@@ -229,6 +230,13 @@ export default class PriceSuggestion extends Component {
                     nettoSum: state.nettoSum,
                     moms: state.moms,
                     totalSum: state.totalSum,
+
+                    kranbil: state.kranbil,
+                    plukket: previousState.plukket,
+                    kjorer: state.kjorer,
+
+                    date: state.date,
+                    chosenDate: previousState.chosenDate,
 
                 }
             }

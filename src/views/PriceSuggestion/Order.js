@@ -10,6 +10,7 @@ import {
 
 import BoxRow from '../../components/GridBoxes/BoxRow';
 import ObjectSummarizer from '../../components/ObjectSummarizer/ObjectSummarizer';
+import DatePicker from 'react-native-datepicker';
 
 import Checkbox from 'react-native-checkbox';
 
@@ -33,12 +34,36 @@ export default class Order extends Component {
             nettoSum: props.propState.nettoSum,
             moms: props.propState.moms,
             totalSum: props.propState.totalSum,
+
+            date: props.propState.date,
+            chosenDate: props.propState.date,
         }
     }
 
+    componentWillMount = async () => {
+        await this.setState({
+            rowItems: this.props.propState.rowItems,
 
-    componentWillReceiveProps = (newprops) => {
-        this.setState({
+            kranbil: this.props.propState.kranbil,
+            plukket: this.props.propState.plukket,
+            kjorer: this.props.propState.kjorer,
+
+            nettoSum: this.props.propState.nettoSum,
+            moms: this.props.propState.moms,
+            totalSum: this.props.propState.totalSum,
+
+            date: this.props.propState.date,
+            chosenDate: this.props.propState.chosenDate,
+
+        });
+        await this.setDate();
+
+        this.parentCallback();
+    }
+
+
+    componentWillReceiveProps = async (newprops) => {
+        await this.setState({
             rowItems: newprops.propState.rowItems,
 
             kranbil: newprops.propState.kranbil,
@@ -49,7 +74,39 @@ export default class Order extends Component {
             moms: newprops.propState.moms,
             totalSum: newprops.propState.totalSum,
 
+            date: newprops.propState.date,
+            chosenDate: newprops.propState.chosenDate,
+
+        });
+        await this.setDate();
+
+        this.parentCallback();
+    }
+    setDate = () => {
+        let date = this.getDate();
+        this.setState({
+            date: date,
+            chosenDate: date,
         })
+    }
+
+    // make function get date from API preferrably!
+    getDate = () => {
+        let today = new Date();
+        const dd = today.getDate();
+        const mm = today.getMonth() + 1;
+        const yyyy = today.getFullYear();
+
+        if(dd<10) {
+            dd = '0'+dd
+        }
+
+        if(mm<10) {
+            mm = '0'+mm
+        }
+
+        today = ''+ yyyy + '-' + mm + '-' + dd;
+        return today;
     }
 
     sendCallback = async (rowItems) => {
@@ -107,6 +164,12 @@ export default class Order extends Component {
                 break;
 
         }
+    }
+
+    dateCallback = async (date) => {
+        await this.setState({chosenDate: date});
+        this.parentCallback();
+
     }
 
 
@@ -198,13 +261,39 @@ export default class Order extends Component {
                     <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-start'}}>
                         <Text>DATO: </Text>
                         {/* date should not be taken locally (preferrably) as changing the time on the device may cause issues */}
-                        <Text>*insert todays date*</Text>
+                        <Text>{this.state.date}</Text>
                     </View>
 
                     <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-start'}}>
                         <Text>Ønsket leveringsdato: </Text>
                         {/* how much is minimum allowed choice?  */}
-                        <Text>*insert date dropdown picker*</Text>
+                        {/* Set minDate another date set to maybe 2 weeks ahead? no idea! */}
+                        {/* what to set maxDate to? */}
+                        <DatePicker
+                            style={{width: 200}}
+                            date={this.state.chosenDate}
+                            mode="date"
+                            placeholder="select date"
+                            format="YYYY-MM-DD"
+                            minDate={this.state.date}
+                            maxDate="2020-12-31"
+                            confirmBtnText="Confirm"
+                            cancelBtnText="Cancel"
+                            customStyles={{
+                              dateIcon: {
+                                position: 'absolute',
+                                left: 0,
+                                top: 4,
+                                marginLeft: 0
+                              },
+                              dateInput: {
+                                marginLeft: 36
+                              }
+                              // ... You can check the source to find the other keys.
+                            }}
+                            onDateChange={(date) => {this.dateCallback(date)}}
+                         />
+
                     </View>
 
                 </View>
