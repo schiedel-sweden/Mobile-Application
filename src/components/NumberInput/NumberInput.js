@@ -48,9 +48,6 @@ export default class NumberInput extends React.Component {
 
     }
 
-
-
-
     render() {
         return (
             <View style={

@@ -74,33 +74,40 @@ export default class BoxRow extends Component {
 
     render() {
         return (
-            <View style={{flex:1, flexDirection: 'row', justifyContent: 'space-between'}}>
-
+            <View style={{paddingBottom: globalStyles.PADDING * 0.25, flex:1, flexDirection: 'row', justifyContent: 'space-between'}}>
                 {/* text should come from the serial number of the chosen item*/}
-                <GridBox
-                    text={this.state.number} />
+                <View style={{flex: 0.18}}>
+                    <GridBox
+                        text={this.state.number} />
+                </View>
                 {/* description of item*/}
-                <GridBox
-                    text={this.state.description} />
-
+                <View style={{flex: 0.25}}>
+                    <GridBox
+                        text={this.state.description} />
+                </View>
                 {/* number should come from how many of that item were chosen*/}
-                <GridBoxInc
-                    number={this.state.antal}
-                    onChange={this.calcSum}
-                    parentCallback={this.callback} />
-
+                <View style={{flex: 0.13}}>
+                    <GridBoxInc
+                        number={this.state.antal}
+                        onChange={this.calcSum}
+                        parentCallback={this.callback} />
+                </View>
                 {/* price should come from somewhere, no idea*/}
-                <GridBox
-                    text={this.state.pris}
-                    onChangeText={this.onChangeText} />
-
+                <View style={{flex: 0.13}}>
+                    <GridBox
+                        text={this.state.pris}
+                        onChangeText={this.onChangeText} />
+                </View>
                 {/* sum should be number multiplied with the price, pretty obvious*/}
-                <GridBox
-                    text={this.state.sum} />
-
+                <View style={{flex: 0.13}}>
+                    <GridBox
+                        text={this.state.sum} />
+                </View>
                 {/* rabatt should only be able to be modified by one type of user I assume*/}
-                <GridBoxInc
-                    number={this.state.rabatt} />
+                <View style={{flex: 0.13}}>
+                    <GridBoxInc
+                        number={this.state.rabatt} />
+                </View>
             </View>
 
         );
