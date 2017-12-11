@@ -41,14 +41,6 @@ const ShippingForm = t.struct({
     shippingText: t.String,
 });
 
-// borderRadius: 5,
-// borderWidth: 2,
-// borderColor: '#333333',
-// paddingVertical: 10,
-// paddingHorizontal: 15,
-// backgroundColor: '#ffffff',
-// marginVertical: 10,
-
 const options = {
     auto: 'none',
     stylesheet: stylesheetRow,
@@ -313,14 +305,14 @@ export default class PricePage extends Component {
                         <View style={[styles.rowSpaceBetween,{paddingTop: globalStyles.PADDiNG}]}>
                             {/* total sum of all above */}
                             {/*parentCallback={NO callback}
-                              myNumber={this.state.nettoSum.toString()} issues WARNING*/}
+                              myNumber={this.state.nettoSum.toString()} Doesn't work have to discuss*/}
                             <NumberInput
                                 pretext="NETTO"
                                 postfix="kr"
                             />
                             {/* 25% of the total sum */}
                             {/*parentCallback={NO callback}
-                               myNumber={this.state.moms.toString()} issues WARNING*/}
+                               myNumber={this.state.moms.toString()} Doesn't work have to discuss*/}
                             <NumberInput
                                 pretext="MOMS (25%)"
                                 postfix="kr"
@@ -329,7 +321,7 @@ export default class PricePage extends Component {
 
                         <View>
                             {/*parentCallback={NO callback}
-                               myNumber={this.state.totalSum.toString()}*/}
+                               myNumber={this.state.totalSum.toString()} Doesn't work have to discuss*/}
                             <NumberInput
                                 pretext="SUM"
                                 postfix="kr"
