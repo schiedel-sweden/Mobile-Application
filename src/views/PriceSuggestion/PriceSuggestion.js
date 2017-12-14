@@ -185,12 +185,13 @@ export default class PriceSuggestion extends Component {
 
 
     chimneyTypeCallback = (state) => {
+        // create new object for prisePageState, and set the pipe
+        const newChoice = Object.assign({}, this.state.prisePageState, { pipe: state.choice });
+        // update state with new choice
+        this.setState({prisePageState: newChoice});
         this.setState(previousState => {
             return {
                 chimneyTypeState: state,
-                prisePageState: {
-                    pipe: state.choice,
-                },
             }
 
         });
@@ -221,45 +222,27 @@ export default class PriceSuggestion extends Component {
         });
     }
     prisePageCallback = (state) => {
+        const orderStateChange = Object.assign({}, this.state.orderState, { rowItems: state.rowItems,
+                                                                            nettoSum: state.nettoSum,
+                                                                            moms:     state.moms,
+                                                                            totalSum: state.totalSum,});
+        this.setState({orderState: orderStateChange});
         this.setState(previousState => {
             return {
                 prisePageState: state,
-                orderState: {
-                    rowItems: state.rowItems,
-
-                    nettoSum: state.nettoSum,
-                    moms: state.moms,
-                    totalSum: state.totalSum,
-
-                    kranbil: state.kranbil,
-                    plukket: previousState.plukket,
-                    kjorer: state.kjorer,
-
-                    date: state.date,
-                    chosenDate: previousState.chosenDate,
-
-                }
             }
 
         });
     }
     orderCallback = (state) => {
+        const prisePageStateChange = Object.assign({}, this.state.orderState, { rowItems: state.rowItems,
+                                                                                nettoSum: state.nettoSum,
+                                                                                moms:     state.moms,
+                                                                                totalSum: state.totalSum,});
+        this.setState({prisePageState: prisePageStateChange});
         this.setState(previousState => {
             return {
                 orderState: state,
-
-                prisePageState: {
-                    rowItems: state.rowItems,
-
-                    nettoSum: state.nettoSum,
-                    moms: state.moms,
-                    totalSum: state.totalSum,
-
-                    kranbil: state.kranbil,
-                    plukket: state.plukket,
-                    kjorer: state.kjorer,
-
-                }
             }
 
         });

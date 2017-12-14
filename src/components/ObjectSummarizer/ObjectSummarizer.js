@@ -94,7 +94,7 @@ export default class ObjectSummarizer extends Component {
 
     showView = () => {
         try {
-            console.log(this.state.rowItems);
+            //console.log(this.state.rowItems);
             return (<View>
                         {this.state.rowItems.map((item, index) => {
                             return <BoxRow
