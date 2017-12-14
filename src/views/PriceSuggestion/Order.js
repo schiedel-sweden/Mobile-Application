@@ -104,22 +104,23 @@ export default class Order extends Component {
 
         let date = ""
 
+        date += yyyy + "-";
+
+        if(mm<10) {
+            date += '0'+mm.toString() + "-";
+        }
+        else {
+            date += mm.toString() + "-";
+        }
+
         if(dd<10) {
-            date += '0'+dd
+            date += '0'+dd.toString();
         }
         else {
             date += dd.toString();
         }
 
-        if(mm<10) {
-            date += '0'+mm
-        }
-        else {
-            date += mm.toString();
-        }
-
-        today = ''+ yyyy + '-' + mm + '-' + dd;
-        return today;
+        return date;
     }
 
 
