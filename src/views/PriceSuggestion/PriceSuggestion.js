@@ -222,10 +222,12 @@ export default class PriceSuggestion extends Component {
         });
     }
     prisePageCallback = (state) => {
+        // create new object for orderPageState, and set the different items
         const orderStateChange = Object.assign({}, this.state.orderState, { rowItems: state.rowItems,
                                                                             nettoSum: state.nettoSum,
                                                                             moms:     state.moms,
                                                                             totalSum: state.totalSum,});
+        // apply state changes
         this.setState({orderState: orderStateChange});
         this.setState(previousState => {
             return {
@@ -235,10 +237,12 @@ export default class PriceSuggestion extends Component {
         });
     }
     orderCallback = (state) => {
+        // create new object for orderPageState, and set the different items
         const prisePageStateChange = Object.assign({}, this.state.orderState, { rowItems: state.rowItems,
                                                                                 nettoSum: state.nettoSum,
                                                                                 moms:     state.moms,
                                                                                 totalSum: state.totalSum,});
+        // apply state changes
         this.setState({prisePageState: prisePageStateChange});
         this.setState(previousState => {
             return {
