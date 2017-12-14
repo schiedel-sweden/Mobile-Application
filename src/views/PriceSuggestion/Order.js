@@ -56,7 +56,7 @@ export default class Order extends Component {
             chosenDate: this.props.propState.chosenDate,
 
         });
-        if (this.props.propState.date == null) {
+        if (this.props.propState.date === null) {
             await this.setDate();
         }
 
@@ -104,7 +104,7 @@ export default class Order extends Component {
 
         let date = ""
 
-        date += yyyy + "-";
+        `date = ${yyyy}-`;
 
         if(mm<10) {
             date += '0'+mm.toString() + "-";
