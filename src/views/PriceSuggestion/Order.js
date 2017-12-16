@@ -36,7 +36,7 @@ export default class Order extends Component {
             totalSum: props.propState.totalSum,
 
             date: props.propState.date,
-            chosenDate: props.propState.date,
+            chosenDate: props.propState.chosenDate,
         }
     }
 
@@ -56,7 +56,9 @@ export default class Order extends Component {
             chosenDate: this.props.propState.chosenDate,
 
         });
-        await this.setDate();
+        if (this.props.propState.date === null) {
+            await this.setDate();
+        }
 
         this.parentCallback();
     }
@@ -78,7 +80,10 @@ export default class Order extends Component {
             chosenDate: newprops.propState.chosenDate,
 
         });
-        await this.setDate();
+
+        if(newprops.propState.date == null) {
+            await this.setDate();
+        }
 
         this.parentCallback();
     }
@@ -97,17 +102,27 @@ export default class Order extends Component {
         const mm = today.getMonth() + 1;
         const yyyy = today.getFullYear();
 
-        if(dd<10) {
-            dd = '0'+dd
-        }
+        let date = ""
+
+        `date = ${yyyy}-`;
 
         if(mm<10) {
-            mm = '0'+mm
+            date += '0'+mm.toString() + "-";
+        }
+        else {
+            date += mm.toString() + "-";
         }
 
-        today = ''+ yyyy + '-' + mm + '-' + dd;
-        return today;
+        if(dd<10) {
+            date += '0'+dd.toString();
+        }
+        else {
+            date += dd.toString();
+        }
+
+        return date;
     }
+
 
     sendCallback = async (rowItems) => {
         await this.setState({
@@ -168,6 +183,7 @@ export default class Order extends Component {
 
     dateCallback = async (date) => {
         await this.setState({chosenDate: date});
+        console.log(this.state.chosenDate);
         this.parentCallback();
 
     }
