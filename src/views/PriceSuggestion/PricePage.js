@@ -183,7 +183,6 @@ export default class PricePage extends Component {
 
 
     render () {
-        {/*this.testCall();*/}
         return (
             <View >
             {/* offertnummer */}
@@ -309,13 +308,16 @@ export default class PricePage extends Component {
                             <NumberInput
                                 pretext="NETTO"
                                 postfix="kr"
+                                myNumber={this.state.nettoSum.toString()}
                             />
+                            <Text>{this.state.nettoSum.toString()}</Text>
                             {/* 25% of the total sum */}
                             {/*parentCallback={NO callback}
                                myNumber={this.state.moms.toString()} Doesn't work have to discuss*/}
                             <NumberInput
                                 pretext="MOMS (25%)"
                                 postfix="kr"
+                                myNumber={this.state.moms.toString()}
                             />
                         </View>
 
@@ -325,6 +327,7 @@ export default class PricePage extends Component {
                             <NumberInput
                                 pretext="SUM"
                                 postfix="kr"
+                                myNumber={this.state.totalSum.toString()}
                             />
                         </View>
 

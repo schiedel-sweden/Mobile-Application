@@ -14,8 +14,8 @@ export default class NumberInput extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state ={
-            myNumber: this.props.myNumber,
+        this.state = {
+            myNumber: props.myNumber,
         }
     }
 
@@ -41,7 +41,7 @@ export default class NumberInput extends React.Component {
             }
         }
         else {
-            await this.setState({myNumber: ''});
+            await this.setState({myNumber: props.myNumber});
         }
         this.callMe();
 
@@ -60,19 +60,13 @@ export default class NumberInput extends React.Component {
                       }>
                 <Text>{this.props.pretext}</Text>
 
-                <TextInput
-                keyboardType = 'numeric'
-                onChangeText = {(text) => this.onChangeText(text)}
-                value = {this.state.myNumber}
-                />
-
                 <View style={styles.flexRow}>
                     <TextInput
                         style={{width: 40}}
-                        keyboardType = 'numeric'
-                        onChangeText = {(text) => this.onChangeText(text)}
+                        keyboardType='numeric'
+                        onChangeText={(text) => this.onChangeText(text)}
                         placeholder='0'
-                        value = {this.state.myNumber}
+                        value={this.state.myNumber}
                     />
 
                     <Text>{this.props.postfix}</Text>
