@@ -64,9 +64,9 @@ export default class PricePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            totalHeight: returnState.totalHeight,
-            heightAboveRoof: returnState.heightAboveRoof,
-            roofAngle: returnState.roofAngle,
+            totalHeight: props.propState.totalHeight,
+            heightAboveRoof: props.propState.heightAboveRoof,
+            roofAngle: props.propState.roofAngle,
             shipping: {
                 rebateText: '',
                 shippingText: '',
@@ -76,8 +76,8 @@ export default class PricePage extends Component {
             ordrebekreftelse: props.propState.ordrebekreftelse,
             totalsum: props.propState.totalsum,
 
-            andre: '',
-            beskjed: '',
+            andre: props.propState.andre,
+            beskjed: props.propState.beskjed,
 
             pipe: props.propState.pipe,
 
@@ -86,6 +86,13 @@ export default class PricePage extends Component {
             nettoSum: props.propState.nettoSum,
             moms: props.propState.moms,
             totalSum: props.propState.totalSum,
+
+            gulvPipetopp: props.propState.gulvPipetopp,
+            ytterelement: props.propState.ytterelement,
+            forningsror: props.propState.forningsror,
+            utsparningsmal: props.propState.utsparningsmal,
+
+
         }
         this.updateShipping = this.updateShipping.bind(this);
     }
@@ -105,6 +112,13 @@ export default class PricePage extends Component {
                 tillbud: newprops.propState.tillbud,
                 ordrebekreftelse: newprops.propState.ordrebekreftelse,
                 totalsum: newprops.propState.totalsum,
+
+                gulvPipetopp: newprops.propState.gulvPipetopp,
+                ytterelement: newprops.propState.ytterelement,
+                forningsror: newprops.propState.forningsror,
+                utsparningsmal: newprops.propState.utsparningsmal,
+
+
             }
 
 
@@ -181,6 +195,43 @@ export default class PricePage extends Component {
         }
     }
 
+    // set await and call parentCallback
+    gulvPipetoppCallback = async (number) => {
+        await this.setState({gulvPipetopp: number});
+        this.parentCallback();
+    }
+
+    heightAboveRoofCallback = async (number) => {
+        await this.setState({heightAboveRoof: number});
+        this.parentCallback();
+    }
+
+    roofAngleCallback = async (number) => {
+        await this.setState({roofAngle: number});
+        this.parentCallback();
+    }
+
+    totalHeightCallback = async (number) => {
+        await this.setState({totalHeight: number});
+        this.parentCallback();
+    }
+
+    ytterelementCallback = async (number) => {
+        await this.setState({ytterelement: number});
+        this.parentCallback();
+    }
+
+    forningsrorCallback = async (number) => {
+        await this.setState({forningsror: number});
+        this.parentCallback();
+    }
+
+    utsparningsmalCallback= async (number) => {
+        await this.setState({utsparningsmal: number});
+        this.parentCallback();
+    }
+
+
 
     render () {
         return (
@@ -204,13 +255,15 @@ export default class PricePage extends Component {
                         <View style={styles.rowSpaceBetween}>
                             <NumberInput
                                 pretext="Høyde gulv pipetopp:"
+                                parentCallback={this.gulvPipetoppCallback}
                                 postfix="mm"
+                                myNumber={this.state.gulvPipetopp.toString()}
                             />
                             <NumberInput
                                 pretext="Höjd över tak (H2):"
                                 postfix="mm"
                                 parentCallback={this.heightAboveRoofCallback}
-                                myNumber={this.state.heightAboveRoof}
+                                myNumber={this.state.heightAboveRoof.toString()}
                             />
                         </View>
 
@@ -219,13 +272,13 @@ export default class PricePage extends Component {
                                 pretext="Takvinkel:"
                                 postfix="°"
                                 parentCallback={this.roofAngleCallback}
-                                myNumber={this.state.roofAngle}
+                                myNumber={this.state.roofAngle.toString()}
                             />
                             <NumberInput
                                 pretext="Total høyde:"
                                 postfix="mm"
                                 parentCallback={this.totalHeightCallback}
-                                myNumber={this.state.totalHeight}
+                                myNumber={this.state.totalHeight.toString()}
                             />
                         </View>
 
@@ -233,11 +286,15 @@ export default class PricePage extends Component {
                             {/* Dont know where this info comes from */}
                             <NumberInput
                                 pretext="Ytterelement:"
+                                parentCallback={this.ytterelementCallback}
+                                myNumber={this.state.ytterelement.toString()}
                                 postfix="cm"
                             />
                             {/* Dont know where this info comes from */}
                             <NumberInput
                                 pretext="Forningsrør:"
+                                parentCallback={this.forningsrorCallback}
+                                myNumber={this.state.forningsror.toString()}
                                 postfix=""
                             />
                         </View>
@@ -246,6 +303,8 @@ export default class PricePage extends Component {
                             {/* Dont know where this info comes from */}
                             <NumberInput
                                 pretext="Utsparningsmål:"
+                                parentCallback={this.utsparningsmalCallback}
+                                myNumber={this.state.utsparningsmal.toString()}
                                 postfix="cm"
                             />
                         </View>
@@ -305,10 +364,36 @@ export default class PricePage extends Component {
                             {/* total sum of all above */}
                             {/*parentCallback={NO callback}
                               myNumber={this.state.nettoSum.toString()} Doesn't work have to discuss*/}
+
+
+                            {/* style appropriately*/}
+                            <View style={[styles.rowSpaceBetween,{paddingTop: globalStyles.PADDiNG}]}>
+                                <View style={[styles.rowSpaceBetween,{paddingTop: globalStyles.PADDiNG}]}>
+                                    <Text>NETTO</Text>
+                                    <Text>{this.state.nettoSum.toString()}</Text>
+                                    <Text>kr</Text>
+                                </View>
+
+                                <View style={[styles.rowSpaceBetween,{paddingTop: globalStyles.PADDiNG}]}>
+                                    <Text>MOMS (25%)</Text>
+                                    <Text>{this.state.moms.toString()}</Text>
+                                    <Text>kr</Text>
+                                </View>
+
+                            </View>
+
+                            <View style={[styles.rowSpaceBetween,{paddingTop: globalStyles.PADDiNG}]}>
+                                <Text>SUM</Text>
+                                <Text>{this.state.totalSum}</Text>
+                                <Text>kr</Text>
+
+                            </View>
+                            {/* remove after above styling is done*/}
                             <NumberInput
                                 pretext="NETTO"
                                 postfix="kr"
                                 myNumber={this.state.nettoSum.toString()}
+                                onChangeText={(text) => this.setState({nettoSum: text})}
                             />
                             <Text>{this.state.nettoSum.toString()}</Text>
                             {/* 25% of the total sum */}

@@ -132,6 +132,20 @@ export default class PriceSuggestion extends Component {
                 ordrebekreftelse: false,
                 totalsum: false,
 
+                totalHeight: '',
+                heightAboveRoof: 0,
+                roofAngle: 0,
+
+                gulvPipetopp: '',
+                heightAboveRoof: '',
+                roofAngle: '',
+                ytterelement: '',
+                forningsror: '',
+                utsparningsmal: '',
+
+                andre: '',
+                beskjed: '',
+
             },
             orderState: {
                 rowItems: [
@@ -198,6 +212,11 @@ export default class PriceSuggestion extends Component {
 
     }
     houseTypeCallback = (state) => {
+        // create new object for prisePageState, set different items
+        const prisePageStateChange = Object.assign({}, this.state.prisePageState, { totalHeight: state.totalHeight,
+                                                                                    heightAboveRoof: state.heightAboveRoof,
+                                                                                    roofAngle: state.roofAngle});
+        this.setState({prisePageState: prisePageStateChange});
         this.setState(previousState => {
             return {
                 houseTypeState: state
@@ -227,6 +246,10 @@ export default class PriceSuggestion extends Component {
                                                                             nettoSum: state.nettoSum,
                                                                             moms:     state.moms,
                                                                             totalSum: state.totalSum,});
+        const houseTypeStateChange = Object.assign({}, this.state.houseTypeState, { totalHeight: state.totalHeight,
+                                                                                    heightAboveRoof: state.heightAboveRoof,
+                                                                                    roofAngle: state.roofAngle});
+        this.setState({houseTypeState: houseTypeStateChange});
         // apply state changes
         this.setState({orderState: orderStateChange});
         this.setState(previousState => {
@@ -238,7 +261,7 @@ export default class PriceSuggestion extends Component {
     }
     orderCallback = (state) => {
         // create new object for orderPageState, and set the different items
-        const prisePageStateChange = Object.assign({}, this.state.orderState, { rowItems: state.rowItems,
+        const prisePageStateChange = Object.assign({}, this.state.prisePageState, { rowItems: state.rowItems,
                                                                                 nettoSum: state.nettoSum,
                                                                                 moms:     state.moms,
                                                                                 totalSum: state.totalSum,});

@@ -25,24 +25,22 @@ export default class NumberInput extends React.Component {
 
     async onChangeText(text) {
         let newText = '';
-        let numbers = '1234567890';
-
-        if (text !== '') {
-            for(let i = 0; i < text.length; i++) {
-                if (numbers.indexOf(text[i]) > -1) {
-                    newText = newText + text[i];
-                }
-                else {
-                    // not a number
-                    alert("please enter numbers only!");
-                }
-                await this.setState({myNumber: newText});
-
+        var numbers = '0123456789';
+        if(text.length < 1) {
+            await this.setState({ myNumber: '' });
+        }
+        for(let i = 0; i < text.length; i++) {
+            if (numbers.indexOf(text[i]) >- 1) {
+                newText = newText + text[i];
             }
+            else {
+                // not a number
+                alert("please enter numbers only!");
+            }
+            await this.setState({myNumber: newText});
+
         }
-        else {
-            await this.setState({myNumber: props.myNumber});
-        }
+
         this.callMe();
 
 
