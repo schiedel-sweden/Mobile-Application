@@ -7,6 +7,7 @@ import {
     Text,
     Image,
 } from 'react-native';
+import NumberPresented from '../../components/NumberInput/NumberPresented';
 import NumberInput from '../../components/NumberInput/NumberInput';
 import Checkbox from 'react-native-checkbox';
 
@@ -321,25 +322,22 @@ export default class PricePage extends Component {
 
                         <View style={[styles.rowSpaceBetween,{paddingTop: globalStyles.PADDiNG}]}>
                             {/* total sum of all above */}
-                            {/*parentCallback={NO callback}
-                              myNumber={this.state.nettoSum.toString()} Doesn't work have to discuss*/}
-                            <NumberInput
+                            <NumberPresented
+                                myNumber={this.state.nettoSum}
                                 pretext="NETTO"
                                 postfix="kr"
                             />
                             {/* 25% of the total sum */}
-                            {/*parentCallback={NO callback}
-                               myNumber={this.state.moms.toString()} Doesn't work have to discuss*/}
-                            <NumberInput
+                            <NumberPresented
+                                myNumber={this.state.moms}
                                 pretext="MOMS (25%)"
                                 postfix="kr"
                             />
                         </View>
 
                         <View>
-                            {/*parentCallback={NO callback}
-                               myNumber={this.state.totalSum.toString()} Doesn't work have to discuss*/}
-                            <NumberInput
+                            <NumberPresented
+                                myNumber={this.state.totalSum}
                                 pretext="SUM"
                                 postfix="kr"
                             />

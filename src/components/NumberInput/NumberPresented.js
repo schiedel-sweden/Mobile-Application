@@ -3,13 +3,12 @@ import {
     StyleSheet,
     View,
     Text,
-    TextInput,
     TouchableOpacity,
 } from 'react-native';
 
 import globalStyles from '../../styles/globalStyles';
 
-export default class NumberInput extends React.Component {
+export default class NumberPresented extends React.Component {
 
     constructor(props) {
         super(props);
@@ -17,35 +16,6 @@ export default class NumberInput extends React.Component {
         this.state ={
             myNumber: this.props.myNumber,
         }
-    }
-
-    callMe = () => {
-        this.props.parentCallback(this.state.myNumber);
-    }
-
-    async onChangeText(text) {
-        let newText = '';
-        let numbers = '1234567890';
-
-        if (text !== '') {
-            for(let i = 0; i < text.length; i++) {
-                if (numbers.indexOf(text[i]) > -1) {
-                    newText = newText + text[i];
-                }
-                else {
-                    // not a number
-                    alert("please enter numbers only!");
-                }
-                await this.setState({myNumber: newText});
-
-            }
-        }
-        else {
-            await this.setState({myNumber: ''});
-        }
-        this.callMe();
-
-
     }
 
     render() {
@@ -60,20 +30,10 @@ export default class NumberInput extends React.Component {
                       }>
                 <Text>{this.props.pretext}</Text>
 
-                <TextInput
-                keyboardType = 'numeric'
-                onChangeText = {(text) => this.onChangeText(text)}
-                value = {this.state.myNumber}
-                />
-
                 <View style={styles.flexRow}>
-                    <TextInput
-                        style={{width: 60}}
-                        keyboardType = 'numeric'
-                        onChangeText = {(text) => this.onChangeText(text)}
-                        placeholder='0'
-                        value = {this.state.myNumber}
-                    />
+                    <Text style={{width: 60}}>
+                        {this.props.myNumber}
+                    </Text>
 
                     <Text>{this.props.postfix}</Text>
                 </View>
