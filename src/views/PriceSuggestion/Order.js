@@ -12,7 +12,7 @@ import BoxRow from '../../components/GridBoxes/BoxRow';
 import ObjectSummarizer from '../../components/ObjectSummarizer/ObjectSummarizer';
 import DatePicker from 'react-native-datepicker';
 
-import NumberInput from '../../components/NumberInput/NumberInput';
+import NumberPresented from '../../components/NumberInput/NumberPresented';
 import Checkbox from 'react-native-checkbox';
 
 import globalStyles from '../../styles/globalStyles';
@@ -290,25 +290,22 @@ export default class Order extends Component {
 
                     <View style={[styles.rowSpaceBetween,{paddingTop: globalStyles.PADDiNG}]}>
                         {/* total sum of all above */}
-                        {/*parentCallback={NO callback}
-                          myNumber={this.state.nettoSum.toString()} Doesn't work have to discuss*/}
-                        <NumberInput
+                        <NumberPresented
+                            myNumber={this.state.nettoSum}
                             pretext="NETTO"
                             postfix="kr"
                         />
                         {/* 25% of the total sum */}
-                        {/*parentCallback={NO callback}
-                           myNumber={this.state.moms.toString()} Doesn't work have to discuss*/}
-                        <NumberInput
+                        <NumberPresented
+                            myNumber={this.state.moms}
                             pretext="MOMS (25%)"
                             postfix="kr"
                         />
                     </View>
 
                     <View>
-                        {/*parentCallback={NO callback}
-                           myNumber={this.state.totalSum.toString()} Doesn't work have to discuss*/}
-                        <NumberInput
+                        <NumberPresented
+                            myNumber={this.state.totalSum}
                             pretext="SUM"
                             postfix="kr"
                         />
