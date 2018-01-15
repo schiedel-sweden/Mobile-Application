@@ -7,6 +7,7 @@ import {
     Text,
     Image,
 } from 'react-native';
+import NumberPresented from '../../components/NumberInput/NumberPresented';
 import NumberInput from '../../components/NumberInput/NumberInput';
 import Checkbox from 'react-native-checkbox';
 
@@ -312,7 +313,7 @@ export default class PricePage extends Component {
                         <View style={styles.textDescription}>
                             <Text>Andre:</Text>
                             <TextInput
-                                style={{flex: 1, backgroundColor: "#d3d3d3"}}
+                                style={{flex: 1}}
                                 onChangeText={(text) => this.setState(previousState => {
                                     return {
                                         andre: text
@@ -351,14 +352,31 @@ export default class PricePage extends Component {
                                 />
                             </View>
                         </View>
-
-                        <Form
-                        ref="shippingform"
-                        value={this.state.shipping}
-                        onChange={this.updateShipping}
-                        type={ShippingForm}
-                        options={options}
-                        />
+                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                            <View style={{flex: 0.92}}>
+                                <Form
+                                ref="shippingform"
+                                value={this.state.shipping}
+                                onChange={this.updateShipping}
+                                type={ShippingForm}
+                                options={options}
+                                />
+                            </View>
+                            <View style={{paddingTop: 10}}>
+                              <View style={[styles.discountButton,{justifyContent: 'flex-end', paddingVertical: 4}]}>
+                                  <Image
+                                      style={{height: 21, width: 21}}
+                                      source={require('../../images/icons/round-arrow.png')} />
+                              </View>
+                            </View>
+                            <View style={{paddingTop: 10}}>
+                              <View style={[styles.discountButton,{justifyContent: 'flex-end', paddingVertical: 4}]}>
+                                  <Image
+                                      style={{height: 21, width: 21}}
+                                      source={require('../../images/icons/add.png')} />
+                              </View>
+                            </View>
+                        </View>
 
                         <View style={[styles.rowSpaceBetween,{paddingTop: globalStyles.PADDiNG}]}>
                             {/* total sum of all above */}
@@ -397,9 +415,8 @@ export default class PricePage extends Component {
                             />
                             <Text>{this.state.nettoSum.toString()}</Text>
                             {/* 25% of the total sum */}
-                            {/*parentCallback={NO callback}
-                               myNumber={this.state.moms.toString()} Doesn't work have to discuss*/}
-                            <NumberInput
+                            <NumberPresented
+                                myNumber={this.state.moms}
                                 pretext="MOMS (25%)"
                                 postfix="kr"
                                 myNumber={this.state.moms.toString()}
@@ -407,9 +424,8 @@ export default class PricePage extends Component {
                         </View>
 
                         <View>
-                            {/*parentCallback={NO callback}
-                               myNumber={this.state.totalSum.toString()} Doesn't work have to discuss*/}
-                            <NumberInput
+                            <NumberPresented
+                                myNumber={this.state.totalSum}
                                 pretext="SUM"
                                 postfix="kr"
                                 myNumber={this.state.totalSum.toString()}
@@ -440,7 +456,7 @@ export default class PricePage extends Component {
                             <Text>BESKJED:</Text>
 
                             <TextInput
-                                style={{flex: 1, backgroundColor: "#d3d3d3"}}
+                                style={{flex: 1}}
                                 multiline = {true}
                                 numberOfLines = {4}
                                 onChangeText={(text) => this.setState(previousState => {
@@ -524,13 +540,13 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: '#B9B9B9',
     },
-    button: {
+    discountButton: {
         borderRadius: 5,
         borderWidth: 2,
         borderColor: '#333333',
         backgroundColor: '#F9CE3C',
-        marginTop: globalStyles.PADDING * 0.5,
-        width: 100,
+        height: 35,
+        width: 35,
         justifyContent: 'center',
         alignItems: 'center',
     },

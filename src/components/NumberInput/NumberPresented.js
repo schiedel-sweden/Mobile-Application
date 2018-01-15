@@ -3,47 +3,19 @@ import {
     StyleSheet,
     View,
     Text,
-    TextInput,
     TouchableOpacity,
 } from 'react-native';
 
 import globalStyles from '../../styles/globalStyles';
 
-export default class NumberInput extends React.Component {
+export default class NumberPresented extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {
-            myNumber: props.myNumber,
+        this.state ={
+            myNumber: this.props.myNumber,
         }
-    }
-
-    callMe = () => {
-        this.props.parentCallback(this.state.myNumber);
-    }
-
-    async onChangeText(text) {
-        let newText = '';
-        var numbers = '0123456789';
-        if(text.length < 1) {
-            await this.setState({ myNumber: '' });
-        }
-        for(let i = 0; i < text.length; i++) {
-            if (numbers.indexOf(text[i]) >- 1) {
-                newText = newText + text[i];
-            }
-            else {
-                // not a number
-                alert("please enter numbers only!");
-            }
-            await this.setState({myNumber: newText});
-
-        }
-
-        this.callMe();
-
-
     }
 
     render() {
@@ -59,14 +31,9 @@ export default class NumberInput extends React.Component {
                 <Text>{this.props.pretext}</Text>
 
                 <View style={styles.flexRow}>
-                    <TextInput
-                        style={{width: 40}}
-                        keyboardType='numeric'
-                        onChangeText={(text) => this.onChangeText(text)}
-
-                        placeholder='0'
-                        value={this.state.myNumber}
-                    />
+                    <Text style={{width: 60}}>
+                        {this.props.myNumber}
+                    </Text>
 
                     <Text>{this.props.postfix}</Text>
                 </View>
