@@ -143,7 +143,7 @@ export default class Order extends Component {
 
         let date = ""
 
-        `date = ${yyyy}-`;
+        date += yyyy + "-"
 
         if(mm<10) {
             date += '0'+mm.toString() + "-";
