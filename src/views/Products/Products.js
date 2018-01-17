@@ -22,20 +22,20 @@ export default class Products extends Component {
         super(props);
         this.fetchData = this.fetchData.bind(this);
         this.state = {
-            materialerialTopics: [{id: 0, tagline: "Toggle materialerial 1 items", ingress: "materialerial one"},
-                        {id: 1, tagline: "Toggle materialerial 2 items", ingress: "materialerial two"},
-                        {id: 2, tagline: "Toggle materialerial 3 items", ingress: "materialerial tree"}],
-            materialerial: [],
+            materialTopics: [{id: 0, tagline: "Toggle material 1 items", ingress: "material one"},
+                        {id: 1, tagline: "Toggle material 2 items", ingress: "material two"},
+                        {id: 2, tagline: "Toggle material 3 items", ingress: "material tree"}],
+            material: [],
             visible1: true,
             data: [],
             refreshing: false,
-            ismaterialerialDetailViewActived: false,
+            ismaterialDetailViewActived: false,
         };
         this.componentWillMount = this.componentWillMount.bind(this);
         this.fetchData = this.fetchData.bind(this);
-        this.getmaterialerial = this.getmaterialerial.bind(this);
+        this.getmaterial = this.getmaterial.bind(this);
         this.listTouchableBlock = this.listTouchableBlock.bind(this);
-        this.setActivematerialerialDetailView = this.setActivematerialerialDetailView.bind(this);
+        this.setActivematerialDetailView = this.setActivematerialDetailView.bind(this);
         this.activeView = this.activeView.bind(this);
     }
 
@@ -46,7 +46,7 @@ export default class Products extends Component {
         this.setState({ refreshing: true });
         // temporary -----
         this.setState({
-          ismaterialerialDetailViewActived: false
+          ismaterialDetailViewActived: false
         });
         this.fetchData().then(() => {
             this.setState({ refreshing: false });
@@ -61,10 +61,10 @@ export default class Products extends Component {
     /**
     * @return bool
     */
-    setActivematerialerialDetailView(e) {
+    setActivematerialDetailView(e) {
         e.preventDefault()
           this.setState({
-            ismaterialerialDetailViewActived: !this.state.ismaterialerialDetailViewActived
+            ismaterialDetailViewActived: !this.state.ismaterialDetailViewActived
           });
     }
     /**
@@ -75,7 +75,7 @@ export default class Products extends Component {
             .then(response => response.json())
             .then(responseData => {
                 this.setState({ data: responseData });
-                this.getmaterialerial();
+                this.getmaterial();
             })
             .catch(error => {
                 console.log(error);
@@ -84,13 +84,13 @@ export default class Products extends Component {
     /**
     * @return return array
     */
-    getmaterialerial() {
+    getmaterial() {
         let ids = [];
-        // materialerial "144029"
+        // material "144029"
         let materialArr = [];
 
         for (let i = 0; i < this.state.data.length; i++) {
-            // add items to materialerial array
+            // add items to material array
             if (i < 5) {
                 materialArr.push(this.state.data[i].designation);
             }
@@ -105,13 +105,13 @@ export default class Products extends Component {
     * @return TouchableBlock[...]
     */
     listTouchableBlock() {
-        const listTouchableBlock = this.state.materialerialTopics.map((topic, i) =>
+        const listTouchableBlock = this.state.materialTopics.map((topic, i) =>
             <TouchableBlock key = {i} materialTopic={topic}
             visible={this.state.visible1}
             material={this.state.material}
             navigation={this.props.navigation}
             order={i}
-            setActivematerialerialDetailView = {this.setActivematerialerialDetailView}/>
+            setActivematerialDetailView = {this.setActivematerialDetailView}/>
         );
         return listTouchableBlock;
     }
@@ -119,8 +119,8 @@ export default class Products extends Component {
     * @return View
     */
     activeView() {
-        return this.state.ismaterialerialDetailViewActived
-          ? <materialerialDetail />
+        return this.state.ismaterialDetailViewActived
+          ? <MaterialDetail />
           : this.listTouchableBlock();
     }
 
