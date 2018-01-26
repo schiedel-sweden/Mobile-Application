@@ -109,18 +109,21 @@ export default class PriceSuggestion extends Component {
                         antal: 0,
                         pris: 3000,
                         sum: 0,
+                        rabatt: 0,
                     },
                     {
                         number: 231,
                         antal: 0,
                         pris: 1500,
                         sum: 0,
+                        rabatt: 0,
                     },
                     {
                         number: 312,
                         antal: 0,
                         pris: 2000,
                         sum: 0,
+                        rabatt: 0,
                     },
                 ],
 
@@ -154,18 +157,21 @@ export default class PriceSuggestion extends Component {
                         antal: 0,
                         pris: 3000,
                         sum: 0,
+                        rabatt: 0,
                     },
                     {
                         number: 231,
                         antal: 0,
                         pris: 1500,
                         sum: 0,
+                        rabatt: 0,
                     },
                     {
                         number: 312,
                         antal: 0,
                         pris: 2000,
                         sum: 0,
+                        rabatt: 0,
                     },
                 ],
 
