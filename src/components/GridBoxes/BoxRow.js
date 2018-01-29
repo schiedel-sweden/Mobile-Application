@@ -50,9 +50,9 @@ export default class BoxRow extends Component {
         let price = this.state.pris;
         let rabatt = this.state.rabatt;
 
-        let totsum = number * price * ((100 - rabatt) / 100.0);
+        let totalsum = number * price * ((100 - rabatt) / 100.0);
         await this.setState({
-            sum: totsum,
+            sum: totalsum,
         });
         this.callMe();
 
