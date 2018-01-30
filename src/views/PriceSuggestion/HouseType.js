@@ -77,10 +77,11 @@ export default class HouseType extends Component {
     render() {
         return (
             <View>
-                <View>
-                    {/* prop passed in PriceSuggestion */}
+                {/*<View>
+                     prop passed in PriceSuggestion
+                     use as you wish!
                     <Text>Offertnummer: {this.props.quotNum}</Text>
-                </View>
+                </View>*/}
                 <View style={styles.container}>
                     {/* Image is HUGE, scale down?*/}
                     <View style={[{ alignItems: 'center', }]}>

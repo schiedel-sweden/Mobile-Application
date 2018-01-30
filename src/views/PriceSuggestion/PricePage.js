@@ -238,9 +238,10 @@ export default class PricePage extends Component {
         return (
             <View >
             {/* offertnummer */}
-                <View>
+            {/* format this as you wish */}
+                {/*<View>
                     <Text>Offertnummer: { QUOT_NUMBER }</Text>
-                </View>
+                </View>*/}
                 <View style={styles.container}>
                 {/* chosen chimney */}
                     <View style={styles.sectionContainer}>
