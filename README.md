@@ -1,11 +1,7 @@
 # About us [![Build Status](https://travis-ci.org/schiedel-sweden/Mobile-Application.svg?branch=master)](https://travis-ci.org/schiedel-sweden/Mobile-Application) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 This application is built in [React Native](https://facebook.github.io/react-native/)
-for the chimney company [Schiedel](https://www.schiedel.com/se/) built by
-[HandelsmMrketing](http://www.handelsmarketing.se/). HandelsmMrketing is a
-student run marketing company who also makes awesome websites and mobile
-applications.
-
+for the chimney company [Schiedel](https://www.schiedel.com/se/)
 ## Installing
 
 ```BASH
@@ -24,6 +20,3 @@ There are many ways to contribute. Here's a few ideas to get started:
 * If you find an issue you would like to fix, open a pull request. Issues tagged as Good First Task are a good place to get started.
 * Read through the React Native docs.
 * Browse Stack Overflow and answer questions. This will help you get familiarized with common pitfalls or misunderstandings, which can be useful when contributing.
-
-## License
-#### [MIT License](https://mitlicense.org/)
